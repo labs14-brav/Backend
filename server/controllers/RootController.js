@@ -6,7 +6,7 @@
 
 class RootController {
   static index(req, res) {
-    res.status(200).json()
+    res.status(200).json('Welcome to Brāv!')
   }
 }
 
