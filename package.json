@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "knex": "^0.18.4",
+    "knex-cleaner": "^1.1.4",
+    "pg": "^7.11.0",
+    "sqlite3": "^4.0.9"
+  }
+}
