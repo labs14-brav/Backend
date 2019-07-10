@@ -1,9 +1,10 @@
 {
   "name": "brav-Backend",
-  "version": "1.0.0",
-  "description": "🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Backend server for Brav application.",
+  "main": "server/app.js",
   "scripts": {
+    "start": "node server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -12,9 +13,14 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/labs14-brav/Backend/issues"
   },
-  "homepage": "https://github.com/labs14-brav/Backend#readme"
+  "homepage": "https://github.com/labs14-brav/Backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.18.0"
+  }
 }
