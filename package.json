@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/app.js",
     "start:dev": "nodemon server/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watch --verbose"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,8 @@
     "sqlite3": "^4.0.9"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
   }
 }
