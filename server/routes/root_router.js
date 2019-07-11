@@ -21,6 +21,9 @@ const router = express.Router()
 router.route('/')
   .get(RootController.index)
 
+
+router.route('/users')
+  .get(RootController.findUsers)
 /**
  * Export router
  */
