@@ -26,5 +26,5 @@ coverage
 .gitsync_lock
 
 # Ignore testing and development database
-test.sqlite3
-development.sqlite3
+*.sqlite3
+*.db3
