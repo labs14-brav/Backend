@@ -21,6 +21,10 @@ const router = express.Router()
 router.route('/')
   .get(RootController.index)
 
+//GET /users This is just to make sure data can be accessed on the FE
+router.route('/users')
+  .get(RootController.findUsers)
+
 /**
  * Export router
  */
