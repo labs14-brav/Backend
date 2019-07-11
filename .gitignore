@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-node_modules
-=======
 # See https://help.github.com/articles/ignoring-files for more about ignoring files.
 
 # Ignore all logfiles and tempfiles.
@@ -27,4 +24,3 @@ coverage
 
 # Prevent gitsync conflicts
 .gitsync_lock
->>>>>>> 9a01506b6d46bb7e98c5cbcf5367786f8888356d
