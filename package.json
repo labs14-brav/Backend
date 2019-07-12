@@ -2,6 +2,7 @@
   "name": "brav-Backend",
   "version": "0.1.0",
   "description": "Backend server for Brav application.",
+  "private": true,
   "main": "server/app.js",
   "scripts": {
     "start": "node server/app.js",
@@ -13,7 +14,6 @@
     "url": "git+https://github.com/labs14-brav/Backend.git"
   },
   "keywords": [],
-  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/labs14-brav/Backend/issues"
