@@ -4,6 +4,7 @@
  * Dependencies
  */
 
+
 const express = require('express')
 const RootController = require('../controllers/RootController')
 
@@ -25,8 +26,18 @@ router.route('/')
 router.route('/users')
   .get(RootController.findUsers)
 
+router.route('/users/signup')
+  .post(RootController.signup)
+
+router.route('/users/signin')
+  .post(RootController.signin)
+  
+
 /**
  * Export router
  */
 
 module.exports = router
+
+
+
