@@ -1,7 +1,10 @@
 const data = require('../fakeUserData');
 
 exports.seed = function(knex) {
+  return knex('users').del()
+    .then(function () {
       return knex('users').insert(data.seeds);
+    })
 };
 
 // {username: 'user1', type: 'user', email: 'user1@email.com', nickname: 'User'},
