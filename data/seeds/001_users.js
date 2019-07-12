@@ -3,7 +3,7 @@ faker.seed(1);
 
 let seeds = [];
 let typearray = ['User', 'Mediator', 'Admin'];
-for (i = 0; i < 500; i++) {
+for (i = 0; i < 100; i++) {
   let rN = Math.floor(Math.random() * typearray.length);
   seeds[i] = {
     username: faker.name.findName(),
