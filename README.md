@@ -1,4 +1,4 @@
-# Backend
+# backend
 🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
 
 🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
@@ -7,7 +7,7 @@
 
 # API Documentation
 
-#### 1️⃣ Backend delpoyed at [🚫name service here](🚫add URL here) <br>
+#### 1️⃣ Backend delpoyed at [Heroku](https://bravproduction.herokuapp.com/) <br>
 
 ## 1️⃣ Getting started
 
@@ -124,13 +124,13 @@ In order for the app to function correctly, the user must set up their own envir
 create a .env file that includes the following:
 
 🚫 These are just examples, replace them with the specifics for your app
-    
+
     *  STAGING_DB - optional development db for using functionality not available in SQLite
     *  NODE_ENV - set to "development" until ready for "production"
     *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
     *  SENDGRID_API_KEY - this is generated in your Sendgrid account
     *  stripe_secret - this is generated in the Stripe dashboard
-    
+
 ## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
