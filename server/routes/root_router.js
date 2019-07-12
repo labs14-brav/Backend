@@ -25,6 +25,13 @@ router.route('/')
 router.route('/users')
   .get(RootController.findUsers)
 
+router.route('/users/signup')
+  .post(RootController.signup)
+
+router.route('/users/signin')
+  .post(RootController.signin)
+  
+
 /**
  * Export router
  */

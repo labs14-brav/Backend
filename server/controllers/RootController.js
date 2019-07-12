@@ -20,7 +20,18 @@ class RootController {
           res.status(500).json(error);
         })
   }
+
+
+  static signup(req, res) {
+    res.status(200).json('Welcome to singup!')
+  }
+  static signin(req, res) {
+    res.status(200).json('Welcome to signin!')
+  }
+
 }
+
+
 
 /**
  * Export controller
