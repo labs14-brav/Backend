@@ -6,19 +6,17 @@ exports.up = function(knex) {
 
         users
             .string('username', 128)
-            .notNullable()
-            .unique();
         
         users
             .string('type', 128);
             
         users
             .string('email', 128)
+            .notNullable()
             .unique();
         
         users
             .string('nickname', 128)
-            .unique();
 
     })
 };
