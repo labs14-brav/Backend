@@ -1,5 +1,4 @@
 # backend
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
 
 🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
 
@@ -7,18 +6,16 @@
 
 # API Documentation
 
-#### 1️⃣ Backend delpoyed at [Heroku](https://bravproduction.herokuapp.com/) <br>
+#### Backend delpoyed at [Heroku](https://bravproduction.herokuapp.com/) <br>
 
-## 1️⃣ Getting started
+## Getting started
 
 To get the server running locally:
 
-🚫 adjust these scripts to match your project
-
-- Clone this repo
-- **yarn install** to install all required dependencies
-- **yarn server** to start the local server
-- **yarn test** to start server using testing environment
+- Clone this repo.
+- **npm install** to install all required dependencies.
+- **npm start** to start the local server.
+- **npm test** to run the tests.
 
 ### Backend framework goes here
 
