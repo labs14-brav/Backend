@@ -15,7 +15,7 @@ class RootController {
   }
 
   static findUsers(req, res) {
-      model.getUsers()
+      model.getUsers(req.query.offset)
         .then(users => {
           res.status(200).json(users);
         })

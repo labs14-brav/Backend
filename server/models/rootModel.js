@@ -8,8 +8,10 @@ module.exports = {
 }
 
 //Test method for accessing data on the FE
-function getUsers() {
+function getUsers(offset=0) {
     return db('users')
+    .limit(10)
+    .offset(offset)
 };
 
 function getUserByName(nickname) {
