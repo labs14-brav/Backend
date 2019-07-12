@@ -1,4 +1,3 @@
-
 exports.up = function(knex) {
   return knex.schema
     .createTable('users', users => {
@@ -18,7 +17,6 @@ exports.up = function(knex) {
         
         users
             .string('nickname', 128)
-            .unique();
 
     })
 };
