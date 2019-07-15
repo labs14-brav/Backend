@@ -12,7 +12,7 @@ const cors = require('cors')
  * Constants
  */
 
-const port = process.env.PORT || 8888
+const port = process.env.PORT || 8080
 
 /**
  * Define app
