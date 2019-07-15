@@ -37,4 +37,24 @@ module.exports = {
       directory: './data/seeds',
     },
   },
+  staging: {
+    client: 'pg',
+    connection: dbConnection,
+    migrations: {
+      directory: './data/migrations',
+    },
+    seeds: {
+      directory: './data/seeds',
+    },
+  },
+  staging2: {
+    client: 'pg',
+    connection: dbConnection,
+    migrations: {
+      directory: './data/migrations',
+    },
+    seeds: {
+      directory: './data/seeds',
+    },
+  },
 };

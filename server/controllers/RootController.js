@@ -29,24 +29,22 @@ class RootController {
    static async signup(req, res) {
     try {
       const token = req.headers.authorization;
-  
+
       if (req.headers && req.headers.authorization && token) {
-       
+
         const userToken = token.replace(/Bearer /g, '');
-        console.log("token",userToken)
-  
+
         // const decode = jwtDecode(userToken);
-  
 
         const user = {
-          email: 'joesmith@email',//decode.name,
+          email: 'joesmith@email', //decode.name,
           nickname:'joe smith' //decode.nickname
         };
-  
+
         const foundUser = await model.getUserByName(user.nickname);
 
         console.log("founduser",foundUser)
-  
+
         if (foundUser) {
           res.status(200).json(foundUser);
         } else {
@@ -55,14 +53,14 @@ class RootController {
           //   nickname: user.nickname,
           //   email: user.email
           // };
-  
+
           const id = await model.addUser(user);
           console.log("id",id)
 
           // res.status(201).json(user);
           const foundUser = await model.getUserById(id);
           console.log("founduser",foundUser)
-      
+
           res.status(200).json(foundUser);
         }
       } else {
@@ -87,4 +85,3 @@ class RootController {
  */
 
 module.exports = RootController
-
