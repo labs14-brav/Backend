@@ -11,6 +11,7 @@ const jwt = require('jsonwebtoken');
 
 class RootController {
   static index(req, res) {
+
     res.status(200).json('Welcome to Brāv!')
   }
 
@@ -26,43 +27,46 @@ class RootController {
   }
 
 
-   static async signup(req, res) {
+   static async auth(req, res) {
+     console.log(req.body);
     try {
-      const token = req.headers.authorization;
 
-      if (req.headers && req.headers.authorization && token) {
+      if (req.body.token && req.body.user) {
 
-        const userToken = token.replace(/Bearer /g, '');
 
-        // const decode = jwtDecode(userToken);
+        const decode = jwtDecode(req.body.token);
 
-        const user = {
-          email: 'joesmith@email', //decode.name,
-          nickname:'joe smith' //decode.nickname
-        };
+        console.log('decode',decode)
 
-        const foundUser = await model.getUserByName(user.nickname);
+        // const user = {
+        //   email: 'joesmith@email', //decode.name,
+        //   nickname:'joe smith' //decode.nickname
+        // };
 
-        console.log("founduser",foundUser)
+        // const foundUser = await model.getUserByName(user.nickname);
 
-        if (foundUser) {
-          res.status(200).json(foundUser);
-        } else {
-          // if the user doesn't exist create a user object that reflect the database schema.
-          // const newUser = {
-          //   nickname: user.nickname,
-          //   email: user.email
-          // };
+        // console.log("founduser",foundUser)
 
-          const id = await model.addUser(user);
-          console.log("id",id)
+        // if (foundUser) {
+        //   res.status(200).json(foundUser);
+        // } else {
+        //   // if the user doesn't exist create a user object that reflect the database schema.
+        //   // const newUser = {
+        //   //   nickname: user.nickname,
+        //   //   email: user.email
+        //   // };
 
-          // res.status(201).json(user);
-          const foundUser = await model.getUserById(id);
-          console.log("founduser",foundUser)
+        //   const id = await model.addUser(user);
+        //   console.log("id",id)
 
-          res.status(200).json(foundUser);
-        }
+        //   // res.status(201).json(user);
+        //   const foundUser = await model.getUserById(id);
+        //   console.log("founduser",foundUser)
+
+        //   res.status(200).json(foundUser);
+        // }
+        res.status(200).json({message:'success'});
+
       } else {
         res.status(400).json({errorMessage: 'Invalid Credentials!'});
       }
@@ -72,9 +76,7 @@ class RootController {
     }
 
   }
-  static signin(req, res) {
-    res.status(200).json('Welcome to signin!')
-  }
+ 
 
 }
 

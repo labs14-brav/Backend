@@ -10,9 +10,9 @@ exports.up = function(knex) {
             .string('email', 128)
             .notNullable()
             .unique();
-        users
-            .string('nickname', 128)
-
+       users
+            .string('uid')
+            
     })
 };
 
