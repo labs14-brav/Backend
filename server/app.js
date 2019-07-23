@@ -10,8 +10,6 @@ const helmet = require('helmet')
 const cors = require('cors')
 
 
-console.log(process.env.FIREBASE_ENV)
-process.exit()
 /**
  * Constants
  */
