@@ -1,6 +1,6 @@
 const firebase= require("../initializers/firebase");
 
-module.exports={decodeToken};
+module.exports=decodeToken;
 
 function decodeToken(req,res,next){
     
@@ -9,7 +9,7 @@ const token=req.body.token;
 if(token){
     firebase.auth().verifyIdToken(token)
     .then(decodeToken=>{
-        
+
         req.body.email= decodeToken.email;
         req.body.uid= decodeToken.uid;
         next();

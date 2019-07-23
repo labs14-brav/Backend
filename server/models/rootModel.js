@@ -2,7 +2,7 @@ const db = require('../../data/dbConfig');
 
 module.exports = {
     getUsers,
-    getUserByName,
+    getUserByEmail,
     getUserById,
     addUser
 }
@@ -14,8 +14,8 @@ function getUsers(offset=0) {
     .offset(offset)
 };
 
-function getUserByName(nickname) {
-    return db('users').where('nickname',nickname).first()
+function getUserByEmail(email) {
+    return db('users').where('email',email).first()
 };
 
 function getUserById(id) {
@@ -26,13 +26,13 @@ async function addUser(user) {
     if(process.env.NODE_ENV=="production"){
         const [ids] = await db('users').insert({
             email: user.email,
-            nickname: user.nickname,
+            uid: user.uid,
         },['id'])
         return ids.id
     }else{
         const [id] = await db('users').insert({
             email: user.email,
-            nickname: user.nickname,
+            uid: user.uid,
         })
         return id
     }

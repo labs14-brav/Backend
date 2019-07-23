@@ -31,40 +31,35 @@ class RootController {
      console.log(req.body);
     try {
 
-      if (req.body.token && req.body.user) {
+      if (req.body.user) {
 
+        const user = {
+          email: req.body.email, 
+          uid:req.body.uid,
+        };
 
-        const decode = jwtDecode(req.body.token);
-
-        console.log('decode',decode)
-
-        // const user = {
-        //   email: 'joesmith@email', //decode.name,
-        //   nickname:'joe smith' //decode.nickname
-        // };
-
-        // const foundUser = await model.getUserByName(user.nickname);
+        let foundUser = await model.getUserByEmail(user.email);
 
         // console.log("founduser",foundUser)
 
-        // if (foundUser) {
-        //   res.status(200).json(foundUser);
-        // } else {
-        //   // if the user doesn't exist create a user object that reflect the database schema.
-        //   // const newUser = {
-        //   //   nickname: user.nickname,
-        //   //   email: user.email
-        //   // };
+        if (foundUser) {
+          res.status(200).json(foundUser);
+        } else {
+          // if the user doesn't exist create a user object that reflect the database schema.
+          const newUser = {
+            uid: user.uid,
+            email: user.email,
+          };
 
-        //   const id = await model.addUser(user);
-        //   console.log("id",id)
+          const id = await model.addUser(user);
+          console.log("id",id)
 
-        //   // res.status(201).json(user);
-        //   const foundUser = await model.getUserById(id);
-        //   console.log("founduser",foundUser)
+          foundUser = await model.getUserById(id);
+          console.log("founduser",foundUser)
 
-        //   res.status(200).json(foundUser);
-        // }
+          res.status(200).json(foundUser);
+        }
+
         res.status(200).json({message:'success'});
 
       } else {
