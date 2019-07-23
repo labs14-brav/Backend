@@ -4,21 +4,36 @@
  * Dependencies
  */
 
+require('dotenv').config()
 const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
 
+
+console.log(process.env.FIREBASE_ENV)
+process.exit()
 /**
  * Constants
  */
 
 const port = process.env.PORT || 8888
 
+
+
 /**
  * Define app
  */
 
+
+
 const app = express()
+
+/**
+ * Locals
+ */
+
+app.locals.firebase= require("./initializers/firebase")
+
 
 /**
  * Config
