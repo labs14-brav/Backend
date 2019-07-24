@@ -13,6 +13,10 @@ exports.up = function(knex) {
             .string('uid')
             .notNullable()
             .unique()
+        users
+            .string('mediator_general_details')
+            .notNullable()
+            .unique()
     })
 };
 

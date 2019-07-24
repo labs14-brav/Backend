@@ -4,7 +4,8 @@ module.exports = {
     getUsers,
     getUserByEmail,
     getUserById,
-    addUser
+    addUser,
+    editUser
 }
 
 //Test method for accessing data on the FE
@@ -38,3 +39,9 @@ async function addUser(user) {
     }
 
 };
+
+async function editUser(id, update) {
+    return db('users')
+      .where('id', id)
+      .update(update);
+  }

@@ -33,6 +33,10 @@ router.route('/users/auth')
 
   
 
+
+router.route('/users/:id/mediator-upgrade')
+  .put(RootController.mediatorUpgrade)
+  
 /**
  * Export router
  */
