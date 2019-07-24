@@ -3,9 +3,12 @@ const firebase= require("../initializers/firebase");
 module.exports=decodeToken;
 
 function decodeToken(req,res,next){
-    
+
 const token= req.get('authorization') || req.body.token;
-console.log('Token -------', token);
+// console.log('headers ---------', req.get('authorization'));
+// console.log('request ---------', req)
+// console.log('request headers --------', req.headers.authorization);
+// console.log('Token -------', token);
 console.log(process.env.FIREBASE_CONFIG);
 
 if(token){
