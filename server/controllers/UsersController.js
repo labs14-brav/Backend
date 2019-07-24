@@ -6,7 +6,7 @@ class UsersController {
     try {
         let mediators = await model.fetchMediators()
         if (mediators) {
-          console.log('Inside fetchMediators');
+          //console.log('Inside fetchMediators');
           res.status(200).json(mediators);
         } else {
           res.status(500).json({message: 'Internal Server Error'})
