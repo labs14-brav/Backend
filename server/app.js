@@ -46,7 +46,8 @@ app.use(express.json())
  * Routes
  */
 
-app.use(require('./routes/root_router'))
+app.use('/', require('./routes/root_router'))
+app.use('/cases', require('./routes/cases_router'))
 
 /**
  * Start server
