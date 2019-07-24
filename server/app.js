@@ -4,21 +4,34 @@
  * Dependencies
  */
 
+require('dotenv').config()
 const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
+
 
 /**
  * Constants
  */
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8888
+
+
 
 /**
  * Define app
  */
 
+
+
 const app = express()
+
+/**
+ * Locals
+ */
+
+
+
 
 /**
  * Config

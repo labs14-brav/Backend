@@ -5,8 +5,9 @@
  */
 
 
-const express = require('express')
-const RootController = require('../controllers/RootController')
+const express = require('express');
+const RootController = require('../controllers/RootController');
+const decodemiddleware= require('../middleware/firebasedecoder');
 
 /**
  * Define router
@@ -26,11 +27,10 @@ router.route('/')
 router.route('/users')
   .get(RootController.findUsers)
 
-router.route('/users/signup')
-  .post(RootController.signup)
+router.route('/users/auth')
+  .all(decodemiddleware)
+  .post(RootController.auth)
 
-router.route('/users/signin')
-  .post(RootController.signin)
   
 
 /**
