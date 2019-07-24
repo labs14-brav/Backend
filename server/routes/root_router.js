@@ -32,11 +32,6 @@ router.route('/users/auth')
   .all(decodemiddleware)
   .post(RootController.auth)
 
-//Used to test restricted Middleware
-// router.route('/test')
-//   .all(restrictedMiddleware)
-//   .get(RootController.test)
-
 /**
  * Export router
  */
