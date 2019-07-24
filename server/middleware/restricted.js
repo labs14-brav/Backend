@@ -1,7 +1,7 @@
 const firebase= require("../initializers/firebase");
 
 
-module.exports = { restrictedMiddleware }
+module.exports = restrictedMiddleware;
 
 function restrictedMiddleware(req, res, next) {
     const token = req.headers.authorization;

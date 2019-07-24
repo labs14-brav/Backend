@@ -71,7 +71,12 @@ class RootController {
     }
 
   }
- 
+
+  //Used to test restricted middleware by passing a token on headers.
+  // static test(req, res) {
+  //   console.log('Test route.');
+  //   res.status(200).json({message: 'test route'})
+  // }
 
 }
 
