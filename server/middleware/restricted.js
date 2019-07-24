@@ -4,8 +4,8 @@ module.exports=decodeToken;
 
 function decodeToken(req,res,next){
     
-const token=req.body.token;
-
+const token= req.get('authorization') || req.body.token;
+console.log('Token -------', token);
 console.log(process.env.FIREBASE_CONFIG);
 
 if(token){
