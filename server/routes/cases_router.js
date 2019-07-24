@@ -5,7 +5,8 @@
  */
 
 
-const express = require('express');
+const express = require('express')
+const CasesController = require('../controllers/CasesController')
 
 /**
  * Define router
@@ -15,13 +16,12 @@ const router = express.Router()
 
 /**
  * Routes
- *   GET /cases
+ *   GET,POST /cases
  */
 
 router.route('/')
-  .get((req, res) => {
-    res.status(200).json({ message: 'Cases' })
-  })
+  .get(CasesController.index)
+  .post(CasesController.create)
 
 /**
  * Export router
