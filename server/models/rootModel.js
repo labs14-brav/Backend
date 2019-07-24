@@ -6,7 +6,6 @@ module.exports = {
     getUserByEmail,
     getUserById,
     addUser,
-    userModel
 }
 
 //Test method for accessing data on the FE

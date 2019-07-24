@@ -31,10 +31,6 @@ router.route('/users/auth')
   .all(decodemiddleware)
   .post(RootController.auth)
 
-  //Will probably want to add the restricted middleware for this endpoint later
-router.route('/mediators')
-  .get(RootController.fetchMediators)  
-
 /**
  * Export router
  */

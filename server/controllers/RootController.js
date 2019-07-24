@@ -11,7 +11,6 @@ const jwt = require('jsonwebtoken');
 
 class RootController {
   static index(req, res) {
-
     res.status(200).json('Welcome to Brāv!')
   }
 
@@ -71,23 +70,6 @@ class RootController {
     }
 
   }
-
-  static async mediators(req, res) {
-    try {
-        let mediators = await model.userModel.fetchMediators()
-        if (mediators) {
-          res.status(200).json(mediators);
-        } else {
-          res.status(500).json({message: 'Internal Server Error'})
-        }
-    } catch(err) {
-        console.error(err);
-        res.status(500).json({message: 'Internal Server Error'});
-    }
-
-  }
- 
-
 }
 
 
