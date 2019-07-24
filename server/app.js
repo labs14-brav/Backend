@@ -1,10 +1,15 @@
 'use strict'
 
 /**
- * Dependencies
+ * Import environment
  */
 
 require('dotenv').config()
+
+/**
+ * Dependencies
+ */
+
 const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
