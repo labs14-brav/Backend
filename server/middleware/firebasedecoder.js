@@ -3,7 +3,7 @@ const firebase= require("../initializers/firebase");
 module.exports=decodeToken;
 
 function decodeToken(req,res,next){
-    
+
 const token=req.body.token;
 
 console.log(process.env.FIREBASE_CONFIG);

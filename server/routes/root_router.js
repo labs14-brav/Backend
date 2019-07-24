@@ -31,13 +31,10 @@ router.route('/users/auth')
   .all(decodemiddleware)
   .post(RootController.auth)
 
-  
+
 
 /**
  * Export router
  */
 
 module.exports = router
-
-
-
