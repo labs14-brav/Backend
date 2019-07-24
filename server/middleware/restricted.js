@@ -1,24 +1,31 @@
 const firebase= require("../initializers/firebase");
 
+module.exports=decodeToken;
 
-module.exports = restrictedMiddleware;
+function decodeToken(req,res,next){
+    
+const token=req.body.token;
 
-function restrictedMiddleware(req, res, next) {
-    const token = req.headers.authorization;
-    if (token) {
-        firebase.auth().verifyIdToken(token)
-            .then(res => {
-                next();
-            })
-            .catch(err => {
-                console.error(err);
-                res.status(401).json({
-                    message: 'Invalid Authorization'
-                })
-            })
-        } else {
-            res.status(404).json({
-                message: 'No token for authorization provided.'
-            })
-        }
+console.log(process.env.FIREBASE_CONFIG);
+
+if(token){
+    firebase.auth().verifyIdToken(token)
+    .then(decodeToken=>{
+
+        req.body.email= decodeToken.email;
+        req.body.uid= decodeToken.uid;
+        next();
+
+    })
+    .catch(err=>{
+        console.error(err);
+        res.status(500).json({message:"internal server error"});
+    })
+
+}else{
+    res.status(400).json({message:"not authorized"});
+}
+
+
+
 }

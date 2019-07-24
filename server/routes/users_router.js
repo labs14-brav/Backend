@@ -8,7 +8,6 @@
 const express = require('express');
 const UsersController = require('../controllers/UsersController');
 const restrictedMiddleware = require('../middleware/restricted');
-const decodemiddleware= require('../middleware/firebasedecoder');
 
 /**
  * Define router
