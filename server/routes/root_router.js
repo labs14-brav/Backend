@@ -8,6 +8,7 @@
 const express = require('express');
 const RootController = require('../controllers/RootController');
 const decodemiddleware= require('../middleware/firebasedecoder');
+const restrictedMiddleware = require('../middleware/restricted');
 
 /**
  * Define router
