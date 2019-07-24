@@ -7,6 +7,7 @@
 
 const express = require('express');
 const UsersController = require('../controllers/UsersController');
+const restrictedMiddleware = require('../middleware/restricted');
 const decodemiddleware= require('../middleware/firebasedecoder');
 
 /**
@@ -21,6 +22,7 @@ const router = express.Router()
  */
 
 router.route('/mediators')
+    .all(restrictedMiddleware)
     .get(UsersController.fetchMediators)
 
 /**
