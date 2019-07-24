@@ -6,6 +6,8 @@ function decodeToken(req,res,next){
     
 const token=req.body.token;
 
+console.log(process.env.FIREBASE_CONFIG);
+
 if(token){
     firebase.auth().verifyIdToken(token)
     .then(decodeToken=>{

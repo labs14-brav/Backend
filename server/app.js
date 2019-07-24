@@ -30,7 +30,7 @@ const app = express()
  * Locals
  */
 
-app.locals.firebase= require("./initializers/firebase")
+
 
 
 /**

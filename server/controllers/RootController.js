@@ -28,7 +28,7 @@ class RootController {
 
 
    static async auth(req, res) {
-     console.log(req.body);
+    //  console.log(req.body);
     try {
 
       if (req.body.user) {
@@ -52,15 +52,15 @@ class RootController {
           };
 
           const id = await model.addUser(user);
-          console.log("id",id)
+          // console.log("id",id)
 
           foundUser = await model.getUserById(id);
-          console.log("founduser",foundUser)
+          // console.log("founduser",foundUser)
 
           res.status(200).json(foundUser);
         }
 
-        res.status(200).json({message:'success'});
+  
 
       } else {
         res.status(400).json({errorMessage: 'Invalid Credentials!'});
