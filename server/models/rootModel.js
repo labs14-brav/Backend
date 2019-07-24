@@ -1,10 +1,12 @@
 const db = require('../../data/dbConfig');
+const userModel = require('./userModel');
 
 module.exports = {
     getUsers,
     getUserByEmail,
     getUserById,
-    addUser
+    addUser,
+    userModel
 }
 
 //Test method for accessing data on the FE
