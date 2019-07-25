@@ -16,7 +16,7 @@ class Case {
   }
 
   static async create(case_fields) {
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
       const [ids] = await db('cases').insert({
         user_uid: case_fields.uid,
         user_email: case_fields.email,
