@@ -14,9 +14,18 @@ exports.up = function(knex) {
             .notNullable()
             .unique()
         users
-            .string('mediator_general_details')
-            .notNullable()
-            .unique()
+            .string('license')
+        users
+            .string('experience')
+        users
+            .string('specialization')
+        users
+            .string('language')
+        users
+            .string('general_details')
+        users
+            .string('mediatorStatus')
+            .defaultTo('false')
     })
 };
 
