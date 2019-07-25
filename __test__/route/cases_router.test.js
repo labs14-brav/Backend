@@ -34,16 +34,17 @@ describe('routes', () => {
     expect(process.env.NODE_ENV).toBe('test')
   })
 
-  // describe('article_tags_router.js', () => {
-  //   test('GET /articles/:article_id/tags - success', async () => {
-  //     const res = await supertest(app).get('/articles/1/tags')
-  //     expect(res.status).toBe(200)
-  //     expect(res.type).toBe('application/json')
-  //     expect(res.body).toBeTruthy()
-  //     expect(res.body.constructor).toBe(Array)
-  //     expect(res.body.length).toBe(2)
-  //   })
-  //
+  describe('cases_router.js', () => {
+    test('GET /cases - success', async () => {
+      const res = await supertest(app).get('/cases')
+      expect(res.status).toBe(200)
+      expect(res.type).toBe('application/json')
+      expect(res.body).toBeTruthy()
+      expect(res.body.constructor).toBe(Array)
+      expect(res.body.length).toBe(0)
+    })
+  })
+
   //   test('GET /articles/:article_id/tags - return empty array if no tags', async () => {
   //     await db('article_tags').del()
   //
@@ -54,5 +55,4 @@ describe('routes', () => {
   //     expect(res.body.constructor).toBe(Array)
   //     expect(res.body.length).toBe(0)
   //   })
-  // })
 })

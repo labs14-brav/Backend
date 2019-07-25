@@ -22,7 +22,7 @@ const router = express.Router()
  */
 
 router.route('/')
-  .all(decodemiddleware)
+  // .all(decodemiddleware)
   .get(CasesController.index)
   .all(require_body(['description', 'dispute_category']))
   .post(CasesController.create)
