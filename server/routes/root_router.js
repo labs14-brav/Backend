@@ -7,7 +7,7 @@
 
 const express = require('express');
 const RootController = require('../controllers/RootController');
-const restrictedmiddleware= require('../middleware/restricted');
+const restricted = require('../middleware/restricted');
 
 /**
  * Define router
@@ -28,7 +28,7 @@ router.route('/users')
   .get(RootController.findUsers)
 
 router.route('/users/auth')
-  .all(restrictedmiddleware)
+  .all(restricted)
   .post(RootController.auth)
 
 /**
@@ -36,6 +36,3 @@ router.route('/users/auth')
  */
 
 module.exports = router
-
-
-

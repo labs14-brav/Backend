@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node server/app.js",
     "start:dev": "nodemon server/app.js",
-    "test": "jest --watch --verbose"
+    "test": "cross-env NODE_ENV=test jest --watch --verbose",
+    "test:all": "cross-env NODE_ENV=test jest --watch --verbose --all"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "sqlite3": "^4.0.9"
   },
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
     "supertest": "^4.0.2"
