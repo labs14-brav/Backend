@@ -31,39 +31,31 @@ class RootController {
     //  console.log(req.body);
     try {
 
-      if (req.body.user) {
+      const user = {
+        email: req.body.email,
+        uid:req.body.uid,
+      };
 
-        const user = {
-          email: req.body.email, 
-          uid:req.body.uid,
+      let foundUser = await model.getUserByEmail(user.email);
+
+      // console.log("founduser",foundUser)
+
+      if (foundUser) {
+        res.status(200).json(foundUser);
+      } else {
+        // if the user doesn't exist create a user object that reflect the database schema.
+        const newUser = {
+          uid: user.uid,
+          email: user.email,
         };
 
-        let foundUser = await model.getUserByEmail(user.email);
+        const id = await model.addUser(user);
+        // console.log("id",id)
 
+        foundUser = await model.getUserById(id);
         // console.log("founduser",foundUser)
 
-        if (foundUser) {
-          res.status(200).json(foundUser);
-        } else {
-          // if the user doesn't exist create a user object that reflect the database schema.
-          const newUser = {
-            uid: user.uid,
-            email: user.email,
-          };
-
-          const id = await model.addUser(user);
-          // console.log("id",id)
-
-          foundUser = await model.getUserById(id);
-          // console.log("founduser",foundUser)
-
-          res.status(200).json(foundUser);
-        }
-
-  
-
-      } else {
-        res.status(400).json({errorMessage: 'Invalid Credentials!'});
+        res.status(200).json(foundUser);
       }
     } catch (err) {
       console.error(err);
@@ -71,8 +63,6 @@ class RootController {
     }
 
   }
- 
-
 }
 
 

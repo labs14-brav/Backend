@@ -31,8 +31,6 @@ router.route('/users/auth')
   .all(restricted)
   .post(RootController.auth)
 
-
-
 /**
  * Export router
  */

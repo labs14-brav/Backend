@@ -5,16 +5,10 @@
 const firebase = require("../initializers/firebase");
 
 /**
- * Export middleware
- */
-
-module.exports = decodeToken;
-
-/**
  * Define middleware
  */
 
-function decodeToken(req,res,next){
+function restricted(req,res,next){
   const token = req.get('Authorization') || req.body.token;
 
   if (process.env.NODE_ENV === 'test') {
@@ -22,18 +16,25 @@ function decodeToken(req,res,next){
   }
 
   if (token) {
-      firebase.auth().verifyIdToken(token)
-      .then(decodeToken => {
-          req.body.email= decodeToken.email;
-          req.body.uid= decodeToken.uid;
-          next();
-
-      })
-      .catch(err=>{
-          console.error(err);
-          res.status(500).json({message:"internal server error"});
-      })
+    firebase.auth().verifyIdToken(token)
+    .then(decodeToken => {
+      req.body.email= decodeToken.email;
+      req.body.uid= decodeToken.uid;
+      next();
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(401).json({ message: "Invalid Authorization" });
+    })
   } else {
-      res.status(400).json({message:"not authorized"});
+    res.status(400).json({
+      message: "No token for authorization provided."
+    });
   }
 }
+
+/**
+ * Export middleware
+ */
+
+module.exports = restricted
