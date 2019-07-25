@@ -22,10 +22,9 @@ exports.up = function(knex) {
         users
             .string('language')
         users
-            .string('general_details')
+            .string('professional_bio')
         users
-            .string('mediator_status')
-            .defaultTo('false')
+            .string('name')
     })
 };
 

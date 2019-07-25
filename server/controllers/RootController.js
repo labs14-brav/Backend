@@ -76,7 +76,13 @@ class RootController {
       try {
         const { id } = req.params;
     
-        const updateUser = await model.editUser(id, req.body);
+        const updateUser = await model.editUser(id, {
+          'experience': req.body.experience,
+          'specialization': req.body.specialization,
+          'language': req.body.language,
+          'professional_bio': req.body.professional_bio,
+          'name': req.body.name
+        });
     
         updateUser
           ? res.status(200).json({ message: "successfully updated credentials" })
