@@ -1,10 +1,23 @@
-const firebase= require("../initializers/firebase");
+/**
+ * Dependencies
+ */
 
-module.exports=decodeToken;
+const firebase = require("../initializers/firebase");
+
+/**
+ * Export middleware
+ */
+
+module.exports = decodeToken;
+
+/**
+ * Define middleware
+ */
 
 function decodeToken(req,res,next){
-
   const token = req.get('Authorization') || req.body.token;
+
+  if (process.env.NODE_ENV === 'test') next()
 
   if (token) {
       firebase.auth().verifyIdToken(token)
