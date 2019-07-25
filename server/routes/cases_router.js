@@ -7,7 +7,7 @@
 
 const express = require('express')
 const CasesController = require('../controllers/CasesController')
-const decodemiddleware = require('../middleware/firebasedecoder')
+const restricted = require('../middleware/restricted')
 const require_body = require('../middleware/require_body')
 
 /**
@@ -22,7 +22,7 @@ const router = express.Router()
  */
 
 router.route('/')
-  // .all(decodemiddleware)
+  .all(restricted)
   .get(CasesController.index)
   .all(require_body(['description', 'dispute_category']))
   .post(CasesController.create)

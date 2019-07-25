@@ -36,7 +36,10 @@ describe('routes', () => {
 
   describe('cases_router.js', () => {
     test('GET /cases - success', async () => {
+      const token = await signin()
+
       const res = await supertest(app).get('/cases')
+        .set('Authorization', token)
       expect(res.status).toBe(200)
       expect(res.type).toBe('application/json')
       expect(res.body).toBeTruthy()
