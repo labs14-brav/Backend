@@ -45,14 +45,12 @@ describe('routes', () => {
     })
   })
 
-  //   test('GET /articles/:article_id/tags - return empty array if no tags', async () => {
-  //     await db('article_tags').del()
-  //
-  //     const res = await supertest(app).get('/articles/1/tags')
-  //     expect(res.status).toBe(200)
-  //     expect(res.type).toBe('application/json')
-  //     expect(res.body).toBeTruthy()
-  //     expect(res.body.constructor).toBe(Array)
-  //     expect(res.body.length).toBe(0)
-  //   })
+  test('POST /cases - missing field: description and dispute_category', async () => {
+    const res = await supertest(app).post('/cases')
+      .send({ title: 'Test Case' })
+    expect(res.status).toBe(422)
+    expect(res.type).toBe('application/json')
+    expect(res.body).toBeTruthy()
+    expect(res.body).toMatchObject({ error: { message: 'Missing fields: description dispute_category' } })
+  })
 })
