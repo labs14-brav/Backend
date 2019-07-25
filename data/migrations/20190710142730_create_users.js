@@ -24,7 +24,7 @@ exports.up = function(knex) {
         users
             .string('general_details')
         users
-            .string('mediatorStatus')
+            .string('mediator_status')
             .defaultTo('false')
     })
 };
