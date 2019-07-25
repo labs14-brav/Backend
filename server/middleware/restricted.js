@@ -17,7 +17,9 @@ module.exports = decodeToken;
 function decodeToken(req,res,next){
   const token = req.get('Authorization') || req.body.token;
 
-  if (process.env.NODE_ENV === 'test') next()
+  if (process.env.NODE_ENV === 'test') {
+    return next()
+  }
 
   if (token) {
       firebase.auth().verifyIdToken(token)

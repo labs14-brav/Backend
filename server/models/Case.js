@@ -11,8 +11,8 @@ const db = require('../../data/dbConfig')
  */
 
 class Case {
-  static async all() {
-    return await db('cases')
+  static all() {
+    return db('cases')
   }
 
   static async create(case_fields) {

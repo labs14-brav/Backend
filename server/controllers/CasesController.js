@@ -15,10 +15,10 @@ class CasesController {
     try {
       const cases = await Case.all()
 
-      res.status(200).json(cases)
+      return res.status(200).json(cases)
     } catch(err) {
       console.error(err)
-      res.status(500).json({ error: { message: 'Internal Server Error' } })
+      return res.status(500).json({ error: { message: 'Internal Server Error' } })
     }
   }
 
