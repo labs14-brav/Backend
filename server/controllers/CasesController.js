@@ -34,7 +34,14 @@ class CasesController {
   }
 
   static async show(req, res) {
-    res.status(200).json({})
+    try {
+      const fetched_case = await Case.find(req.params.id)
+
+      res.status(200).json(fetched_case)
+    } catch(err) {
+      console.error(err)
+      return res.status(500).json({ error: { message: 'Internal Server Error' } })
+    }
   }
 }
 
