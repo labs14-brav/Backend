@@ -28,6 +28,25 @@ router.route('/')
   .post(CasesController.create)
 
 /**
+ * Routes
+ *   GET /cases/:id
+ */
+
+router.route('/')
+  .all(restricted)
+  .get(CasesController.show)
+
+/**
+ * Routes
+ *   POST /cases/:id/addendums
+ */
+
+router.route('/')
+  .all(restricted)
+  .all(require_body(['description']))
+  .post(AddendumsController.create)
+
+/**
  * Export router
  */
 

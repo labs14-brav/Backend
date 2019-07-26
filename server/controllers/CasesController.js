@@ -32,6 +32,10 @@ class CasesController {
       res.status(500).json({ error: { message: 'Internal Server Error' } })
     }
   }
+
+  static async show(req, res) {
+    res.status(200).json({})
+  }
 }
 
 /**
