@@ -7,6 +7,7 @@
 
 const express = require('express')
 const CasesController = require('../controllers/CasesController')
+const AddendumsController = require('../controllers/AddendumsController')
 const restricted = require('../middleware/restricted')
 const require_body = require('../middleware/require_body')
 
