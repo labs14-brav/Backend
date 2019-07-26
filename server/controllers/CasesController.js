@@ -22,6 +22,21 @@ class CasesController {
     }
   }
 
+  static async indexById(req, res) {
+
+    const id = req.params.id;
+
+    try {
+      const caseById = await Case.findById(id);
+      console.log(caseById,"this is the id")
+      return res.status(200).json(caseById);
+
+    } catch (error) {
+      console.error(err)
+      return res.status(500).json({ error: { message: 'Internal Server Error' } })
+    }
+  };
+
   static async create(req, res) {
     try {
       const new_case = await Case.create(req.body)

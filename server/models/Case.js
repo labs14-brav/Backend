@@ -14,6 +14,9 @@ class Case {
   static all() {
     return db('cases')
   }
+  static findById(id){
+    return db('cases').where({ id: id }).first();
+  }
 
   static async create(case_fields) {
     if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
