@@ -11,6 +11,10 @@ const db = require('../../data/dbConfig')
  */
 
 class Addendum {
+  static find_by_case_id(case_id) {
+    return db('addendums').where('case_id', case_id)
+  }
+
   static async create(addendum_fields) {
     if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
       const [ids] = await db('addendums').insert({

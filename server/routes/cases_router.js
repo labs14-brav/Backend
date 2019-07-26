@@ -44,6 +44,7 @@ router.route('/:id')
 
 router.route('/:id/addendums')
   .all(restricted)
+  .get(AddendumsController.index)
   .all(require_body(['description']))
   .post(AddendumsController.create)
 

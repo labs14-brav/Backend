@@ -11,6 +11,17 @@ const Addendum = require('../models/Addendum')
  */
 
 class AddendumsController {
+  static async index(req, res) {
+    try {
+      const addendums = await Addendum.find_by_case_id(req.params.id)
+
+      return res.status(200).json(addendums)
+    } catch(err) {
+      console.error(err)
+      return res.status(500).json({ error: { message: 'Internal Server Error' } })
+    }
+  }
+
   static async create(req, res) {
     try {
       const new_addendum = await Addendum.create({
