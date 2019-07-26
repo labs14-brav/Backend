@@ -37,7 +37,11 @@ class CasesController {
     try {
       const fetched_case = await Case.find(req.params.id)
 
-      res.status(200).json(fetched_case)
+      if (fetched_case) {
+        res.status(200).json(fetched_case)
+      } else {
+        res.status(404).json({ errer: { message: 'Not Found' }})
+      }
     } catch(err) {
       console.error(err)
       return res.status(500).json({ error: { message: 'Internal Server Error' } })
