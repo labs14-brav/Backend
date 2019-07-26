@@ -33,7 +33,7 @@ router.route('/')
  *   GET /cases/:id
  */
 
-router.route('/')
+router.route('/:id')
   .all(restricted)
   .get(CasesController.show)
 
@@ -42,7 +42,7 @@ router.route('/')
  *   POST /cases/:id/addendums
  */
 
-router.route('/')
+router.route('/:id/addendums')
   .all(restricted)
   .all(require_body(['description']))
   .post(AddendumsController.create)
