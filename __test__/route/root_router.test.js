@@ -29,24 +29,22 @@ afterAll(async () => {
  */
 
 describe('routes', () => {
+  test('NODE_ENV=test', () => {
+    expect(process.env.NODE_ENV).toBe('test')
+  })
 
-    describe('get', () => {
-        it('should return status 200 OK', async () => {
-            const res = await supertest(app).get('/')
-            expect(res.status).toBe(200);
-        });
+  describe('root_router.js', () => {
+    test('GET / - success', async () => {
+      const res = await supertest(app).get('/')
+      expect(res.status).toBe(200)
+      expect(res.type).toBe('application/json')
+    })
 
-        it('should return JSON', async () => {
-            const res = await supertest(app).get('/');
-            expect(res.type).toBe('application/json')
-        })
-
-        it('should return status 200 OK', async () => {
-            const res = await supertest(app).get('/users');
-            expect(res).toBeTruthy()
-            expect(res.body.length).toBe(3);
-            expect(res.body[0].id).toBe(1);
-        });
-    });
-
-});
+    test('GET /users - success', async () => {
+      const res = await supertest(app).get('/users')
+      expect(res).toBeTruthy()
+      expect(res.body.length).toBe(3)
+      expect(res.body[0].id).toBe(1)
+    })
+  })
+})
