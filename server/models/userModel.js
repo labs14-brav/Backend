@@ -24,15 +24,15 @@ function mediatorRequests() {
 }
 
 //for admin use to approve a pending mediator
-function approveMediator(id) {
+function approveMediator(id, update) {
     return db('users')
         .where('id', id)
         .update('type', 'mediator')
 }
 
 //for admin use to decline a pending mediator
-function declineMediator() {
+function declineMediator(id, update) {
     return db('users')
         .where('id', id)
-        .update('type', 'user')
+        .update(update)
 }

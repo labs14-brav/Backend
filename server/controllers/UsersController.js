@@ -1,4 +1,5 @@
 const model = require('../models/userModel');
+const moment = require('moment');
 
 
 class UsersController {
@@ -50,7 +51,12 @@ class UsersController {
     static async declineMediator(req, res) {
       try {
         const id = req.params.id;
-        const declined = await model.declineMediator(id);
+        let toUpdate = { 
+          type: 'user',
+          mediator_declined_at: moment().format('MMMM Do, h:mm a')
+        }
+        console.log('toUpdate', toUpdate)
+        const declined = await model.declineMediator(id, toUpdate);
         if (declined) {
           res.status(200).json(declined);
         } else {
