@@ -62,5 +62,24 @@ describe('routes', () => {
       expect(res.body).toBeTruthy()
       expect(res.body).toMatchObject({ error: { message: 'Missing fields: description dispute_category' } })
     })
+
+    test('GET /cases/1/addendums - success', async () => {
+      const res = await supertest(app).get('/cases/1/addendums')
+      expect(res.status).toBe(200)
+      expect(res.type).toBe('application/json')
+      expect(res.body).toBeTruthy()
+      expect(res.body.constructor).toBe(Array)
+      expect(res.body.length).toBe(0)
+    })
+
+    test('POST /cases/1/addendums - success', async () => {
+      const res = await supertest(app).post('/cases/1/addendums')
+        .send({
+          description: 'This case has not yet gone to the courts. Both parties are seeking pre-trial arbitration.',
+        })
+      expect(res.status).toBe(201)
+      expect(res.type).toBe('application/json')
+      expect(res.body).toBeTruthy()
+    })
   })
 })
