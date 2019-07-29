@@ -4,8 +4,8 @@
  * Dependencies
  */
 
-const request = require('supertest');
-const server = require('../../server/app.js');
+const supertest = require('supertest')
+const app = require('../../server/app')
 const db = require('../../data/dbConfig')
 
 /**
@@ -28,21 +28,21 @@ afterAll(async () => {
  * Assertions
  */
 
-describe('tests', () => {
+describe('routes', () => {
 
     describe('get', () => {
         it('should return status 200 OK', async () => {
-            const res = await request(server).get('/')
+            const res = await supertest(app).get('/')
             expect(res.status).toBe(200);
         });
 
         it('should return JSON', async () => {
-            const res = await request(server).get('/');
+            const res = await supertest(app).get('/');
             expect(res.type).toBe('application/json')
         })
 
         it('should return status 200 OK', async () => {
-            const res = await request(server).get('/users');
+            const res = await supertest(app).get('/users');
             expect(res).toBeTruthy()
             expect(res.body.length).toBe(3);
             expect(res.body[0].id).toBe(1);
