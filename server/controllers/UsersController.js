@@ -18,9 +18,9 @@ class UsersController {
 
   }
 
-  static async mediator_requests(req, res) {
+  static async mediatorRequests(req, res) {
     try {
-      let pending = await model.mediator_requests()
+      let pending = await model.mediatorRequests()
       if (pending) {
         res.status(200).json(pending);
       } else {
@@ -32,19 +32,33 @@ class UsersController {
       }
     }
 
-    static async approve_mediator(req, res) {
+    static async approveMediator(req, res) {
       try {
-
+        const id = req.params.id;
+        const approved = await model.approveMediator(id);
+        if (approved) {
+          res.status(200).json(approved);
+        } else {
+          res.status(500).json({message: 'Internal Server Error'})
+        }
       } catch(err) {
-
+          console.error(err);
+          res.status(500).json({message: 'Internal Server Error'})
       }
     }
 
-    static async decline_mediator(req, res) {
+    static async declineMediator(req, res) {
       try {
-
+        const id = req.params.id;
+        const declined = await model.declineMediator(id);
+        if (declined) {
+          res.status(200).json(declined);
+        } else {
+          res.status(500).json({message: 'Internal Server Error'})
+        }
       } catch(err) {
-        
+          console.error(err);
+          res.status(500).json({message: 'Internal Server Error'})
       }
     }
   }

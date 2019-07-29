@@ -21,9 +21,11 @@ const router = express.Router()
  */
 router.route('/:id/mediator-request-accepted')
     .all(restricted)
-    
+    .put(UsersController.approveMediator)
+
 router.route('/:id/mediator-request-declined')
     .all(restricted)
+    .put(UsersController.declineMediator)
 /**
  * Export router
  */

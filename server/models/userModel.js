@@ -2,7 +2,9 @@ const db = require('../../data/dbConfig');
 
 module.exports = {
     fetchMediators,
-    mediator_requests,
+    mediatorRequests,
+    approveMediator,
+    declineMediator,
 }
 
 function fetchMediators() {
@@ -10,14 +12,21 @@ function fetchMediators() {
     .where('type', 'mediator');
 }
 
-function mediator_requests() {
+
+
+/**
+ * ADMIN USE
+ */
+function mediatorRequests() {
     return db('users')
     .where('type', 'pending_mediator');
 }
 
-function approve_mediator() {
+//for admin use to approve a pending mediator
+function approveMediator() {
 }
 
-function decline_mediator() {
-    
+//for admin use to decline a pending mediator
+function declineMediator() {
+
 }
