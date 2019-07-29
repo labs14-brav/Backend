@@ -13,7 +13,7 @@ const Case = require('../models/Case')
 class CasesController {
   static async index(req, res) {
     try {
-      const cases = await Case.all()
+      const cases = await Case.all(req.body.email)
 
       return res.status(200).json(cases)
     } catch(err) {

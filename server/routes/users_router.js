@@ -17,6 +17,15 @@ const router = express.Router()
 
 /**
  * Routes
+ *   GET /users/mediators
+ */
+
+router.route('/mediators')
+    .all(restricted)
+    .get(UsersController.fetchMediators)
+
+/**
+ * Routes
  *   PUT /users/:id/deactivate
  */
 
