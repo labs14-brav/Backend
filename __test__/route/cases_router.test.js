@@ -72,6 +72,14 @@ describe('routes', () => {
       expect(res.body.length).toBe(0)
     })
 
+    test('POST /cases/1/addendums - missing request body', async () => {
+      const res = await supertest(app).post('/cases/1/addendums')
+      expect(res.status).toBe(422)
+      expect(res.type).toBe('application/json')
+      expect(res.body).toBeTruthy()
+      expect(res.body).toMatchObject({ error: { message: 'Missing request body' } })
+    })
+
     test('POST /cases/1/addendums - success', async () => {
       const res = await supertest(app).post('/cases/1/addendums')
         .send({
