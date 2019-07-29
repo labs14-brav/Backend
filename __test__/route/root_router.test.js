@@ -1,6 +1,11 @@
-const request = require('supertest');
+'use strict'
 
-const server = require('../server/app.js');
+/**
+ * Dependencies
+ */
+
+const request = require('supertest');
+const server = require('../../server/app.js');
 
 describe('tests', () => {
 
@@ -14,6 +19,11 @@ describe('tests', () => {
             const res = await request(server).get('/');
             expect(res.type).toBe('application/json')
         })
+
+        it('should return status 200 OK', async () => {
+            const res = await request(server).get('/users');
+            expect(res.body[0].id).toBe(1);
+        });
     });
 
 });
