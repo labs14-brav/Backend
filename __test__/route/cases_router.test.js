@@ -63,7 +63,7 @@ describe('routes', () => {
       expect(res.body).toMatchObject({ error: { message: 'Missing fields: description dispute_category' } })
     })
 
-    test('GET /cases/1/addendums - success', async () => {
+    test('GET /cases/:id/addendums - success', async () => {
       const res = await supertest(app).get('/cases/1/addendums')
       expect(res.status).toBe(200)
       expect(res.type).toBe('application/json')
@@ -72,7 +72,7 @@ describe('routes', () => {
       expect(res.body.length).toBe(0)
     })
 
-    test('POST /cases/1/addendums - missing request body', async () => {
+    test('POST /cases/:id/addendums - missing request body', async () => {
       const res = await supertest(app).post('/cases/1/addendums')
       expect(res.status).toBe(422)
       expect(res.type).toBe('application/json')
@@ -80,7 +80,16 @@ describe('routes', () => {
       expect(res.body).toMatchObject({ error: { message: 'Missing request body' } })
     })
 
-    test('POST /cases/1/addendums - success', async () => {
+    test('POST /cases/:id/addendums - missing request body fields', async () => {
+      const res = await supertest(app).post('/cases/1/addendums')
+        .send({ title: 'Title is not used for addendums' })
+      expect(res.status).toBe(422)
+      expect(res.type).toBe('application/json')
+      expect(res.body).toBeTruthy()
+      expect(res.body).toMatchObject({ error: { message: 'Missing fields: description' } })
+    })
+
+    test('POST /cases/:id/addendums - success', async () => {
       const res = await supertest(app).post('/cases/1/addendums')
         .send({
           description: 'This case has not yet gone to the courts. Both parties are seeking pre-trial arbitration.',
