@@ -51,6 +51,12 @@ app.use('/cases', require('./routes/cases_router'))
 app.use('/users', require('./routes/users_router'))
 
 /**
+ * Error Handlers
+ */
+
+app.use(require('./middleware/error_handlers'))
+
+/**
  * Start server
  */
 

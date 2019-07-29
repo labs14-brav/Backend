@@ -23,13 +23,27 @@ const router = express.Router()
 router.route('/')
   .get(RootController.index)
 
-//GET /users This is just to make sure data can be accessed on the FE
+/**
+ * Routes
+ *   GET /users
+ */
+
 router.route('/users')
   .get(RootController.findUsers)
+
+/**
+ * Routes
+ *   POST /users/auth
+ */
 
 router.route('/users/auth')
   .all(restricted)
   .post(RootController.auth)
+
+/**
+ * Routes
+ *   PUT /users/:id/mediator-upgrade
+ */
 
 router.route('/users/:id/mediator-upgrade')
   .put(RootController.mediatorUpgrade)
