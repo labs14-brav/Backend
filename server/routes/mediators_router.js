@@ -6,7 +6,7 @@
 
 
 const express = require('express')
-const UsersController = require('../controllers/UsersController')
+const MediatorsController = require('../controllers/MediatorsController')
 const restricted = require('../middleware/restricted')
 
 /**
@@ -20,18 +20,9 @@ const router = express.Router()
  *   GET /mediators
  */
 
-router.route('/mediators')
+router.route('/')
     .all(restricted)
-    .get(UsersController.fetchMediators)
-
-/**
- * Routes
- *   PUT /users/:id/deactivate
- */
-
-router.route('/:id/deactivate')
-  .all(restricted)
-  .put(UsersController.deactivate)
+    .get(MediatorsController.index)
 
 /**
  * Export router
