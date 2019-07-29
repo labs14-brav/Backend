@@ -7,7 +7,7 @@
 
 const express = require('express');
 const UsersController = require('../controllers/UsersController');
-const restrictedMiddleware = require('../middleware/restricted');
+const restricted = require('../middleware/restricted');
 
 /**
  * Define router
@@ -21,10 +21,12 @@ const router = express.Router()
  */
 
 router.route('/')
-    .all(restrictedMiddleware)
+    .all(restricted)
     .get(UsersController.fetchMediators)
 
 router.route('/pending')
+    .all(restricted)
+    .get(UsersController.mediator_requests)
 
 
 /**
