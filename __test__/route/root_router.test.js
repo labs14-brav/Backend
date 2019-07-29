@@ -21,7 +21,7 @@ beforeEach(async () => {
 })
 
 afterAll(async () => {
-  // await db.migrate.rollback(null, true)
+  await db.migrate.rollback(null, true)
 })
 
 /**
@@ -44,8 +44,8 @@ describe('tests', () => {
         it('should return status 200 OK', async () => {
             const res = await request(server).get('/users');
             expect(res).toBeTruthy()
-            // console.error(res.body)
-            // expect(res.body[0].id).toBe(1);
+            expect(res.body.length).toBe(3);
+            expect(res.body[0].id).toBe(1);
         });
     });
 
