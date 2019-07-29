@@ -17,11 +17,11 @@ beforeAll(async () => {
 })
 
 beforeEach(async () => {
-  // await db.seed.run()
+  await db.seed.run()
 })
 
 afterAll(async () => {
-  await db.migrate.rollback(null, true)
+  // await db.migrate.rollback(null, true)
 })
 
 /**
@@ -40,7 +40,7 @@ describe('routes', () => {
       expect(res.type).toBe('application/json')
       expect(res.body).toBeTruthy()
       expect(res.body.constructor).toBe(Array)
-      expect(res.body.length).toBe(0)
+      expect(res.body.length).toBe(2)
     })
   })
 
