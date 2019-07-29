@@ -1,4 +1,5 @@
 const db = require('../../data/dbConfig');
+const userModel = require('./userModel');
 
 module.exports = {
     getUsers,
