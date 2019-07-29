@@ -16,7 +16,9 @@ function server_error_catch(err, req, res, next) {
   err.status = err.status || 500
   err.message = err.message || 'Internal Server Error'
 
-  console.error(err.message)
+  if (process.env.NODE_ENV !== 'test') {
+    console.error(err.message)
+  }
 
   res.status(err.status).json({ error: {
     status: err.status,
