@@ -7,7 +7,6 @@
 const supertest = require('supertest')
 const app = require('../../server/app')
 const db = require('../../data/dbConfig')
-const signin = require('../helpers/signin')
 
 /**
  * Hooks
