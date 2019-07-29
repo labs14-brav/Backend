@@ -52,7 +52,7 @@ describe('routes', () => {
       expect(res.status).toBe(404)
       expect(res.type).toBe('application/json')
       expect(res.body).toBeTruthy()
-      expect(res.body).toMatchObject({ error: { message: 'Not Found' } })
+      expect(res.body).toMatchObject({ error: { message: 'Not found' } })
     })
 
   })
