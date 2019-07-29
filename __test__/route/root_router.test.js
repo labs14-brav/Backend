@@ -46,5 +46,14 @@ describe('routes', () => {
       expect(res.body.length).toBe(3)
       expect(res.body[0].id).toBe(1)
     })
+
+    test('POST /users/register - not found', async () => {
+      const res = await supertest(app).post('/users/register')
+      expect(res.status).toBe(404)
+      expect(res.type).toBe('application/json')
+      expect(res.body).toBeTruthy()
+      expect(res.body).toMatchObject({ error: { message: 'Not Found' } })
+    })
+
   })
 })
