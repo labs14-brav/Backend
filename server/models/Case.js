@@ -11,8 +11,16 @@ const db = require('../../data/dbConfig')
  */
 
 class Case {
-  static all() {
-    return db('cases')
+  static all(email) {
+    if (email) {
+      return db('cases').where('user_email', email)
+    } else {
+      return db('cases')
+    }
+  }
+
+  static find(id) {
+    return db('cases').where('id', id).first()
   }
   static findById(id){
     return db('cases').where({ id: id }).first();

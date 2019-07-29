@@ -1,4 +1,5 @@
 const db = require('../../data/dbConfig');
+const userModel = require('./userModel');
 
 module.exports = {
     getUsers,
@@ -24,27 +25,23 @@ function getUserById(id) {
 };
 
 async function addUser(user) {
-
-    if(process.env.NODE_ENV=="production"|| process.env.NODE_ENV === 'staging'){
+    if (process.env.NODE_ENV == 'production' || process.env.NODE_ENV === 'staging') {
         const [ids] = await db('users').insert({
             email: user.email,
             uid: user.uid,
         },['id'])
         return ids.id
-    }else{
+    } else {
         const [id] = await db('users').insert({
             email: user.email,
             uid: user.uid,
         })
         return id
     }
-
 };
 
 async function editUser(id, update) {
     return db('users')
       .where('id', id)
       .update(update);
-  }
-
-
+};
