@@ -13,6 +13,18 @@ exports.up = function(knex) {
             .string('uid')
             .notNullable()
             .unique()
+        users
+            .string('license')
+        users
+            .string('experience')
+        users
+            .string('specialization')
+        users
+            .string('language')
+        users
+            .string('professional_bio')
+        users
+            .string('name')
     })
 };
 
