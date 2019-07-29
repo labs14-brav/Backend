@@ -25,6 +25,8 @@ exports.up = function(knex) {
             .string('professional_bio')
         users
             .string('name')
+        users
+            .datetime('deactivated_at')
     })
 };
 
