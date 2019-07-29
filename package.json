@@ -7,8 +7,8 @@
   "scripts": {
     "start": "node server/app.js",
     "start:dev": "nodemon server/app.js",
-    "test": "cross-env NODE_ENV=test jest --watch --verbose",
-    "test:all": "cross-env NODE_ENV=test jest --watch --verbose --all"
+    "test": "cross-env NODE_ENV=test jest --watch --verbose --runInBand",
+    "test:all": "cross-env NODE_ENV=test jest --watch --verbose --runInBand --all"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,6 @@
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "knex": "^0.18.4",
-    "knex-cleaner": "^1.1.4",
     "pg": "^7.11.0",
     "sqlite3": "^4.0.9"
   },

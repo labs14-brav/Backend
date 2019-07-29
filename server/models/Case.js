@@ -15,6 +15,10 @@ class Case {
     return db('cases')
   }
 
+  static find(id) {
+    return db('cases').where('id', id).first()
+  }
+
   static async create(case_fields) {
     if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
       const [ids] = await db('cases').insert({
