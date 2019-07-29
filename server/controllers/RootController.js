@@ -67,7 +67,7 @@ class RootController {
   static async mediatorUpgrade(req, res) {
       try {
         const { id } = req.params;
-    
+
         const updateUser = await model.editUser(id, {
           'experience': req.body.experience,
           'specialization': req.body.specialization,
@@ -75,7 +75,7 @@ class RootController {
           'professional_bio': req.body.professional_bio,
           'name': req.body.name
         });
-    
+
         updateUser
           ? res.status(200).json({ message: "successfully updated credentials" })
           : res.status(404).json({ message: "missing required fields" });
