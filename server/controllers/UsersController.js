@@ -17,6 +17,13 @@ class UsersController {
     }
 
   }
+
+  static async mediator_requests(req, res) {
+    try {
+      let pending = await model.fetchPendingMediators()
+
+    }
+  }
 }
 
 

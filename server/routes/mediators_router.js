@@ -20,8 +20,13 @@ const router = express.Router()
  *   GET /
  */
 
-router.route('/:id/mediator-request-accepted')
-router.route('/:id/mediator-request-declined')
+router.route('/')
+    .all(restrictedMiddleware)
+    .get(UsersController.fetchMediators)
+
+router.route('/pending')
+
+
 /**
  * Export router
  */
