@@ -17,6 +17,7 @@ function fetchMediators() {
 /**
  * ADMIN USE
  */
+
 function mediatorRequests() {
     return db('users')
     .where('type', 'pending_mediator');

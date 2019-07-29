@@ -26,7 +26,7 @@ router.route('/')
 
 router.route('/pending')
     .all(restricted)
-    .get(UsersController.mediator_requests)
+    .get(UsersController.mediatorRequests)
 
 
 /**
