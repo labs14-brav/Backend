@@ -28,6 +28,9 @@ router.route('/')
   .all(require_body(['description', 'dispute_category']))
   .post(CasesController.create)
 
+router.route('/:id')
+  .get(CasesController.indexById)
+
 /**
  * Routes
  *   GET /cases/:id
