@@ -2,7 +2,7 @@ exports.up = function(knex) {
   return knex.schema
     .createTable('users', users => {
         users.increments();
-        
+
         users
             .string('type', 128);
         users
@@ -13,6 +13,18 @@ exports.up = function(knex) {
             .string('uid')
             .notNullable()
             .unique()
+        users
+            .string('license')
+        users
+            .string('experience')
+        users
+            .string('specialization')
+        users
+            .string('language')
+        users
+            .string('professional_bio')
+        users
+            .string('name')
     })
 };
 
