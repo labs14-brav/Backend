@@ -5,7 +5,8 @@ module.exports = {
     getUserByEmail,
     getUserById,
     addUser,
-    editUser
+    editUser,
+    addMediator
 }
 
 //Test method for accessing data on the FE
@@ -45,3 +46,19 @@ async function editUser(id, update) {
       .where('id', id)
       .update(update);
   }
+
+async function addMediator(mediator_cases) {
+    if(process.env.NODE_ENV=="production"){
+        [ids] = await db('mediator_cases').insert({
+            mediator_id: mediator_cases.mediator_id,
+            case_id: mediator_cases.case_id
+        },['id'])
+        return ids.id
+    } else {
+        const [id] = await db('mediator_cases').insert({
+            mediator_id: mediator_cases.mediator_id,
+            case_id: mediator_cases.case_id
+        })
+        return id
+    }
+}
