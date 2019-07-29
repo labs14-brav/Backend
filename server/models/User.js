@@ -16,7 +16,9 @@ class User {
   }
 
   static async deactivate(email) {
-    return db('users').where('email', email).update({ deactivated_at: new Date() })
+    if (email) {
+      return db('users').where('email', email).update({ deactivated_at: new Date() })
+    }
   }
 }
 
