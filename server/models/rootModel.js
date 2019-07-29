@@ -43,5 +43,4 @@ async function editUser(id, update) {
     return db('users')
       .where('id', id)
       .update(update);
-  }
 };
