@@ -31,6 +31,14 @@ router.route('/users/auth')
   .all(restricted)
   .post(RootController.auth)
 
+
+  
+
+
+router.route('/users/:id/mediator-upgrade')
+  .put(RootController.mediatorUpgrade)
+  
+
 /**
  * Export router
  */
