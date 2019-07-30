@@ -34,8 +34,8 @@ describe('routes', () => {
   })
 
   describe('users_router.js', () => {
-    test('PUT /users/:id/deactivate - success', async () => {
-      const res = await supertest(app).put('/users/1/deactivate')
+    test('PUT /users/deactivate - success', async () => {
+      const res = await supertest(app).put('/users/deactivate')
       expect(res.status).toBe(200)
       expect(res.type).toBe('application/json')
       expect(res.body).toBeTruthy()

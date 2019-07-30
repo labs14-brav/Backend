@@ -17,10 +17,10 @@ const router = express.Router()
 
 /**
  * Routes
- *   PUT /users/:id/deactivate
+ *   PUT /users/deactivate
  */
 
-router.route('/:id/deactivate')
+router.route('/deactivate')
   .all(restricted)
   .put(UsersController.deactivate)
 
