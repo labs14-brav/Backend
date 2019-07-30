@@ -72,7 +72,8 @@ class RootController {
           'specialization': req.body.specialization,
           'language': req.body.language,
           'professional_bio': req.body.professional_bio,
-          'name': req.body.name
+          'name': req.body.name,
+          'type' : 'pending_mediator'
         });
 
         updateUser
