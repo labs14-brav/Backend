@@ -39,6 +39,8 @@ class CasesController {
 
   static async create(req, res) {
     try {
+
+      //need to introduce a check for whether or not the body has req.body.court_case : true or false
       const new_case = await Case.create(req.body)
 
       res.status(201).json(new_case)

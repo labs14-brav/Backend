@@ -11,6 +11,8 @@ const db = require('../../data/dbConfig')
  */
 
 class Case {
+
+  //grabs cases tied to a user email
   static all(email) {
     if (email) {
       return db('cases').where('user_email', email)
@@ -19,6 +21,7 @@ class Case {
     }
   }
 
+  //find a case with id
   static find(id) {
     return db('cases').where('id', id).first()
   }
