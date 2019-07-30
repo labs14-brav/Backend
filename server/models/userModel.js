@@ -24,15 +24,19 @@ function mediatorRequests() {
 }
 
 //for admin use to approve a pending mediator
-function approveMediator(id, update) {
+async function approveMediator(id, update) {
+    const approved = await db('users')
+             .where('id', id)
+             .update(update)
     return db('users')
-        .where('id', id)
-        .update('type', 'mediator')
+            .where('id', id).first()
 }
 
 //for admin use to decline a pending mediator
-function declineMediator(id, update) {
+async function declineMediator(id, update) {
+    const declined = await db('users')
+            .where('id', id)
+            .update(update)
     return db('users')
-        .where('id', id)
-        .update(update)
+        .where('id', id).first()
 }

@@ -36,7 +36,12 @@ class UsersController {
     static async approveMediator(req, res) {
       try {
         const id = req.params.id;
-        const approved = await model.approveMediator(id);
+        //set object for update. Accepted -> type = mediator, and timestamp
+        let toUpdate = {
+          type: 'mediator',
+          mediator_accepted_at: moment().format('MMMM Do, h:mm a')
+        }
+        const approved = await model.approveMediator(id, toUpdate);
         if (approved) {
           res.status(200).json(approved);
         } else {
@@ -51,11 +56,12 @@ class UsersController {
     static async declineMediator(req, res) {
       try {
         const id = req.params.id;
+        //set object for update. Decline, so type is reverted back to user, and timestamped.
         let toUpdate = { 
           type: 'user',
           mediator_declined_at: moment().format('MMMM Do, h:mm a')
         }
-        console.log('toUpdate', toUpdate)
+        //console.log('toUpdate', toUpdate)
         const declined = await model.declineMediator(id, toUpdate);
         if (declined) {
           res.status(200).json(declined);
