@@ -1,5 +1,4 @@
 # backend
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
 
 🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
 
@@ -7,27 +6,20 @@
 
 # API Documentation
 
-#### 1️⃣ Backend delpoyed at [🚫name service here](🚫add URL here) <br>
+#### Backend delpoyed at [Heroku](https://bravproduction.herokuapp.com/) <br>
 
-## 1️⃣ Getting started
+## Getting started
 
 To get the server running locally:
 
-🚫 adjust these scripts to match your project
-
-- Clone this repo
-- **yarn install** to install all required dependencies
-- **yarn server** to start the local server
-- **yarn test** to start server using testing environment
+- Clone this repo.
+- **npm install** to install all required dependencies.
+- **npm start** to start the local server.
+- **npm test** to run the tests.
 
 ### Backend framework goes here
 
-🚫 Why did you choose this framework?
-
--    Point One
--    Point Two
--    Point Three
--    Point Four
+We are using a PostgresSQL database deployed on Heroku. To access the database we are implementing a RESTful API using NodeJS, Express, and knex. Node lets you write JavaScript on both the front-end and back-end, which increases readability and reduced context-switching.
 
 ## 2️⃣ Endpoints
 
@@ -124,13 +116,13 @@ In order for the app to function correctly, the user must set up their own envir
 create a .env file that includes the following:
 
 🚫 These are just examples, replace them with the specifics for your app
-    
+
     *  STAGING_DB - optional development db for using functionality not available in SQLite
     *  NODE_ENV - set to "development" until ready for "production"
     *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
     *  SENDGRID_API_KEY - this is generated in your Sendgrid account
     *  stripe_secret - this is generated in the Stripe dashboard
-    
+
 ## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
@@ -169,5 +161,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Frontend Documentation](https://github.com/labs14-brav/Frontend/blob/master/README.md) for details on the fronend of our project.
-🚫 Add DS iOS and/or Andriod links here if applicable.
+See [Frontend Documentation](https://github.com/labs14-brav/Frontend/blob/master/README.md) for details on the fronend of our project. See [Android Documentation](https://github.com/labs14-brav/Android) for details on the Android application.
