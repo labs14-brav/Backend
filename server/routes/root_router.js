@@ -28,25 +28,16 @@ router.route('/')
  *   GET /users
  */
 
-router.route('/users')
-  .get(RootController.findUsers)
 
 /**
  * Routes
  *   POST /users/auth
  */
-
-router.route('/users/auth')
-  .all(restricted)
-  .post(RootController.auth)
-
 /**
  * Routes
  *   PUT /users/:id/mediator-upgrade
  */
 
-router.route('/users/:id/mediator-upgrade')
-  .put(RootController.mediatorUpgrade)
 
 /**
  * Export router
