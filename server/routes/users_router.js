@@ -37,8 +37,8 @@ router.route('/auth')
  * Routes
  *   PUT /
  */
-router.route('/users/:id/mediator-upgrade')
-  .put(RootController.mediatorUpgrade)
+router.route('/:id/mediator-upgrade')
+  .put(UsersController.mediatorUpgrade)
 
 router.route('/:id/mediator-request-accepted')
     .all(restricted)

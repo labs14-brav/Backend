@@ -5,6 +5,7 @@ module.exports = {
     mediatorRequests,
     approveMediator,
     declineMediator,
+    editUser
 }
 
 //returns an array of objects from users with type: mediator
@@ -41,3 +42,10 @@ async function declineMediator(id, update) {
     return db('users')
         .where('id', id).first()
 }
+
+async function editUser(id, update) {
+    console.log(id,"id")
+    return db('users')
+      .where('id', id)
+      .update(update);
+};
