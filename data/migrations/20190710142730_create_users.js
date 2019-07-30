@@ -25,6 +25,10 @@ exports.up = function(knex) {
             .string('professional_bio')
         users
             .string('name')
+        users
+            .string('mediator_accepted_at')
+        users
+            .string('mediator_declined_at')
     })
 };
 

@@ -6,7 +6,7 @@
 
 
 const express = require('express');
-const RootController = require('../controllers/RootController');
+const UsersController = require('../controllers/UsersController');
 const restricted = require('../middleware/restricted');
 
 /**
@@ -21,22 +21,12 @@ const router = express.Router()
  */
 
 router.route('/')
-  .get(RootController.index)
+    .all(restricted)
+    .get(UsersController.fetchMediators)
 
-/**
- * Routes
- *   GET /users
- */
-
-
-/**
- * Routes
- *   POST /users/auth
- */
-/**
- * Routes
- *   PUT /users/:id/mediator-upgrade
- */
+router.route('/pending')
+    .all(restricted)
+    .get(UsersController.mediatorRequests)
 
 
 /**
