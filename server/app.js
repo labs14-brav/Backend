@@ -1,14 +1,20 @@
 'use strict'
 
 /**
+ * Import environment
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+/**
  * Dependencies
  */
 
-require('dotenv').config()
 const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
-
 
 /**
  * Constants
@@ -16,22 +22,11 @@ const cors = require('cors')
 
 const port = process.env.PORT || 8888
 
-
-
 /**
  * Define app
  */
 
-
-
 const app = express()
-
-/**
- * Locals
- */
-
-
-
 
 /**
  * Config
@@ -51,7 +46,16 @@ app.use(express.json())
  * Routes
  */
 
-app.use(require('./routes/root_router'))
+app.use('/', require('./routes/root_router'))
+app.use('/cases', require('./routes/cases_router'))
+app.use('/users', require('./routes/users_router'))
+app.use('/mediators', require('./routes/mediators_router'))
+
+/**
+ * Error Handlers
+ */
+
+app.use(require('./middleware/error_handlers'))
 
 /**
  * Start server
