@@ -1,17 +1,17 @@
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const users = require('./data/dbConfig');
+const cases = require('../../data/dbConfig');
 
 const message = {
     to: 'brennuck@gmail.com',
-    from: 'donotreply@info.com',
+    from: 'labs14brav@gmail.com',
     subject: "Mediator Request!",
     text: `
     You've been requested as a mediator!
 
-    User email: ${users.email}
-    Dispute Category: ${users.dispute_category}
+    User email: ${cases.user_email}
+    Dispute Category: ${cases.dispute_category}
 
     Login for more info`,
 };
