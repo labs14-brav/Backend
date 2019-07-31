@@ -108,6 +108,23 @@ class CasesController {
     }
   }
 
+  static async getPendingCases(req,res){
+    try{
+      const fetch_cases = await Case.findPendingCases();
+  
+      if(fetch_cases){
+        res.status(200).json({fetch_cases})
+      }else{
+        res.status(500).json({message:'Internal Server Error'})
+      }
+      
+    }catch(err){
+      console.error(err);
+      res.status(500).json({message:'Internal Server Error'})
+    }
+  
+  }
+
   static async getAcceptedCases(req,res){
     try{
       const fetch_cases = await Case.findAcceptedCases();

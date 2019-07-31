@@ -29,6 +29,11 @@ router
   .post(CasesController.create);
 
 router
+  .route("/pending-cases")
+  .all(restricted)
+  .get(CasesController.getPendingCases);
+
+router
   .route("/accepted-cases")
   .all(restricted)
   .get(CasesController.getAcceptedCases);

@@ -87,6 +87,13 @@ class Case {
       .first();
   }
 
+  static async findPendingCases() {
+    const acceptedCases = await db("cases")
+      .whereNull("case_accepted_at")
+      .whereNull("case_declined_at");
+    return acceptedCases;
+  }
+
   static async findAcceptedCases() {
     const acceptedCases = await db("cases").whereNotNull("case_accepted_at");
     return acceptedCases;
