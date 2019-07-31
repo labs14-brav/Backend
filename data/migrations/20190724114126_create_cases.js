@@ -8,6 +8,8 @@ exports.up = function(knex) {
     table.text('description');
     table.text('dispute_category');
     table.text('parties_involved');
+    table.text('case_accepted_at');
+    table.text('case_declined_at');
   })
 };
 

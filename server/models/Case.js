@@ -22,6 +22,7 @@ class Case {
   static find(id) {
     return db('cases').where('id', id).first()
   }
+
   static findById(id){
     return db('cases').where({ id: id }).first();
   }
@@ -51,6 +52,26 @@ class Case {
       return new_case
     }
   }
+
+  //for admin use to approve a pending mediator, returns the updated user object
+static async acceptCase(id, update) {
+  const approved = await db('cases')
+           .where('id', id)
+           .update(update)
+  return db('cases')
+          .where('id', id).first()
+}
+
+//for admin use to decline a pending mediator, returns the updated user object
+static async declineCase(id, update) {
+  const declined = await db('cases')
+          .where('id', id)
+          .update(update)
+  return db('cases')
+      .where('id', id).first()
+}
+
+
 }
 
 /**
