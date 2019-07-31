@@ -43,6 +43,7 @@ class Case {
         court_filing_date: case_fields.court_filing_date,
         court_jurisdiction: case_fields.court_jurisdiction,
         court_number: case_fields.court_number,
+        case_notes: case_fields.case_notes,
       }, ['id'])
 
       const new_case = await db('cases').where({ id: ids.id }).first()
@@ -60,6 +61,7 @@ class Case {
         court_filing_date: case_fields.court_filing_date,
         court_jurisdiction: case_fields.court_jurisdiction,
         court_number: case_fields.court_number,
+        case_notes: case_fields.case_notes,
       })
 
       const new_case = await db('cases').where({ id: id }).first()
