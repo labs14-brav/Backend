@@ -15,6 +15,8 @@ exports.up = function(knex) {
     table.text('court_number');
     table.text('court_filing_date');
     table.text('case_notes');
+    table.text('case_accepted_at');
+    table.text('case_declined_at');
   })
 };
 
