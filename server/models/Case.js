@@ -122,7 +122,9 @@ class Case {
   }
 
   static async findAcceptedCases() {
-    const acceptedCases = await db("cases").whereNotNull("case_accepted_at");
+    const acceptedCases = await db("cases")
+      .whereNotNull("case_accepted_at")
+      .whereNull("case_completed_at");
     return acceptedCases;
   }
 
