@@ -5,9 +5,10 @@
  */
 
 
-const express = require('express')
+const express = require('express');
 const MediatorsController = require('../controllers/MediatorsController')
-const restricted = require('../middleware/restricted')
+const UsersController = require('../controllers/UsersController');
+const restricted = require('../middleware/restricted');
 
 /**
  * Define router
@@ -23,6 +24,16 @@ const router = express.Router()
 router.route('/')
     .all(restricted)
     .get(MediatorsController.index)
+
+/**
+ * Routes
+ *   GET /users/pending
+ */
+
+router.route('/pending')
+    .all(restricted)
+    .get(UsersController.mediatorRequests)
+
 
 /**
  * Export router

@@ -27,6 +27,10 @@ exports.up = function(knex) {
             .string('name')
         users
             .datetime('deactivated_at')
+        users
+            .string('mediator_accepted_at')
+        users
+            .string('mediator_declined_at')
     })
 };
 
