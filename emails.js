@@ -3,7 +3,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const message = {
     to: 'brennuck@gmail.com',
-    from: 'labs14brav@gmail.com',
+    from: 'donotreply@info.com',
     subject: "Your case info!",
     text: 'case number: yada yada',
 };
