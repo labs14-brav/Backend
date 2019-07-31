@@ -25,7 +25,7 @@ router
   .route("/")
   .all(restricted)
   .get(CasesController.index)
-  .all(require_body(["description", "dispute_category"]))
+  .all(require_body(["dispute_category"]))
   .post(CasesController.create);
 
 router
@@ -43,12 +43,12 @@ router
   .all(restricted)
   .get(CasesController.getCompletedCases);
 
-  
+
   /**
    * Routes
    *   GET /cases/:id
    */
-  
+
 router.route("/:id").get(CasesController.indexById);
 
 /**
