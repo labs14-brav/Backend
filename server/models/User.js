@@ -11,8 +11,8 @@ const db = require('../../data/dbConfig')
  */
 
 class User {
-  static all() {
-    return db('users')
+  static all(offset=0) {
+    return db('users').limit(10).offset(offset)
   }
 
   static async deactivate(email) {

@@ -21,7 +21,7 @@ const router = express.Router()
  */
 
 router.route('/')
-  .get(RootController.findUsers)
+  .get(UsersController.index)
 
 /**
  * POST /users/auth

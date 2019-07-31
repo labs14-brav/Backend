@@ -13,6 +13,16 @@ const model = require('../models/userModel')
  */
 
 class UsersController {
+  static async index(req, res) {
+    try {
+      const users = await User.all(req.query.offset)
+      res.status(200).json(users)
+    } catch(err) {
+      console.error(err)
+      res.status(500).json({ error: { message: 'Internal Server Error' }})
+    }
+  }
+
   static async deactivate(req, res) {
     try {
       await User.deactivate(req.body.email)

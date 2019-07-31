@@ -13,17 +13,6 @@ class RootController {
     res.status(200).json('Welcome to Brāv!')
   }
 
-  static findUsers(req, res) {
-      model.getUsers(req.query.offset)
-        .then(users => {
-          res.status(200).json(users);
-        })
-        .catch(error => {
-          console.error(error);
-          res.status(500).json({message: 'Internal Server Error'});
-        })
-  }
-
   static async auth(req, res) {
     try {
       const user = {

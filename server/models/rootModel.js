@@ -1,18 +1,10 @@
 const db = require('../../data/dbConfig');
 
 module.exports = {
-    getUsers,
     getUserByEmail,
     getUserById,
     addUser,
 }
-
-//Test method for accessing data on the FE
-function getUsers(offset=0) {
-    return db('users')
-    .limit(10)
-    .offset(offset)
-};
 
 function getUserByEmail(email) {
     return db('users').where('email',email).first()
@@ -37,4 +29,3 @@ async function addUser(user) {
         return id
     }
 };
-
