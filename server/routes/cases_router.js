@@ -25,7 +25,7 @@ const router = express.Router()
 router.route('/')
   .all(restricted)
   .get(CasesController.index)
-  .all(require_body(['description', 'dispute_category']))
+  .all(require_body(['dispute_category']))
   .post(CasesController.create)
 
 router.route('/:id')

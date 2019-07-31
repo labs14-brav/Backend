@@ -36,7 +36,13 @@ class Case {
         user_email: case_fields.email,
         description: case_fields.description,
         dispute_category: case_fields.dispute_category,
-        parties_involved: case_fields.parties_involved
+        dispute_amount: case_fields.dispute_amount,
+        parties_involved: case_fields.parties_involved,
+        parties_contact_info: case_fields.parties_contact_info,
+        court_case: case_fields.court_case,
+        court_filing_date: case_fields.court_filing_date,
+        court_jurisdiction: case_fields.court_jurisdiction,
+        court_number: case_fields.court_number,
       }, ['id'])
 
       const new_case = await db('cases').where({ id: ids.id }).first()
@@ -47,7 +53,13 @@ class Case {
         user_email: case_fields.email,
         description: case_fields.description,
         dispute_category: case_fields.dispute_category,
-        parties_involved: case_fields.parties_involved
+        dispute_amount: case_fields.dispute_amount,
+        parties_involved: case_fields.parties_involved,
+        parties_contact_info: case_fields.parties_contact_info,
+        court_case: case_fields.court_case,
+        court_filing_date: case_fields.court_filing_date,
+        court_jurisdiction: case_fields.court_jurisdiction,
+        court_number: case_fields.court_number,
       })
 
       const new_case = await db('cases').where({ id: id }).first()
