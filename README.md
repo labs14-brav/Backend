@@ -1,3 +1,5 @@
+![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
+
 # Backend
 
 🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
