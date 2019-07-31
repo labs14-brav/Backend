@@ -1,8 +1,15 @@
-const SGmail = require('@sendgrid/mail')
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-SGmail.setApiKey('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')
+const message = {
+    to: 'brennuck@gmail.com',
+    from: 'labs14brav@gmail.com',
+    subject: "Your case info!",
+    text: 'case number: yada yada',
+};
 
+sgMail.send(message);
 
-// echo "export SENDGRID_API_KEY='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'" > sendgrid.env
+// echo "export SENDGRID_API_KEY='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'" > sendgrid.env
 // echo "sendgrid.env" >> .gitignore
 // source ./sendgrid.env
