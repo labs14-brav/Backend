@@ -23,6 +23,39 @@ class UsersController {
     }
   }
 
+  static async auth(req, res) {
+    try {
+      const user = {
+        email: req.body.email,
+        uid:req.body.uid,
+      };
+
+      // rootModel.getUserByEmail
+      let foundUser = await model.getUserByEmail(user.email);
+
+      if (foundUser) {
+        res.status(200).json(foundUser);
+      } else {
+        // if the user doesn't exist create a user object that reflect the database schema.
+        const newUser = {
+          uid: user.uid,
+          email: user.email,
+        };
+
+        // rootModel.addUser
+        const id = await model.addUser(user);
+
+        // rootModel.getUserById
+        foundUser = await model.getUserById(id);
+
+        res.status(200).json(foundUser);
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({message: 'Internal Server Error'});
+    }
+  }
+
   static async deactivate(req, res) {
     try {
       await User.deactivate(req.body.email)

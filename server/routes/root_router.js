@@ -25,11 +25,6 @@ router.route('/')
 
 /**
  * Routes
- *   POST /users/auth
- */
-
-/**
- * Routes
  *   PUT /users/:id/mediator-upgrade
  */
 

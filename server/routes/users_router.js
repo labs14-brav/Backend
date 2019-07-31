@@ -6,7 +6,6 @@
 
 const express = require('express');
 const UsersController = require('../controllers/UsersController');
-const RootController = require('../controllers/RootController');
 const restricted = require('../middleware/restricted');
 const adminAuth = require('../middleware/adminAuth');
 
@@ -29,7 +28,7 @@ router.route('/')
 
 router.route('/auth')
   .all(restricted)
-  .post(RootController.auth)
+  .post(UsersController.auth)
 
 /**
  * Routes
