@@ -2,7 +2,7 @@
 
 exports.up = function(knex) {
   return knex.schema.createTable('cases', table => {
-    table.increments('id');
+    table.increments();
     table.text('user_email');
     table.text('user_uid');
     table.text('description');

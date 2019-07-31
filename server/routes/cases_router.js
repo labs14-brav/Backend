@@ -38,12 +38,12 @@ router
   .all(restricted)
   .get(CasesController.getDeclinedCases);
 
-  
+
   /**
    * Routes
    *   GET /cases/:id
    */
-  
+
 router.route("/:id").get(CasesController.indexById);
 
 /**
