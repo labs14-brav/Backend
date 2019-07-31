@@ -7,6 +7,7 @@
 const Mediator = require('../models/Mediator')
 const emails = require('../initializers/emails');
 const Case = require('../models/Case');
+const MediatorCase = require('../models/MediatorCase');
 
 /**
  * Define controller
@@ -29,6 +30,7 @@ class MediatorsController {
       const fetchCase = await Case.find(req.body.case_id)
 
       if (mediator) {
+        await MediatorCase.create({mediator_id: mediator.id, case_id: fetchCase.id})
         await emails({
           mediator_email: mediator.email,
           user_email: req.body.email,
