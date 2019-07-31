@@ -14,6 +14,10 @@ class Mediator {
   static all() {
     return db('users').where('type', 'mediator')
   }
+
+  static find(id) {
+    return db('users').where('id', id).first()
+  }
 }
 
 /**

@@ -19,7 +19,3 @@ function sendMail(info) {
 }
 
 module.exports = sendMail
-
-// echo "export SENDGRID_API_KEY='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'" > sendgrid.env
-// echo "sendgrid.env" >> .gitignore
-// source ./sendgrid.env
