@@ -39,9 +39,9 @@ router
   .get(CasesController.getAcceptedCases);
 
 router
-  .route("/declined-cases")
+  .route("/completed-cases")
   .all(restricted)
-  .get(CasesController.getDeclinedCases);
+  .get(CasesController.getCompletedCases);
 
   
   /**
@@ -77,6 +77,11 @@ router
   .route("/:id/case-request-declined")
   .all(restricted)
   .put(CasesController.declineCase);
+
+router
+  .route("/:id/case-request-completed")
+  .all(restricted)
+  .put(CasesController.completeCase);
 
 /**
  * Export router

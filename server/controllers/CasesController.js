@@ -108,6 +108,26 @@ class CasesController {
     }
   }
 
+  static async completeCase(req, res) {
+    try {
+      const id = req.params.id;
+      //set object for update. Decline, so type is reverted back to user, and timestamped.
+      let toUpdate = {
+        case_completed_at: moment().format('MMMM Do, h:mm a')
+      }
+      //console.log('toUpdate', toUpdate)
+      const completed = await Case.completeCase(id, toUpdate);
+      if (completed) {
+        res.status(200).json(completed);
+      } else {
+        res.status(500).json({message: 'Internal Server Error'})
+      }
+    } catch(err) {
+        console.error(err);
+        res.status(500).json({message: 'Internal Server Error'})
+    }
+  }
+
   static async getPendingCases(req,res){
     try{
       const fetch_cases = await Case.findPendingCases();
@@ -142,9 +162,9 @@ class CasesController {
   
   }
 
-  static async getDeclinedCases(req,res){
+  static async getCompletedCases(req,res){
     try{
-      const fetch_cases = await Case.findDeclinedCases();
+      const fetch_cases = await Case.findCompletedCases();
   
       if(fetch_cases){
         res.status(200).json({fetch_cases})

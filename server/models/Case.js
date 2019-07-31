@@ -87,10 +87,20 @@ class Case {
       .first();
   }
 
+  static async completeCase(id, update) {
+    const declined = await db("cases")
+      .where("id", id)
+      .update(update);
+    return db("cases")
+      .where("id", id)
+      .first();
+  }
+
   static async findPendingCases() {
     const acceptedCases = await db("cases")
       .whereNull("case_accepted_at")
-      .whereNull("case_declined_at");
+      .whereNull("case_declined_at")
+      .whereNull("case_completed_at");
     return acceptedCases;
   }
 
@@ -99,9 +109,9 @@ class Case {
     return acceptedCases;
   }
 
-  static async findDeclinedCases() {
+  static async findCompletedCases() {
     console.log("accepted cases");
-    const declinedCases = await db("cases").whereNotNull("case_declined_at");
+    const declinedCases = await db("cases").whereNotNull("case_completed_at");
     return declinedCases;
   }
 }
