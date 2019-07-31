@@ -35,6 +35,11 @@ router.route('/pending')
     .get(UsersController.mediatorRequests)
 
 
+
+router.route('/:id/cases')
+    .all(restricted)
+    .post(MediatorsController.mediatorEmail)
+
 /**
  * Export router
  */
