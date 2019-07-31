@@ -6,7 +6,6 @@
 
 const moment = require('moment')
 const User = require('../models/User')
-const model = require('../models/userModel')
 
 /**
  * Define controller
@@ -60,7 +59,8 @@ class UsersController {
 
   static async mediatorRequests(req, res) {
     try {
-      let pending = await model.mediatorRequests()
+      let pending = await User.mediatorRequests()
+
       if (pending) {
         res.status(200).json(pending);
       } else {
@@ -81,7 +81,7 @@ class UsersController {
         mediator_accepted_at: moment().format('MMMM Do, h:mm a'),
         mediator_declined_at: null
       }
-      const approved = await model.approveMediator(id, toUpdate);
+      const approved = await User.approveMediator(id, toUpdate);
       if (approved) {
         res.status(200).json(approved);
       } else {
@@ -102,7 +102,7 @@ class UsersController {
         mediator_declined_at: moment().format('MMMM Do, h:mm a'),
         mediator_accepted_at: null
       }
-      const declined = await model.declineMediator(id, toUpdate);
+      const declined = await User.declineMediator(id, toUpdate);
       if (declined) {
         res.status(200).json(declined);
       } else {
@@ -118,7 +118,7 @@ class UsersController {
     try {
       const { id } = req.params;
 
-      const updateUser = await model.editUser(id, {
+      const updateUser = await User.editUser(id, {
         'experience': req.body.experience,
         'specialization': req.body.specialization,
         'language': req.body.language,
