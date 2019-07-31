@@ -28,31 +28,23 @@ class UsersController {
       const user = {
         email: req.body.email,
         uid:req.body.uid,
-      };
+      }
 
-      // rootModel.getUserByEmail
-      let foundUser = await model.getUserByEmail(user.email);
+      let foundUser = await User.getUserByEmail(user.email)
 
       if (foundUser) {
-        res.status(200).json(foundUser);
+        res.status(200).json(foundUser)
       } else {
         // if the user doesn't exist create a user object that reflect the database schema.
-        const newUser = {
-          uid: user.uid,
-          email: user.email,
-        };
+        const id = await User.create(user)
 
-        // rootModel.addUser
-        const id = await model.addUser(user);
+        foundUser = await User.getUserById(id)
 
-        // rootModel.getUserById
-        foundUser = await model.getUserById(id);
-
-        res.status(200).json(foundUser);
+        res.status(200).json(foundUser)
       }
     } catch (err) {
-      console.error(err);
-      res.status(500).json({message: 'Internal Server Error'});
+      console.error(err)
+      res.status(500).json({ error: { message: 'Internal Server Error' }})
     }
   }
 
@@ -139,7 +131,8 @@ class UsersController {
         ? res.status(200).json({ message: "successfully updated credentials" })
         : res.status(404).json({ message: "missing required fields" });
     } catch (err) {
-      res.status(500).json(err.message);
+      console.error(err)
+      res.status(500).json({ error: { message: 'Internal Server Error' }})
     }
   }
 }

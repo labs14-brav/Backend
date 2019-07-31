@@ -14,7 +14,6 @@ function fetchMediators() {
     .where('type', 'mediator');
 }
 
-
 /**
  * ADMIN USE
  */

@@ -55,9 +55,9 @@ router.route('/:id/mediator-upgrade')
  */
 
 router.route('/:id/mediator-request-accepted')
-    .all(restricted)
-    .all(adminAuth)
-    .put(UsersController.approveMediator)
+  .all(restricted)
+  .all(adminAuth)
+  .put(UsersController.approveMediator)
 
 /**
  * Routes
@@ -65,9 +65,9 @@ router.route('/:id/mediator-request-accepted')
  */
 
 router.route('/:id/mediator-request-declined')
-    .all(restricted)
-    .all(adminAuth)
-    .put(UsersController.declineMediator)
+  .all(restricted)
+  .all(adminAuth)
+  .put(UsersController.declineMediator)
 
 /**
  * Export router
