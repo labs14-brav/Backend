@@ -16,19 +16,30 @@ const adminAuth = require('../middleware/adminAuth');
 const router = express.Router()
 
 /**
- * GET /users
+ * Routes
+ *   GET /users
  */
 
 router.route('/')
   .get(UsersController.index)
 
 /**
- * POST /users/auth
+ * Routes
+ *   POST /users/auth
  */
 
 router.route('/auth')
   .all(restricted)
   .post(UsersController.auth)
+
+/**
+ * Routes
+ *   PUT /users/deactivate
+ */
+
+router.route('/deactivate')
+ .all(restricted)
+ .put(UsersController.deactivate)
 
 /**
  * Routes
@@ -57,15 +68,6 @@ router.route('/:id/mediator-request-declined')
     .all(restricted)
     .all(adminAuth)
     .put(UsersController.declineMediator)
-
-/**
- * Routes
- *   PUT /users/deactivate
- */
-
-router.route('/deactivate')
- .all(restricted)
- .put(UsersController.deactivate)
 
 /**
  * Export router
