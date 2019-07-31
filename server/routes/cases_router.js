@@ -28,17 +28,23 @@ router
   .all(require_body(["description", "dispute_category"]))
   .post(CasesController.create);
 
-router.route("/:id").get(CasesController.indexById);
-
-/**
- * Routes
- *   GET /cases/:id
- */
+router
+  .route("/accepted-cases")
+  .all(restricted)
+  .get(CasesController.getAcceptedCases);
 
 router
-  .route("/:id")
+  .route("/declined-cases")
   .all(restricted)
-  .get(CasesController.show);
+  .get(CasesController.getDeclinedCases);
+
+  
+  /**
+   * Routes
+   *   GET /cases/:id
+   */
+  
+router.route("/:id").get(CasesController.indexById);
 
 /**
  * Routes

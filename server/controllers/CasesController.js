@@ -30,7 +30,6 @@ class CasesController {
 
     try {
       const caseById = await Case.findById(id);
-      console.log(caseById, "this is the id");
       return res.status(200).json(caseById);
     } catch (error) {
       console.error(err);
@@ -108,7 +107,44 @@ class CasesController {
         res.status(500).json({message: 'Internal Server Error'})
     }
   }
+
+  static async getAcceptedCases(req,res){
+    try{
+      const fetch_cases = await Case.findAcceptedCases();
+  
+      if(fetch_cases){
+        res.status(200).json({fetch_cases})
+      }else{
+        res.status(500).json({message:'Internal Server Error'})
+      }
+      
+    }catch(err){
+      console.error(err);
+      res.status(500).json({message:'Internal Server Error'})
+    }
+  
+  }
+
+  static async getDeclinedCases(req,res){
+    try{
+      const fetch_cases = await Case.findDeclinedCases();
+  
+      if(fetch_cases){
+        res.status(200).json({fetch_cases})
+      }else{
+        res.status(500).json({message:'Internal Server Error'})
+      }
+      
+    }catch(err){
+      console.error(err);
+      res.status(500).json({message:'Internal Server Error'})
+    }
+  
+  }
+
 }
+
+
 
 /**
  * Export controller
