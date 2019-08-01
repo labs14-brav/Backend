@@ -14,7 +14,13 @@ class Mediator {
   static all(query) {
     const { price, language, specialty, experience } = query
 
-    return db('users').where('type', 'mediator')
+    let filter = {}
+
+    if (language) filter['language'] = language
+    if (specialty) filter['specialization'] = specialty
+    if (experience) filter['experience'] = experience
+
+    return db('users').where('type', 'mediator').where(filter)
   }
 
   static find(id) {
