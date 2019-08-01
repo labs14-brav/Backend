@@ -16,7 +16,7 @@ const MediatorCase = require('../models/MediatorCase');
 class MediatorsController {
   static async index(req, res) {
     try {
-      const mediators = await Mediator.all()
+      const mediators = await Mediator.all(req.query)
       res.status(200).json(mediators)
     } catch(err) {
       console.error(err)
