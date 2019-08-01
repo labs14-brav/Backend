@@ -47,12 +47,12 @@ router
 .get(CasesController.getPendingCases);
 
 router
-.route("/accepted-cases")
+.route("/:id/active-cases")
 .all(restricted)
-.get(CasesController.getAcceptedCases);
+.get(CasesController.getActiveCases);
 
 router
-.route("/completed-cases")
+.route("/:id/completed-cases")
 .all(restricted)
 .get(CasesController.getCompletedCases);
 

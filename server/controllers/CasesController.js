@@ -146,9 +146,10 @@ class CasesController {
   
   }
 
-  static async getAcceptedCases(req,res){
+  static async getActiveCases(req,res){
+    const mediatorId = req.params.id;
     try{
-      const fetch_cases = await Case.findAcceptedCases();
+      const fetch_cases = await Case.findAcceptedCases(mediatorId);
   
       if(fetch_cases){
         res.status(200).json({fetch_cases})
@@ -164,8 +165,9 @@ class CasesController {
   }
 
   static async getCompletedCases(req,res){
+    const mediatorId = req.params.id;
     try{
-      const fetch_cases = await Case.findCompletedCases();
+      const fetch_cases = await Case.findCompletedCases(mediatorId);
   
       if(fetch_cases){
         res.status(200).json({fetch_cases})
