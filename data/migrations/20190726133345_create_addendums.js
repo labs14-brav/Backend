@@ -2,7 +2,7 @@
 
 exports.up = function(knex) {
   return knex.schema.createTable('addendums', table => {
-    table.increments('id');
+    table.increments();
     table.integer('case_id');
     table.text('description');
   })

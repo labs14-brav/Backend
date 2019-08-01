@@ -124,6 +124,7 @@ class UsersController {
         'language': req.body.language,
         'professional_bio': req.body.professional_bio,
         'name': req.body.name,
+        'price': req.body.price,
         'type' : 'pending_mediator'
       });
 
