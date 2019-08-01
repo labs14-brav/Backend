@@ -19,6 +19,9 @@ class Case {
       return db("cases");
     }
   }
+  static allCases() {
+      return db("cases");
+  }
 
   //find a case with id
   static find(id) {
@@ -113,12 +116,11 @@ class Case {
       .first();
   }
 
-  static async findPendingCases() {
-    const acceptedCases = await db("cases")
-      .whereNull("case_accepted_at")
-      .whereNull("case_declined_at")
-      .whereNull("case_completed_at");
-    return acceptedCases;
+  static async findPendingCases(mediatorId) {
+   
+      return db("mediator_cases").where("mediator_id", mediatorId)
+      .join('cases', "mediator_cases.case_id", "cases.id");
+    
   }
 
   static async findAcceptedCases() {
