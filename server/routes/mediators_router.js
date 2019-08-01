@@ -27,14 +27,17 @@ router.route('/')
 
 /**
  * Routes
- *   GET /users/pending
+ *   GET /mediators/pending
  */
 
 router.route('/pending')
     .all(restricted)
     .get(UsersController.mediatorRequests)
 
-
+/**
+ * Routes
+ *   POST /mediators/:id/cases
+ */
 
 router.route('/:id/cases')
     .all(restricted)
