@@ -11,7 +11,9 @@ const db = require('../../data/dbConfig')
  */
 
 class Mediator {
-  static all() {
+  static all(query) {
+    const { price, language, specialty, experience } = query
+
     return db('users').where('type', 'mediator')
   }
 
