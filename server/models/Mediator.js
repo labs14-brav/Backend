@@ -20,6 +20,14 @@ class Mediator {
     if (specialty) filter['specialization'] = specialty
     if (experience) filter['experience'] = experience
 
+    if (price == '<25') {
+      filter['price'] =
+    } else if (price == '25-75') {
+      filter['price'] =
+    } else if (price == '>75') {
+      filter['price'] =
+    }
+
     return db('users').where('type', 'mediator').where(filter)
   }
 
