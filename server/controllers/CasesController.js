@@ -130,7 +130,8 @@ class CasesController {
 
   static async getPendingCases(req,res){
     try{
-      const fetch_cases = await Case.findPendingCases();
+      const mediatorId = req.params.id;
+      const fetch_cases = await Case.findPendingCases(mediatorId);
   
       if(fetch_cases){
         res.status(200).json({fetch_cases})
@@ -145,9 +146,10 @@ class CasesController {
   
   }
 
-  static async getAcceptedCases(req,res){
+  static async getActiveCases(req,res){
+    const mediatorId = req.params.id;
     try{
-      const fetch_cases = await Case.findAcceptedCases();
+      const fetch_cases = await Case.findAcceptedCases(mediatorId);
   
       if(fetch_cases){
         res.status(200).json({fetch_cases})
@@ -163,8 +165,9 @@ class CasesController {
   }
 
   static async getCompletedCases(req,res){
+    const mediatorId = req.params.id;
     try{
-      const fetch_cases = await Case.findCompletedCases();
+      const fetch_cases = await Case.findCompletedCases(mediatorId);
   
       if(fetch_cases){
         res.status(200).json({fetch_cases})
@@ -177,6 +180,19 @@ class CasesController {
       res.status(500).json({message:'Internal Server Error'})
     }
   
+  }
+
+  static async all(req, res){
+    try {
+      const cases = await Case.allCases();
+
+      return res.status(200).json(cases);
+    } catch (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: { message: "Internal Server Error" } });
+    }
   }
 
 }

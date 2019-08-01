@@ -28,21 +28,10 @@ router
   .all(require_body(["dispute_category"]))
   .post(CasesController.create);
 
+  ///temp to get all cases
 router
-  .route("/pending-cases")
-  .all(restricted)
-  .get(CasesController.getPendingCases);
-
-router
-  .route("/accepted-cases")
-  .all(restricted)
-  .get(CasesController.getAcceptedCases);
-
-router
-  .route("/completed-cases")
-  .all(restricted)
-  .get(CasesController.getCompletedCases);
-
+  .route("/all")
+  .get(CasesController.all);
 
   /**
    * Routes
@@ -50,6 +39,22 @@ router
    */
 
 router.route("/:id").get(CasesController.indexById);
+
+
+router
+.route("/:id/pending-cases")
+.all(restricted)
+.get(CasesController.getPendingCases);
+
+router
+.route("/:id/active-cases")
+.all(restricted)
+.get(CasesController.getActiveCases);
+
+router
+.route("/:id/completed-cases")
+.all(restricted)
+.get(CasesController.getCompletedCases);
 
 /**
  * Routes

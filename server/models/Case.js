@@ -19,6 +19,9 @@ class Case {
       return db("cases");
     }
   }
+  static allCases() {
+      return db("cases");
+  }
 
   //find a case with id
   static find(id) {
@@ -113,24 +116,26 @@ class Case {
       .first();
   }
 
-  static async findPendingCases() {
-    const acceptedCases = await db("cases")
+  static async findPendingCases(mediatorId) {
+      return db("mediator_cases").where("mediator_id", mediatorId)
+      .join('cases', "mediator_cases.case_id", "cases.id")
       .whereNull("case_accepted_at")
       .whereNull("case_declined_at")
-      .whereNull("case_completed_at");
-    return acceptedCases;
+      .whereNull("case_completed_at"); 
   }
 
-  static async findAcceptedCases() {
-    const acceptedCases = await db("cases")
+  static async findAcceptedCases(mediatorId) {
+    return db("mediator_cases").where("mediator_id", mediatorId)
+      .join('cases', "mediator_cases.case_id", "cases.id")
       .whereNotNull("case_accepted_at")
       .whereNull("case_completed_at");
-    return acceptedCases;
   }
 
-  static async findCompletedCases() {
-    const declinedCases = await db("cases").whereNotNull("case_completed_at");
-    return declinedCases;
+  static async findCompletedCases(mediatorId) {
+    return db("mediator_cases").where("mediator_id", mediatorId)
+      .join('cases', "mediator_cases.case_id", "cases.id")
+      .whereNotNull("case_completed_at");
+    
   }
 }
 
