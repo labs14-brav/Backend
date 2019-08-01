@@ -13,6 +13,7 @@ const db = require('../../data/dbConfig')
 class Mediator {
   static all(query) {
     const { price, language, specialty, experience } = query
+    let price_min, price_max
 
     let filter = {}
 
@@ -21,14 +22,24 @@ class Mediator {
     if (experience) filter['experience'] = experience
 
     if (price == '<25') {
-      filter['price'] =
+      price_min = 0
+      price_max = 25
     } else if (price == '25-75') {
-      filter['price'] =
+      price_min = 25
+      price_max = 75
     } else if (price == '>75') {
-      filter['price'] =
+      price_min = 75
+      price_max = 99999
+    } else {
+      price_min = 0
+      price_max = 99999
     }
 
-    return db('users').where('type', 'mediator').where(filter)
+    const results = db('users').where('type', 'mediator')
+      .where(filter).whereBetween('price', [price_min, price_max])
+
+    return db('users').where('type', 'mediator')
+      .where(filter).whereBetween('price', [price_min, price_max])
   }
 
   static find(id) {
