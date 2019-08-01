@@ -35,14 +35,14 @@ class Mediator {
 
     if (price == '<25') {
       price_min = 0
-      price_max = 25
+      price_max = 24
       has_filters = true
     } else if (price == '25-75') {
       price_min = 25
       price_max = 75
       has_filters = true
     } else if (price == '>75') {
-      price_min = 75
+      price_min = 76
       price_max = 99999
       has_filters = true
     } else {
