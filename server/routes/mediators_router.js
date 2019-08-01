@@ -25,11 +25,14 @@ router.route('/')
     .all(restricted)
     .get(MediatorsController.index)
 
+
 /**
  * Routes
  *   GET /mediators/pending
  */
 
+
+//  For admin getting all requests for mediator requests
 router.route('/pending')
     .all(restricted)
     .get(UsersController.mediatorRequests)
