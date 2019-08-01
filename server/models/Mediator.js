@@ -12,19 +12,21 @@ const db = require('../../data/dbConfig')
 
 class Mediator {
   static all(query) {
-    const { price, language, specialty, experience } = query
+    const { price, language, specialization, experience } = query
     let price_min, price_max
 
     let has_filters = false
+    let has_lang_filter = false
+    let has_specialization_filter = false
     let filter = {}
 
     if (language) {
-      filter['language'] = language
+      has_lang_filter = true
       has_filters = true
     }
 
-    if (specialty) {
-      filter['specialization'] = specialty
+    if (specialization) {
+      has_specialization_filter = true
       has_filters = true
     }
 
@@ -50,7 +52,18 @@ class Mediator {
       price_max = 99999
     }
 
-    if (has_filters) {
+    if (has_filters && has_lang_filter && has_specialization_filter) {
+      return db('users').where('type', 'mediator')
+        .where(filter)
+        .where('language', 'like', `%${language}%`)
+        .where('specialization', 'like', `%${specialization}%`)
+        .whereBetween('price', [price_min, price_max])
+    } if (has_filters && has_lang_filter) {
+      return db('users').where('type', 'mediator')
+        .where(filter)
+        .where('language', 'like', `%${language}%`)
+        .whereBetween('price', [price_min, price_max])
+    } else if (has_filters) {
       return db('users').where('type', 'mediator')
         .where(filter).whereBetween('price', [price_min, price_max])
     } else {
