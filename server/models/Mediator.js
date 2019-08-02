@@ -63,6 +63,11 @@ class Mediator {
         .where(filter)
         .where('language', 'like', `%${language}%`)
         .whereBetween('price', [price_min, price_max])
+    } else if (has_filters && has_specialization_filter) {
+      return db('users').where('type', 'mediator')
+        .where(filter)
+        .where('specialization', 'like', `%${specialization}%`)
+        .whereBetween('price', [price_min, price_max])
     } else if (has_filters) {
       return db('users').where('type', 'mediator')
         .where(filter).whereBetween('price', [price_min, price_max])
