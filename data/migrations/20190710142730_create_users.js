@@ -16,6 +16,9 @@ exports.up = function(knex) {
         users
             .string('license')
         users
+            .integer('price')
+            .defaultTo(0)
+        users
             .string('experience')
         users
             .string('specialization')

@@ -25,15 +25,26 @@ router.route('/')
     .all(restricted)
     .get(MediatorsController.index)
 
+
 /**
  * Routes
- *   GET /users/pending
+ *   GET /mediators/pending
  */
 
+
+//  For admin getting all requests for mediator requests
 router.route('/pending')
     .all(restricted)
     .get(UsersController.mediatorRequests)
 
+/**
+ * Routes
+ *   POST /mediators/:id/cases
+ */
+
+router.route('/:id/cases')
+    .all(restricted)
+    .post(MediatorsController.mediatorEmail)
 
 /**
  * Export router
