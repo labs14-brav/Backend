@@ -12,34 +12,68 @@ const db = require('../../data/dbConfig')
 
 class Mediator {
   static all(query) {
-    const { price, language, specialty, experience } = query
+    const { price, language, specialization, experience } = query
     let price_min, price_max
 
+    let has_filters = false
+    let has_lang_filter = false
+    let has_specialization_filter = false
     let filter = {}
 
-    if (language) filter['language'] = language
-    if (specialty) filter['specialization'] = specialty
-    if (experience) filter['experience'] = experience
+    if (language) {
+      has_lang_filter = true
+      has_filters = true
+    }
+
+    if (specialization) {
+      has_specialization_filter = true
+      has_filters = true
+    }
+
+    if (experience) {
+      filter['experience'] = experience
+      has_filters = true
+    }
 
     if (price == '<25') {
       price_min = 0
-      price_max = 25
+      price_max = 24
+      has_filters = true
     } else if (price == '25-75') {
       price_min = 25
       price_max = 75
+      has_filters = true
     } else if (price == '>75') {
-      price_min = 75
+      price_min = 76
       price_max = 99999
+      has_filters = true
     } else {
       price_min = 0
       price_max = 99999
     }
 
-    const results = db('users').where('type', 'mediator')
-      .where(filter).whereBetween('price', [price_min, price_max])
-
-    return db('users').where('type', 'mediator')
-      .where(filter).whereBetween('price', [price_min, price_max])
+    if (has_filters && has_lang_filter && has_specialization_filter) {
+      return db('users').where('type', 'mediator')
+        .where(filter)
+        .where('language', 'like', `%${language}%`)
+        .where('specialization', 'like', `%${specialization}%`)
+        .whereBetween('price', [price_min, price_max])
+    } if (has_filters && has_lang_filter) {
+      return db('users').where('type', 'mediator')
+        .where(filter)
+        .where('language', 'like', `%${language}%`)
+        .whereBetween('price', [price_min, price_max])
+    } else if (has_filters && has_specialization_filter) {
+      return db('users').where('type', 'mediator')
+        .where(filter)
+        .where('specialization', 'like', `%${specialization}%`)
+        .whereBetween('price', [price_min, price_max])
+    } else if (has_filters) {
+      return db('users').where('type', 'mediator')
+        .where(filter).whereBetween('price', [price_min, price_max])
+    } else {
+      return db('users').where('type', 'mediator')
+    }
   }
 
   static find(id) {
