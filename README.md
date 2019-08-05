@@ -11,7 +11,7 @@ To get the server running locally:
 - `npm start` to start the local server.
 - `npm test` to run the tests.
 
-### Backend framework goes here
+### Backend Framework
 
 We are using a PostgresSQL database deployed on Heroku. To access the database we are implementing a RESTful API using NodeJS, Express, and knex. Node lets you write JavaScript on both the front-end and back-end, which increases readability and reduced context-switching.
 
