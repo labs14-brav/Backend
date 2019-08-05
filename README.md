@@ -1,14 +1,6 @@
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
+# Backend - Brāv
 
-# Backend
-
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
-# API Documentation
-
-#### Backend delpoyed at [Heroku](https://bravproduction.herokuapp.com/) <br>
+Backend delpoyed at [Heroku](https://bravproduction.herokuapp.com/)
 
 ## Getting started
 
