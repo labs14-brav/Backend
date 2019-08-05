@@ -1,20 +1,20 @@
-"use strict";
+'use strict'
 
 /**
  * Dependencies
  */
 
-const express = require("express");
-const CasesController = require("../controllers/CasesController");
-const AddendumsController = require("../controllers/AddendumsController");
-const restricted = require("../middleware/restricted");
-const require_body = require("../middleware/require_body");
+const express = require('express')
+const CasesController = require('../controllers/CasesController')
+const AddendumsController = require('../controllers/AddendumsController')
+const restricted = require('../middleware/restricted')
+const require_body = require('../middleware/require_body')
 
 /**
  * Define router
  */
 
-const router = express.Router();
+const router = express.Router()
 
 /**
  * Routes
@@ -26,39 +26,57 @@ router
   .all(restricted)
   .get(CasesController.index)
   .all(require_body(["dispute_category"]))
-  .post(CasesController.create);
+  .post(CasesController.create)
 
-  ///temp to get all cases
+/**
+ * Routes (temp)
+ *   GET /cases/all
+ */
+
 router
   .route("/all")
-  .get(CasesController.all);
-
-  /**
-   * Routes
-   *   GET /cases/:id
-   */
-
-router.route("/:id").get(CasesController.indexById);
-
-
-router
-.route("/:id/pending-cases")
-.all(restricted)
-.get(CasesController.getPendingCases);
-
-router
-.route("/:id/active-cases")
-.all(restricted)
-.get(CasesController.getActiveCases);
-
-router
-.route("/:id/completed-cases")
-.all(restricted)
-.get(CasesController.getCompletedCases);
+  .get(CasesController.all)
 
 /**
  * Routes
- *   POST /cases/:id/addendums
+ *   GET /cases/:id
+ */
+
+router.route("/:id").get(CasesController.indexById)
+
+/**
+ * Routes
+ *   GET /cases/:id/pending-cases
+ */
+
+router
+  .route("/:id/pending-cases")
+  .all(restricted)
+  .get(CasesController.getPendingCases)
+
+/**
+ * Routes
+ *   GET /cases/:id/active-cases
+ */
+
+router
+  .route("/:id/active-cases")
+  .all(restricted)
+  .get(CasesController.getActiveCases)
+
+/**
+ * Routes
+ *   GET /cases/:id/completed-cases
+ */
+
+router
+  .route("/:id/completed-cases")
+  .all(restricted)
+  .get(CasesController.getCompletedCases)
+
+/**
+ * Routes
+ *   GET,POST /cases/:id/addendums
  */
 
 router
@@ -66,30 +84,40 @@ router
   .all(restricted)
   .get(AddendumsController.index)
   .all(require_body(["description"]))
-  .post(AddendumsController.create);
+  .post(AddendumsController.create)
 
 /**
  * Routes
- *   PUT
+ *   PUT /cases/:id/case-request-accepted
  */
 
 router
   .route("/:id/case-request-accepted")
   .all(restricted)
-  .put(CasesController.acceptCase);
+  .put(CasesController.acceptCase)
+
+/**
+ * Routes
+ *   PUT /cases/:id/case-request-declined
+ */
 
 router
   .route("/:id/case-request-declined")
   .all(restricted)
-  .put(CasesController.declineCase);
+  .put(CasesController.declineCase)
+
+/**
+ * Routes
+ *   PUT /cases/:id/case-request-completed
+ */
 
 router
   .route("/:id/case-request-completed")
   .all(restricted)
-  .put(CasesController.completeCase);
+  .put(CasesController.completeCase)
 
 /**
  * Export router
  */
 
-module.exports = router;
+module.exports = router

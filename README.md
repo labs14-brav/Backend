@@ -17,11 +17,12 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
 
 ## Endpoints
 
-#### Organization Routes
+#### Case Routes
 
-| Method | Endpoint                | Access Control | Description                                  |
-| ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/organizations/:orgId` | all users      | Returns the information for an organization. |
+| Method | Endpoint | Access Control | Description |
+| ------ | -------- | -------------- | ----------- |
+| GET    | `/cases` | all users      | Returns all cases for the current user. |
+| POST    | `/cases` | all users      | Creates a new case for the current user. |
 | PUT    | `/organizatoins/:orgId` | owners         | Modify an existing organization.             |
 | DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
 
@@ -73,9 +74,7 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
 }
 ```
 
-## 2️⃣ Actions
-
-🚫 This is an example, replace this with the actions that pertain to your backend
+## Actions
 
 `getOrgs()` -> Returns all organizations
 
@@ -99,13 +98,11 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
 
 `deleteUser(userId)` -> deletes everything dependent on the user
 
-## 3️⃣ Environment Variables
+## Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables.
 
 create a .env file that includes the following:
-
-🚫 These are just examples, replace them with the specifics for your app
 
     *  STAGING_DB - optional development db for using functionality not available in SQLite
     *  NODE_ENV - set to "development" until ready for "production"
