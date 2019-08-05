@@ -119,6 +119,7 @@ class UsersController {
 
       const updateUser = await User.editUser(id, {
         'experience': req.body.experience,
+        'license': req.body.license,
         'specialization': req.body.specialization,
         'language': req.body.language,
         'professional_bio': req.body.professional_bio,
