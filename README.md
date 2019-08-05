@@ -11,13 +11,11 @@ To get the server running locally:
 - `npm start` to start the local server.
 - `npm test` to run the tests.
 
-### Backend Framework
+## Backend Framework
 
 We are using a PostgresSQL database deployed on Heroku. To access the database we are implementing a RESTful API using NodeJS, Express, and knex. Node lets you write JavaScript on both the front-end and back-end, which increases readability and reduced context-switching.
 
-## 2️⃣ Endpoints
-
-🚫This is a placeholder, replace the endpoints, access controll, and descriptioin to match your project
+## Endpoints
 
 #### Organization Routes
 
@@ -38,11 +36,9 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
 | PUT    | `/users/:userId`        | owners, supervisors |                                                    |
 | DELETE | `/users/:userId`        | owners, supervisors |                                                    |
 
-# Data Model
+## Data Model
 
-🚫This is just an example. Replace this with your data model
-
-#### 2️⃣ ORGANIZATIONS
+#### ORGANIZATIONS
 
 ---
 
