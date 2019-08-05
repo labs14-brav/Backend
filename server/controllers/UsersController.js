@@ -28,11 +28,7 @@ class UsersController {
         email: req.body.email,
         uid:req.body.uid,
       }
-      console.log('user email', user.email);
       let foundUser = await User.getUserByEmail(user.email)
-
-
-      console.log('foundUser', foundUser);
 
       if (foundUser) {
         res.status(200).json(foundUser)
