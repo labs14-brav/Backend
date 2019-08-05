@@ -55,38 +55,57 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
 
 ## Data Model
 
-#### ORGANIZATIONS
-
----
+#### CASES
 
 ```
 {
   id: UUID
-  name: STRING
-  industry: STRING
-  paid: BOOLEAN
-  customer_id: STRING
-  subscription_id: STRING
+  case_completed_at: STRING
+  user_email: STRING
+  user_uid: STRING
+  description: STRING
+  dispute_category: STRING
+  dispute_amount: STRING
+  parties_involved: STRING
+  parties_contact_info: STRING
+  court_case: STRING
+  court_jurisdiction: STRING
+  court_number: STRING
+  court_filing_date: STRING
+  case_notes: STRING
+  case_accepted_at: STRING
+  case_declined_at: STRING
+}
+```
+
+#### ADDENDUMS
+
+```
+{
+  id: UUID
+  case_id: INTEGER
+  description: STRING
 }
 ```
 
 #### USERS
 
----
-
 ```
 {
   id: UUID
-  organization_id: UUID foreign key in ORGANIZATIONS table
-  first_name: STRING
-  last_name: STRING
-  role: STRING [ 'owner', 'supervisor', 'employee' ]
+  type: STRING
   email: STRING
-  phone: STRING
-  cal_visit: BOOLEAN
-  emp_visit: BOOLEAN
-  emailpref: BOOLEAN
-  phonepref: BOOLEAN
+  uid: STRING
+  license: STRING
+  price: INTEGER
+  experience: STRING
+  specialization: STRING
+  language: STRING
+  professional_bio: STRING
+  name: STRING
+  deactivated_at: DATETIME
+  mediator_accepted_at: DATETIME
+  mediator_declined_at: DATETIME
 }
 ```
 
