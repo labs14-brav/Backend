@@ -4,11 +4,10 @@
  * Dependencies
  */
 
-
-const express = require('express');
+const express = require('express')
 const MediatorsController = require('../controllers/MediatorsController')
-const UsersController = require('../controllers/UsersController');
-const restricted = require('../middleware/restricted');
+const UsersController = require('../controllers/UsersController')
+const restricted = require('../middleware/restricted')
 
 /**
  * Define router
@@ -22,20 +21,18 @@ const router = express.Router()
  */
 
 router.route('/')
-    .all(restricted)
-    .get(MediatorsController.index)
-
+  .all(restricted)
+  .get(MediatorsController.index)
 
 /**
  * Routes
  *   GET /mediators/pending
  */
 
-
 //  For admin getting all requests for mediator requests
 router.route('/pending')
-    .all(restricted)
-    .get(UsersController.mediatorRequests)
+  .all(restricted)
+  .get(UsersController.mediatorRequests)
 
 /**
  * Routes
