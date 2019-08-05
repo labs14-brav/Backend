@@ -7,9 +7,9 @@ Backend delpoyed at [Heroku](https://bravproduction.herokuapp.com/)
 To get the server running locally:
 
 - Clone this repo.
-- **npm install** to install all required dependencies.
-- **npm start** to start the local server.
-- **npm test** to run the tests.
+- `npm install` to install all required dependencies.
+- `npm start` to start the local server.
+- `npm test` to run the tests.
 
 ### Backend framework goes here
 
