@@ -22,9 +22,7 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
 | Method | Endpoint | Access Control | Description |
 | ------ | -------- | -------------- | ----------- |
 | GET    | `/cases` | all users      | Returns all cases for the current user. |
-| POST    | `/cases` | all users      | Creates a new case for the current user. |
-| PUT    | `/organizatoins/:orgId` | owners         | Modify an existing organization.             |
-| DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
+| POST   | `/cases` | all users      | Creates a new case for the current user. |
 
 #### User Routes
 

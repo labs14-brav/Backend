@@ -33,8 +33,7 @@ router
  *   GET /cases/all
  */
 
-router
-  .route("/all")
+router.route("/all")
   .get(CasesController.all)
 
 /**
@@ -42,15 +41,15 @@ router
  *   GET /cases/:id
  */
 
-router.route("/:id").get(CasesController.indexById)
+router.route("/:id")
+  .get(CasesController.indexById)
 
 /**
  * Routes
  *   GET /cases/:id/pending-cases
  */
 
-router
-  .route("/:id/pending-cases")
+router.route("/:id/pending-cases")
   .all(restricted)
   .get(CasesController.getPendingCases)
 
@@ -59,8 +58,7 @@ router
  *   GET /cases/:id/active-cases
  */
 
-router
-  .route("/:id/active-cases")
+router.route("/:id/active-cases")
   .all(restricted)
   .get(CasesController.getActiveCases)
 
@@ -69,8 +67,7 @@ router
  *   GET /cases/:id/completed-cases
  */
 
-router
-  .route("/:id/completed-cases")
+router.route("/:id/completed-cases")
   .all(restricted)
   .get(CasesController.getCompletedCases)
 
@@ -79,8 +76,7 @@ router
  *   GET,POST /cases/:id/addendums
  */
 
-router
-  .route("/:id/addendums")
+router.route("/:id/addendums")
   .all(restricted)
   .get(AddendumsController.index)
   .all(require_body(["description"]))
@@ -91,8 +87,7 @@ router
  *   PUT /cases/:id/case-request-accepted
  */
 
-router
-  .route("/:id/case-request-accepted")
+router.route("/:id/case-request-accepted")
   .all(restricted)
   .put(CasesController.acceptCase)
 
@@ -101,8 +96,7 @@ router
  *   PUT /cases/:id/case-request-declined
  */
 
-router
-  .route("/:id/case-request-declined")
+router.route("/:id/case-request-declined")
   .all(restricted)
   .put(CasesController.declineCase)
 
@@ -111,8 +105,7 @@ router
  *   PUT /cases/:id/case-request-completed
  */
 
-router
-  .route("/:id/case-request-completed")
+router.route("/:id/case-request-completed")
   .all(restricted)
   .put(CasesController.completeCase)
 
