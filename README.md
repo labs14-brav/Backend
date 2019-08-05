@@ -38,12 +38,12 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
 
 | Method | Endpoint | Access Control | Description |
 | ------ | -------- | -------------- | ----------- |
-| GET    | `/users/current`        | all users           | Returns info for the logged in user.               |
-| GET    | `/users/org/:userId`    | owners, supervisors | Returns all users for an organization.             |
-| GET    | `/users/:userId`        | owners, supervisors | Returns info for a single user.                    |
-| POST   | `/users/register/owner` | none                | Creates a new user as owner of a new organization. |
-| PUT    | `/users/:userId`        | owners, supervisors |                                                    |
-| DELETE | `/users/:userId`        | owners, supervisors |                                                    |
+| GET    | `/users` | anyone         | Returns all users. |
+| GET    | `/users/auth` | all users | Authenticate the user. |
+| PUT    | `/users/deactivate` | all users | Deactivate the user. |
+| PUT    | `/users/:id/mediator-upgrade` | anyone | Request to be a mediator. |
+| PUT    | `/users/:id/mediator-request-accepted` | admin | Accept a request to be a mediator. |
+| PUT    | `/users/:id/mediator-request-declined` | admin | Decline a request to be a mediator. |
 
 #### Mediator Routes
 
