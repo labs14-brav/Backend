@@ -23,6 +23,16 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
 | ------ | -------- | -------------- | ----------- |
 | GET    | `/cases` | all users      | Returns all cases for the current user. |
 | POST   | `/cases` | all users      | Creates a new case for the current user. |
+| GET    | `/cases/all` | anyone  | Returns all cases. |
+| GET    | `/cases/:id` | anyone  | Return a specific case. |
+| GET    | `/cases/:id/pending-cases` | all users  | Return all pending cases for a user. |
+| GET    | `/cases/:id/active-cases` | all users  | Return all active cases for a user. |
+| GET    | `/cases/:id/completed-cases` | all users  | Return all completed cases for a user. |
+| GET    | `/cases/:id/addendums` | all users  | Return all addendums for a case. |
+| POST   | `/cases/:id/addendums` | all users  | Create an addendum for a case. |
+| PUT    | `/cases/:id/case-request-accepted` | all users  | Mark a case as accepted. |
+| PUT    | `/cases/:id/case-request-declined` | all users  | Mark a case as declined. |
+| PUT    | `/cases/:id/case-request-completed` | all users  | Mark a case as completed. |
 
 #### User Routes
 

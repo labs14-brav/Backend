@@ -21,8 +21,7 @@ const router = express.Router()
  *   GET,POST /cases
  */
 
-router
-  .route("/")
+router.route("/")
   .all(restricted)
   .get(CasesController.index)
   .all(require_body(["dispute_category"]))
