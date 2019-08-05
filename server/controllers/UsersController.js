@@ -14,7 +14,7 @@ const User = require('../models/User')
 class UsersController {
   static async index(req, res) {
     try {
-      const users = await User.all(req.query.offset)
+      const users = await User.all()
       res.status(200).json(users)
     } catch(err) {
       console.error(err)
@@ -28,7 +28,6 @@ class UsersController {
         email: req.body.email,
         uid:req.body.uid,
       }
-
       let foundUser = await User.getUserByEmail(user.email)
 
       if (foundUser) {
