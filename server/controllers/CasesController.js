@@ -132,57 +132,57 @@ class CasesController {
     try{
       const mediatorId = req.params.id;
       const fetch_cases = await Case.findPendingCases(mediatorId);
-  
+
       if(fetch_cases){
         res.status(200).json({fetch_cases})
       }else{
         res.status(500).json({message:'Internal Server Error'})
       }
-      
+
     }catch(err){
       console.error(err);
       res.status(500).json({message:'Internal Server Error'})
     }
-  
+
   }
 
   static async getActiveCases(req,res){
     const mediatorId = req.params.id;
     try{
       const fetch_cases = await Case.findAcceptedCases(mediatorId);
-  
+
       if(fetch_cases){
         res.status(200).json({fetch_cases})
       }else{
         res.status(500).json({message:'Internal Server Error'})
       }
-      
+
     }catch(err){
       console.error(err);
       res.status(500).json({message:'Internal Server Error'})
     }
-  
+
   }
 
-  static async getCompletedCases(req,res){
+  static async getCompletedCases(req,res) {
     const mediatorId = req.params.id;
-    try{
+    try {
       const fetch_cases = await Case.findCompletedCases(mediatorId);
-  
-      if(fetch_cases){
+
+      if (fetch_cases) {
         res.status(200).json({fetch_cases})
-      }else{
-        res.status(500).json({message:'Internal Server Error'})
+      } else {
+        res.status(500).json({ message:'Internal Server Error' })
       }
-      
-    }catch(err){
+
+    } catch(err) {
       console.error(err);
-      res.status(500).json({message:'Internal Server Error'})
+      res.status(500).json({ message:'Internal Server Error' })
     }
-  
+
   }
 
-  static async all(req, res){
+  static async all(req, res) {
     try {
       const cases = await Case.allCases();
 
@@ -195,9 +195,17 @@ class CasesController {
     }
   }
 
+  static async delete(req, res) {
+    try {
+      await Case.delete(req.params.id, req.body.email);
+
+      return res.status(200).json({ message: "Successfully deleted a case" });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: { message: "Internal Server Error" } });
+    }
+  }
 }
-
-
 
 /**
  * Export controller

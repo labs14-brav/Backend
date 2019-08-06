@@ -60,7 +60,7 @@ describe('routes', () => {
       expect(res.status).toBe(422)
       expect(res.type).toBe('application/json')
       expect(res.body).toBeTruthy()
-      expect(res.body).toMatchObject({ error: { message: 'Missing fields: description dispute_category' } })
+      expect(res.body).toMatchObject({ error: { message: 'Missing fields: dispute_category' } })
     })
 
     test('GET /cases/:id/addendums - success', async () => {
