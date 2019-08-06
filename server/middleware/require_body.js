@@ -10,7 +10,13 @@ function require_body(keys) {
       return res.status(422).json({ error: { message: 'Missing request body' } })
     }
 
-    let missing_keys = keys.filter(key => !Object.keys(req.body).includes(key))
+    let missing_keys = keys.filter(key => {
+      if (!Object.keys(req.body).includes(key) || req.body[key].length === 0) {
+        return true
+      } else {
+        return false
+      }
+    })
 
     if (missing_keys.length > 0) {
       return res.status(422).json({ error: {
