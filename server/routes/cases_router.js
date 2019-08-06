@@ -33,15 +33,18 @@ router.route("/")
  */
 
 router.route("/all")
+  .all(restricted)
   .get(CasesController.all)
 
 /**
  * Routes
- *   GET /cases/:id
+ *   GET,DELETE /cases/:id
  */
 
 router.route("/:id")
+  .all(restricted)
   .get(CasesController.indexById)
+  .delete(CasesController.delete)
 
 /**
  * Routes

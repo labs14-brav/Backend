@@ -121,7 +121,7 @@ class Case {
       .join('cases', "mediator_cases.case_id", "cases.id")
       .whereNull("case_accepted_at")
       .whereNull("case_declined_at")
-      .whereNull("case_completed_at"); 
+      .whereNull("case_completed_at");
   }
 
   static async findAcceptedCases(mediatorId) {
@@ -135,7 +135,11 @@ class Case {
     return db("mediator_cases").where("mediator_id", mediatorId)
       .join('cases', "mediator_cases.case_id", "cases.id")
       .whereNotNull("case_completed_at");
-    
+
+  }
+
+  static async delete(id, email) {
+    return await db("cases").where({ id: id, user_email: email }).del()
   }
 }
 
