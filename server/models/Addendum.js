@@ -19,7 +19,7 @@ class Addendum {
     if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
       const [ids] = await db('addendums').insert({
         case_id: addendum_fields.case_id,
-        description: case_fields.description,
+        description: addendum_fields.description,
       }, ['id'])
 
       const new_addendum = await db('addendums').where({ id: ids.id }).first()
