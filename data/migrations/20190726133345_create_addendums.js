@@ -5,7 +5,7 @@ exports.up = function(knex) {
     table.increments();
     table.integer('case_id');
     table.text('description');
-    table.timestamps();
+    table.timestamps(true, true);
   })
 };
 

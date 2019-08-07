@@ -18,7 +18,7 @@ exports.up = function(knex) {
     table.text("case_notes");
     table.text("case_accepted_at");
     table.text("case_declined_at");
-    table.timestamps();
+    table.timestamps(true, true);
   });
 };
 
