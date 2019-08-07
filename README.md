@@ -1,121 +1,119 @@
-# backend
+# Backend - Brāv
 
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
-# API Documentation
-
-#### Backend delpoyed at [Heroku](https://bravproduction.herokuapp.com/) <br>
+Backend delpoyed at [Heroku](https://bravproduction.herokuapp.com/)
 
 ## Getting started
 
 To get the server running locally:
 
 - Clone this repo.
-- **npm install** to install all required dependencies.
-- **npm start** to start the local server.
-- **npm test** to run the tests.
+- `npm install` to install all required dependencies.
+- `npm start` to start the local server.
+- `npm test` to run the tests.
 
-### Backend framework goes here
+## Backend Framework
 
 We are using a PostgresSQL database deployed on Heroku. To access the database we are implementing a RESTful API using NodeJS, Express, and knex. Node lets you write JavaScript on both the front-end and back-end, which increases readability and reduced context-switching.
 
-## 2️⃣ Endpoints
+## Endpoints
 
-🚫This is a placeholder, replace the endpoints, access controll, and descriptioin to match your project
+#### Case Routes
 
-#### Organization Routes
-
-| Method | Endpoint                | Access Control | Description                                  |
-| ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/organizations/:orgId` | all users      | Returns the information for an organization. |
-| PUT    | `/organizatoins/:orgId` | owners         | Modify an existing organization.             |
-| DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
+| Method | Endpoint | Access Control | Description |
+| ------ | -------- | -------------- | ----------- |
+| GET    | `/cases` | all users      | Returns all cases for the current user. |
+| POST   | `/cases` | all users      | Creates a new case for the current user. |
+| GET    | `/cases/all` | anyone  | Returns all cases. |
+| GET    | `/cases/:id` | anyone  | Return a specific case. |
+| GET    | `/cases/:id/pending-cases` | all users  | Return all pending cases for a user. |
+| GET    | `/cases/:id/active-cases` | all users  | Return all active cases for a user. |
+| GET    | `/cases/:id/completed-cases` | all users  | Return all completed cases for a user. |
+| GET    | `/cases/:id/addendums` | all users  | Return all addendums for a case. |
+| POST   | `/cases/:id/addendums` | all users  | Create an addendum for a case. |
+| PUT    | `/cases/:id/case-request-accepted` | all users  | Mark a case as accepted. |
+| PUT    | `/cases/:id/case-request-declined` | all users  | Mark a case as declined. |
+| PUT    | `/cases/:id/case-request-completed` | all users  | Mark a case as completed. |
 
 #### User Routes
 
-| Method | Endpoint                | Access Control      | Description                                        |
-| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/users/current`        | all users           | Returns info for the logged in user.               |
-| GET    | `/users/org/:userId`    | owners, supervisors | Returns all users for an organization.             |
-| GET    | `/users/:userId`        | owners, supervisors | Returns info for a single user.                    |
-| POST   | `/users/register/owner` | none                | Creates a new user as owner of a new organization. |
-| PUT    | `/users/:userId`        | owners, supervisors |                                                    |
-| DELETE | `/users/:userId`        | owners, supervisors |                                                    |
+| Method | Endpoint | Access Control | Description |
+| ------ | -------- | -------------- | ----------- |
+| GET    | `/users` | anyone         | Returns all users. |
+| GET    | `/users/auth` | all users | Authenticate the user. |
+| PUT    | `/users/deactivate` | all users | Deactivate the user. |
+| PUT    | `/users/:id/mediator-upgrade` | anyone | Request to be a mediator. |
+| PUT    | `/users/:id/mediator-request-accepted` | admin | Accept a request to be a mediator. |
+| PUT    | `/users/:id/mediator-request-declined` | admin | Decline a request to be a mediator. |
 
-# Data Model
+#### Mediator Routes
 
-🚫This is just an example. Replace this with your data model
+| Method | Endpoint | Access Control | Description |
+| ------ | -------- | -------------- | ----------- |
+| GET    | `/mediators` | all users      | Returns all mediators. |
+| GET    | `/mediators/pending` | all users      | Returns all requests to be a mediator. |
+| GET    | `/mediators/:id/cases` | all users      | Returns all cases for a mediator. |
 
-#### 2️⃣ ORGANIZATIONS
+## Data Model
 
----
+#### CASES
 
 ```
 {
   id: UUID
-  name: STRING
-  industry: STRING
-  paid: BOOLEAN
-  customer_id: STRING
-  subscription_id: STRING
+  case_completed_at: STRING
+  user_email: STRING
+  user_uid: STRING
+  description: STRING
+  dispute_category: STRING
+  dispute_amount: STRING
+  parties_involved: STRING
+  parties_contact_info: STRING
+  court_case: STRING
+  court_jurisdiction: STRING
+  court_number: STRING
+  court_filing_date: STRING
+  case_notes: STRING
+  case_accepted_at: STRING
+  case_declined_at: STRING
+}
+```
+
+#### ADDENDUMS
+
+```
+{
+  id: UUID
+  case_id: INTEGER
+  description: STRING
 }
 ```
 
 #### USERS
 
----
-
 ```
 {
   id: UUID
-  organization_id: UUID foreign key in ORGANIZATIONS table
-  first_name: STRING
-  last_name: STRING
-  role: STRING [ 'owner', 'supervisor', 'employee' ]
+  type: STRING
   email: STRING
-  phone: STRING
-  cal_visit: BOOLEAN
-  emp_visit: BOOLEAN
-  emailpref: BOOLEAN
-  phonepref: BOOLEAN
+  uid: STRING
+  license: STRING
+  price: INTEGER
+  experience: STRING
+  specialization: STRING
+  language: STRING
+  professional_bio: STRING
+  name: STRING
+  deactivated_at: DATETIME
+  mediator_accepted_at: DATETIME
+  mediator_declined_at: DATETIME
 }
 ```
 
-## 2️⃣ Actions
-
-🚫 This is an example, replace this with the actions that pertain to your backend
-
-`getOrgs()` -> Returns all organizations
-
-`getOrg(orgId)` -> Returns a single organization by ID
-
-`addOrg(org)` -> Returns the created org
-
-`updateOrg(orgId)` -> Update an organization by ID
-
-`deleteOrg(orgId)` -> Delete an organization by ID
-<br>
-<br>
-<br>
-`getUsers(orgId)` -> if no param all users
-
-`getUser(userId)` -> Returns a single user by user ID
-
-`addUser(user object)` --> Creates a new user and returns that user. Also creates 7 availabilities defaulted to hours of operation for their organization.
-
-`updateUser(userId, changes object)` -> Updates a single user by ID.
-
-`deleteUser(userId)` -> deletes everything dependent on the user
-
-## 3️⃣ Environment Variables
+## Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables.
 
 create a .env file that includes the following:
-
-🚫 These are just examples, replace them with the specifics for your app
 
     *  STAGING_DB - optional development db for using functionality not available in SQLite
     *  NODE_ENV - set to "development" until ready for "production"

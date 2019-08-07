@@ -27,4 +27,6 @@ coverage
 
 # Ignore testing and development database
 *.sqlite3
+*.sqlite3-journal
 *.db3
+sendgrid.env
