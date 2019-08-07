@@ -6,6 +6,7 @@ exports.up = function(knex) {
       table.integer('case_id')
       table.datetime("accepted_at")
       table.datetime("declined_at")
+      table.timestamps();
   })
 };
 

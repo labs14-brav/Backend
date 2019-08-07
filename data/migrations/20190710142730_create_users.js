@@ -34,6 +34,8 @@ exports.up = function(knex) {
             .string('mediator_accepted_at')
         users
             .string('mediator_declined_at')
+
+        users.timestamps();
     })
 };
 
