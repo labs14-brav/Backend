@@ -75,6 +75,8 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
   case_notes: STRING
   case_accepted_at: STRING
   case_declined_at: STRING
+  created_at: CURRENT_TIMESTAMP
+  updated_at: CURRENT_TIMESTAMP
 }
 ```
 
@@ -85,6 +87,8 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
   id: UUID
   case_id: INTEGER
   description: STRING
+  created_at: CURRENT_TIMESTAMP
+  updated_at: CURRENT_TIMESTAMP
 }
 ```
 
@@ -106,6 +110,22 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
   deactivated_at: DATETIME
   mediator_accepted_at: DATETIME
   mediator_declined_at: DATETIME
+  created_at: CURRENT_TIMESTAMP
+  updated_at: CURRENT_TIMESTAMP
+}
+```
+
+#### MEDIATOR_CASES
+
+```
+{
+  id: UUID
+  mediator_id: INTEGER
+  case_id: INTEGER
+  accepted_at: DATETIME
+  declined_at: DATETIME
+  created_at: CURRENT_TIMESTAMP
+  updated_at: CURRENT_TIMESTAMP
 }
 ```
 
