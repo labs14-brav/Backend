@@ -8,6 +8,7 @@ const express = require('express')
 const MediatorsController = require('../controllers/MediatorsController')
 const UsersController = require('../controllers/UsersController')
 const restricted = require('../middleware/restricted')
+const require_body = require('../middleware/require_body')
 
 /**
  * Define router
@@ -41,6 +42,7 @@ router.route('/pending')
 
 router.route('/:id/cases')
     .all(restricted)
+    .all(require_body(["case_id"]))
     .post(MediatorsController.mediatorEmail)
 
 /**

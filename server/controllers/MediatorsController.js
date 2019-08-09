@@ -26,6 +26,7 @@ class MediatorsController {
 
   static async mediatorEmail(req, res) {
     try {
+      console.log('req.body', req.body)
       const mediator = await Mediator.find(req.params.id)
       const fetchCase = await Case.find(req.body.case_id)
 
