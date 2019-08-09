@@ -27,9 +27,7 @@ function restricted(req,res,next){
       res.status(401).json({ error: { message: "Invalid Authorization" }});
     })
   } else {
-    res.status(400).json({
-      error: { message: "No token for authorization provided." }
-    });
+    res.status(400).json({ message: "No token for authorization provided." });
   }
 }
 
