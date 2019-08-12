@@ -14,14 +14,8 @@ const restricted = require("../middleware/restricted");
 
 const router = express.Router();
 
-router
-  .route("/")
-  .all(restricted)
-  .get(InvoicesController.index);
+router.route("/").get(InvoicesController.index);
 
-router
-  .route("/:id/session")
-  .all(restricted)
-  .get(InvoicesController.session);
+router.route("/:id/session").get(InvoicesController.sessions);
 
 module.exports = router;

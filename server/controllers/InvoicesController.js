@@ -1,4 +1,5 @@
 "use strict";
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 /**
  * Define controller
@@ -24,12 +25,14 @@ class InvoicesController {
         payment_intent_data: {
           application_fee_amount: 200,
           transfer_data: {
-            destination: "{{CONNECTED_STRIPE_ACCOUNT_ID}}"
+            destination: "acct_1F5gERCIFmSQSbc6"
           }
         },
         success_url: "https://example.com/success",
         cancel_url: "https://example.com/cancel"
       });
+
+      console.log(session);
 
       res.status(200).json({ session: session });
     } catch (error) {
