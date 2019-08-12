@@ -63,8 +63,9 @@ class MediatorsController {
             code: code,
             grant_type: "authorization_code"
           })
-          .then(result => {
-            console.log(result.data.stripe_user_id);
+          .then(async result => {
+            const stripeUserId = result.data.stripe_user_id;
+            await Mediator.saveStripeUserId(email, stripeUserId);
             res.status(200).json({ message: "Stripe success!" });
           })
           .catch(err => {
@@ -78,6 +79,7 @@ class MediatorsController {
       }
     } catch (error) {
       console.error(error);
+      res.status(500).json({ error: { message: "Internal Server Error" } });
     }
   }
 }

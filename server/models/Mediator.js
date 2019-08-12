@@ -93,6 +93,12 @@ class Mediator {
       .where("email", email)
       .first();
   }
+
+  static saveStripeUserId(email, stripeUserId) {
+    return db("users")
+      .where({ email: email })
+      .update({ stripe_user_id: stripeUserId, is_stripe_connected: true });
+  }
 }
 
 /**
