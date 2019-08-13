@@ -116,7 +116,8 @@ class UsersController {
   static async mediatorUpgrade(req, res) {
     try {
       const { id } = req.params;
-
+      console.log("Inside Mediator Upgrade");
+      console.log(req.body);
       const updateUser = await User.editUser(id, {
         'experience': req.body.experience,
         'license': req.body.license,
