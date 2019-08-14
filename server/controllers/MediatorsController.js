@@ -5,7 +5,7 @@
  */
 
 const Mediator = require("../models/Mediator");
-const emails = require("../initializers/emails");
+const SendGrid = require("../initializers/SendGrid");
 const Case = require("../models/Case");
 const MediatorCase = require("../models/MediatorCase");
 const axios = require("axios");
@@ -36,7 +36,7 @@ class MediatorsController {
           mediator_id: mediator.id,
           case_id: fetchCase.id
         });
-        await emails({
+        await SendGrid.sendMediatorRequestEmail({
           mediator_email: mediator.email,
           user_email: req.body.email,
           dispute_category: fetchCase.dispute_category

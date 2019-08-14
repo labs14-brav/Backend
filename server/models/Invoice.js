@@ -10,7 +10,7 @@ const db = require("../../data/dbConfig");
  * Define model
  */
 
- class Invoices {
+ class Invoice {
     static find(id) {
         return db("invoices")
           .where("id", id)
@@ -25,7 +25,10 @@ const db = require("../../data/dbConfig");
         return db("invoices")
           .where("case_id", case_id)
       }
+}
 
- }
+/**
+ * Export model
+ */
 
- module.exports = Invoices
+module.exports = Invoice
