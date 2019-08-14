@@ -73,6 +73,19 @@ class InvoicesController {
         .json({ error: { message: "Internal Server Error" } });
     }
   }
+
+  static async getByCaseId(req, res) {
+    try {
+      const fetched_invoices = await Invoices.findByCaseId(req.params.id);
+        res.status(200).json(fetched_invoices);
+    } catch (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: { message: "Internal Server Error" } });
+    }
+
+  }
 }
 
 

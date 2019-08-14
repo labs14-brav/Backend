@@ -21,9 +21,13 @@ router.route("/:id/session").get(InvoicesController.sessions);
 
 router.route("/:id/invoice")
   .all(restricted)
-.all(require_body(["mediator_id","stripe_user_id","case_id","amount","hours"]))
+  .all(require_body(["mediator_id","case_id","amount","hours"]))
   .post(InvoicesController.create)
 
   router.route("/:id").get(InvoicesController.getById);
+
+  router.route("/case/:id").get(InvoicesController.getByCaseId);
+
+
 
 module.exports = router;
