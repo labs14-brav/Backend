@@ -6,9 +6,10 @@ exports.up = function(knex) {
         table.integer('case_id');
         table.integer('amount');
         table.integer('hours');
+        table.timestamps(true, true);
     })
   };
-  
+
   exports.down = function(knex) {
     return knex.schema.dropTableIfExists('invoices');
   };
