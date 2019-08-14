@@ -16,15 +16,15 @@ const restricted = require("../middleware/restricted");
 const router = express.Router();
 
 router.route("/")
-  .get(InvoicesController.index);
+  .get(InvoicesController.index)
 
 router.route("/:id/session")
-  .get(InvoicesController.sessions);
+  .get(InvoicesController.sessions)
 
 router.route("/:id")
   .all(restricted)
-  .get(InvoicesController.getById);
-  .put(InvoicesController.payed);
+  .get(InvoicesController.getById)
+  .put(InvoicesController.payed)
 
 router.route("/case/:id")
   .all(restricted)
