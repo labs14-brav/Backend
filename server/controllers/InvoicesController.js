@@ -8,6 +8,7 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 const SendGrid = require("../initializers/SendGrid");
 const Invoice = require("../models/Invoice");
 const Case = require("../models/Case");
+const User = require("../models/User");
 
 /**
  * Define controller
@@ -20,29 +21,35 @@ class InvoicesController {
 
   static async sessions(req, res) {
     try {
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        line_items: [
-          {
-            name: "Cucumber from Roger's Farm",
-            amount: 200,
-            currency: "usd",
-            quantity: 10
-          }
-        ],
-        payment_intent_data: {
-          application_fee_amount: 200,
-          transfer_data: {
-            destination: "acct_1F5gERCIFmSQSbc6"
-          }
-        },
-        success_url: "https://example.com/success",
-        cancel_url: "https://example.com/cancel"
-      });
+      const invoice = await Invoice.find(req.params.id)
+      const mediator = await User.getUserById(invoice.mediator_id)
 
-      console.log(session);
+      if (mediator) {
+        const session = await stripe.checkout.sessions.create({
+          line_items: [
+            {
+              amount: invoice.amount * 100, // REQUIRED
+              name: "Mediation Services", // REQUIRED
+              currency: "usd", // REQUIRED
+              quantity: 1 // REQUIRED
+            }
+          ],
+          payment_intent_data: {
+            // Calculate Brav platform fee at 30% amount.
+            application_fee_amount: invoice.amount * 0.3,
+            transfer_data: {
+              destination: mediator.stripe_user_id
+            }
+          },
+          payment_method_types: ["card"], // REQUIRED
+          success_url: `${process.env.REACT_APP_URL}/cases`, // REQUIRED
+          cancel_url: `${process.env.REACT_APP_URL}/cases` // REQUIRED
+        });
 
-      res.status(200).json({ session: session });
+        res.status(200).json({ session: session });
+      } else {
+        res.status(404).json({ message: "Mediator not found" });
+      }
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal server error" });
