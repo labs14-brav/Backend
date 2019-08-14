@@ -24,6 +24,7 @@ router.route("/:id/session")
 router.route("/:id")
   .all(restricted)
   .get(InvoicesController.getById);
+  .put(InvoicesController.payed);
 
 router.route("/case/:id")
   .all(restricted)

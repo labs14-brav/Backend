@@ -105,6 +105,18 @@ class InvoicesController {
         .status(500)
         .json({ error: { message: "Internal Server Error" } });
     }
+  }
+
+  static async payed(req, res) {
+    try {
+      await Invoice.payed(req.params.id);
+      res.status(200).json({ message: "Successfully updated invoice" });
+    } catch (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: { message: "Internal Server Error" } });
+    }
 
   }
 }
