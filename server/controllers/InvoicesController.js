@@ -22,33 +22,38 @@ class InvoicesController {
   static async sessions(req, res) {
     try {
       const invoice = await Invoice.find(req.params.id)
-      const mediator = await User.getUserById(invoice.mediator_id)
 
-      if (mediator) {
-        const session = await stripe.checkout.sessions.create({
-          line_items: [
-            {
-              amount: invoice.amount * 100, // REQUIRED
-              name: "Mediation Services", // REQUIRED
-              currency: "usd", // REQUIRED
-              quantity: 1 // REQUIRED
-            }
-          ],
-          payment_intent_data: {
-            // Calculate Brav platform fee at 30% amount.
-            application_fee_amount: invoice.amount * 0.3,
-            transfer_data: {
-              destination: mediator.stripe_user_id
-            }
-          },
-          payment_method_types: ["card"], // REQUIRED
-          success_url: `${process.env.REACT_APP_URL}/cases`, // REQUIRED
-          cancel_url: `${process.env.REACT_APP_URL}/cases` // REQUIRED
-        });
+      if (invoice) {
+        const mediator = await User.getUserById(invoice.mediator_id)
 
-        res.status(200).json({ session: session });
+        if (mediator) {
+          const session = await stripe.checkout.sessions.create({
+            line_items: [
+              {
+                amount: invoice.amount * 100, // REQUIRED
+                name: "Mediation Services", // REQUIRED
+                currency: "usd", // REQUIRED
+                quantity: 1 // REQUIRED
+              }
+            ],
+            payment_intent_data: {
+              // Calculate Brav platform fee at 30% amount.
+              application_fee_amount: invoice.amount * 0.3,
+              transfer_data: {
+                destination: mediator.stripe_user_id
+              }
+            },
+            payment_method_types: ["card"], // REQUIRED
+            success_url: `${process.env.REACT_APP_URL}/cases`, // REQUIRED
+            cancel_url: `${process.env.REACT_APP_URL}/cases` // REQUIRED
+          });
+
+          res.status(200).json({ session: session });
+        } else {
+          res.status(404).json({ message: "Mediator not found" });
+        }
       } else {
-        res.status(404).json({ message: "Mediator not found" });
+        res.status(404).json({ message: "Invoice not found" });
       }
     } catch (error) {
       console.error(error);
