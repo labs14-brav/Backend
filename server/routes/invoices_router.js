@@ -1,4 +1,5 @@
 "use strict";
+const require_body = require("../middleware/require_body");
 
 /**
  * Dependencies
@@ -17,5 +18,19 @@ const router = express.Router();
 router.route("/").get(InvoicesController.index);
 
 router.route("/:id/session").get(InvoicesController.sessions);
+
+router.route("/:id")
+  .all(restricted)
+  .get(InvoicesController.getById);
+
+router.route("/case/:id")
+  .all(restricted)
+  .get(InvoicesController.getByCaseId)
+  .all(require_body(["mediator_id","amount","hours"]))
+  .post(InvoicesController.create)
+
+/**
+ * Export router
+ */
 
 module.exports = router;
