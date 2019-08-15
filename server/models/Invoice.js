@@ -11,6 +11,10 @@ const db = require("../../data/dbConfig");
  */
 
  class Invoice {
+  static all() {
+    return db("invoices")
+  }
+
   static find(id) {
     return db("invoices")
       .where("id", id)

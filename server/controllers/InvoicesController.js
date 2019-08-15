@@ -15,8 +15,14 @@ const User = require("../models/User");
  */
 
 class InvoicesController {
-  static index(req, res) {
-    res.status(200).json("Invoices!");
+  static async index(req, res) {
+    try {
+      // const invoices = await Invoice.all()
+      res.status(200).json([]);
+    } catch(err) {
+      console.error(err);
+      res.status(500).json({ error: { message: "Internal Server Error" } });
+    }
   }
 
   static async sessions(req, res) {
@@ -45,7 +51,7 @@ class InvoicesController {
               }
             },
             payment_method_types: ["card"], // REQUIRED
-            success_url: `${process.env.REACT_APP_URL}/stripe/checkout`, // REQUIRED
+            success_url: `${process.env.REACT_APP_URL}/stripe/checkout/${invoice.id}`, // REQUIRED
             cancel_url: `${process.env.REACT_APP_URL}/cases`, // REQUIRED
             customer_email: fetchCase.user_email
           });
