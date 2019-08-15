@@ -45,7 +45,7 @@ class InvoicesController {
               }
             },
             payment_method_types: ["card"], // REQUIRED
-            success_url: `${process.env.REACT_APP_URL}/cases`, // REQUIRED
+            success_url: `${process.env.REACT_APP_URL}/stripe/checkout/callback`, // REQUIRED
             cancel_url: `${process.env.REACT_APP_URL}/cases`, // REQUIRED
             customer_email: fetchCase.user_email
           });
