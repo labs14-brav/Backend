@@ -16,6 +16,7 @@ const restricted = require("../middleware/restricted");
 const router = express.Router();
 
 router.route("/")
+  .all(restricted)
   .get(InvoicesController.index)
 
 router.route("/:id/session")
