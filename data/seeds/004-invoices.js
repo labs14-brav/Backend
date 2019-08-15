@@ -39,8 +39,3 @@ exports.seed = function(knex) {
     });
 };
 
-
-// "case_id":2,
-// 	"mediator_id":1,
-// 	"amount":200,
-// 	"hours":2
