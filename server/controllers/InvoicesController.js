@@ -24,9 +24,10 @@ class InvoicesController {
       const invoice = await Invoice.find(req.params.id)
 
       if (invoice) {
+        const fetchCase = await Case.find(invoice.case_id)
         const mediator = await User.getUserById(invoice.mediator_id)
 
-        if (mediator) {
+        if (fetchCase && mediator) {
           const session = await stripe.checkout.sessions.create({
             line_items: [
               {
@@ -45,7 +46,8 @@ class InvoicesController {
             },
             payment_method_types: ["card"], // REQUIRED
             success_url: `${process.env.REACT_APP_URL}/cases`, // REQUIRED
-            cancel_url: `${process.env.REACT_APP_URL}/cases` // REQUIRED
+            cancel_url: `${process.env.REACT_APP_URL}/cases`, // REQUIRED
+            customer_email: fetchCase.user_email
           });
 
           res.status(200).json({ session: session });
@@ -65,7 +67,12 @@ class InvoicesController {
     try {
       delete req.body.email
       delete req.body.uid
-      const new_invoice = await Invoice.create(req.body);
+      const new_invoice = await Invoice.create({
+        case_id: req.params.id,
+        mediator_id: req.body.mediator_id,
+        amount: req.body.amount,
+        hours: req.body.hours,
+      });
 
       const fetchedCase = await Case.find(req.params.id)
 
