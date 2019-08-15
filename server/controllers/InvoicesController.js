@@ -8,6 +8,7 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 const SendGrid = require("../initializers/SendGrid");
 const Invoice = require("../models/Invoice");
 const Case = require("../models/Case");
+const User = require("../models/User");
 
 /**
  * Define controller
@@ -20,29 +21,42 @@ class InvoicesController {
 
   static async sessions(req, res) {
     try {
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        line_items: [
-          {
-            name: "Cucumber from Roger's Farm",
-            amount: 200,
-            currency: "usd",
-            quantity: 10
-          }
-        ],
-        payment_intent_data: {
-          application_fee_amount: 200,
-          transfer_data: {
-            destination: "acct_1F5gERCIFmSQSbc6"
-          }
-        },
-        success_url: "https://example.com/success",
-        cancel_url: "https://example.com/cancel"
-      });
+      const invoice = await Invoice.find(req.params.id)
 
-      console.log(session);
+      if (invoice) {
+        const fetchCase = await Case.find(invoice.case_id)
+        const mediator = await User.getUserById(invoice.mediator_id)
 
-      res.status(200).json({ session: session });
+        if (fetchCase && mediator) {
+          const session = await stripe.checkout.sessions.create({
+            line_items: [
+              {
+                amount: invoice.amount * 100, // REQUIRED
+                name: "Mediation Services", // REQUIRED
+                currency: "usd", // REQUIRED
+                quantity: 1 // REQUIRED
+              }
+            ],
+            payment_intent_data: {
+              // Calculate Brav platform fee at 30% amount.
+              application_fee_amount: invoice.amount * 0.3,
+              transfer_data: {
+                destination: mediator.stripe_user_id
+              }
+            },
+            payment_method_types: ["card"], // REQUIRED
+            success_url: `${process.env.REACT_APP_URL}/cases`, // REQUIRED
+            cancel_url: `${process.env.REACT_APP_URL}/cases`, // REQUIRED
+            customer_email: fetchCase.user_email
+          });
+
+          res.status(200).json({ session: session });
+        } else {
+          res.status(404).json({ message: "Mediator not found" });
+        }
+      } else {
+        res.status(404).json({ message: "Invoice not found" });
+      }
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal server error" });
@@ -53,7 +67,12 @@ class InvoicesController {
     try {
       delete req.body.email
       delete req.body.uid
-      const new_invoice = await Invoice.create(req.body);
+      const new_invoice = await Invoice.create({
+        case_id: req.params.id,
+        mediator_id: req.body.mediator_id,
+        amount: req.body.amount,
+        hours: req.body.hours,
+      });
 
       const fetchedCase = await Case.find(req.params.id)
 
@@ -92,6 +111,18 @@ class InvoicesController {
     try {
       const fetched_invoices = await Invoice.findByCaseId(req.params.id);
       res.status(200).json(fetched_invoices);
+    } catch (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: { message: "Internal Server Error" } });
+    }
+  }
+
+  static async payed(req, res) {
+    try {
+      await Invoice.payed(req.params.id);
+      res.status(200).json({ message: "Successfully updated invoice" });
     } catch (err) {
       console.error(err);
       return res
