@@ -99,9 +99,9 @@ class InvoicesController {
   static async getById(req, res) {
     try {
       const fetched_invoice = await Invoice.find(req.params.id);
-
       if (fetched_invoice) {
-        res.status(200).json(fetched_invoice);
+          res.status(200).json(fetched_invoice);
+
       } else {
         res.status(404).json({ errer: { message: "Not Found" } });
       }
@@ -116,7 +116,14 @@ class InvoicesController {
   static async getByCaseId(req, res) {
     try {
       const fetched_invoices = await Invoice.findByCaseId(req.params.id);
-      res.status(200).json(fetched_invoices);
+      const mediator_data = await User.getUserById(fetched_invoices[0].mediator_id);
+      if (fetched_invoices && mediator_data) {
+        let result = {
+          mediator: mediator_data,
+          invoice: fetched_invoices
+        }
+        res.status(200).json(result);
+      }
     } catch (err) {
       console.error(err);
       return res
