@@ -6,7 +6,7 @@ exports.up = function(knex) {
         table.integer('case_id');
         table.integer('amount');
         table.integer('hours');
-        table.datetime('payed_at').defaultTo(null);
+        table.datetime('paid_at').defaultTo(null);
         table.timestamps(true, true);
     })
   };

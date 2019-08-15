@@ -31,7 +31,7 @@ const db = require("../../data/dbConfig");
   }
 
   static payed(id) {
-    return db("invoices").where("id", id).update({ payed_at: new Date() })
+    return db("invoices").where("id", id).update({ paid_at: new Date() })
   }
 }
 
