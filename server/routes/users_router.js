@@ -8,6 +8,7 @@ const express = require('express');
 const UsersController = require('../controllers/UsersController');
 const restricted = require('../middleware/restricted');
 const adminAuth = require('../middleware/adminAuth');
+const require_body = require('../middleware/require_body');
 
 /**
  * Define router
@@ -47,8 +48,9 @@ router.route('/deactivate')
  */
 
 router.route('/:id/mediator-upgrade')
+  .all(require_body(["experience","license","specialization","language","professional_bio","name","price"]))
   .put(UsersController.mediatorUpgrade)
-
+  
 /**
  * Routes
  *   PUT /users/:id/mediator-request-accepted
