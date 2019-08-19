@@ -45,7 +45,7 @@ class InvoicesController {
             ],
             payment_intent_data: {
               // Calculate Brav platform fee at 30% amount.
-              application_fee_amount: invoice.amount * 0.3,
+              application_fee_amount: invoice.amount * 100 * 0.3,
               transfer_data: {
                 destination: mediator.stripe_user_id
               }
