@@ -14,7 +14,7 @@ exports.seed = function(knex) {
         {user_email: 'labs14bravmediator@gmail.com', user_uid: '3fV324Vr3vPmoDz0z4jhjvEzmcj2', description: 'Gradmother is receiving negligent service at nursing home.', dispute_category: 'Eldercare', parties_involved: 'labs14brav@gmail.com'},
         {user_email: 'labs14bravmediator@gmail.com', user_uid: '3fV324Vr3vPmoDz0z4jhjvEzmcj2', description: 'Client wants to pay less than contracted amount.', dispute_category: 'Commercial', parties_involved: 'labs14brav@gmail.com'},
         {user_email: 'labs14bravmediator@gmail.com', user_uid: '3fV324Vr3vPmoDz0z4jhjvEzmcj2', description: 'Problem with owed benefits.', dispute_category: 'Workplace', parties_involved: 'labs14brav@gmail.com'},
-        
+
       ]);
     });
 };
