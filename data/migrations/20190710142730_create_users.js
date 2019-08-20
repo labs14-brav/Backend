@@ -11,13 +11,13 @@ exports.up = function(knex) {
       .string("uid")
       .notNullable()
       .unique();
-    users.string("license");
+    users.text("license");
     users.integer("price").defaultTo(0);
-    users.string("experience");
-    users.string("specialization");
-    users.string("language");
-    users.string("professional_bio");
-    users.string("name");
+    users.text("experience");
+    users.text("specialization");
+    users.text("language");
+    users.text("professional_bio");
+    users.text("name");
     users.datetime("deactivated_at");
     users.string("mediator_accepted_at");
     users.string("mediator_declined_at");
