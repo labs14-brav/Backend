@@ -53,6 +53,14 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
 | GET    | `/mediators/pending` | all users      | Returns all requests to be a mediator. |
 | GET    | `/mediators/:id/cases` | all users      | Returns all cases for a mediator. |
 
+#### Invoices Routes
+
+| Method | Endpoint | Access Control | Description |
+| ------ | -------- | -------------- | ----------- |
+| POST   | `/invoices/case/:id` | all users      | Creates a new invoice for the case related to the id passed in. |
+| GET    | `/invoices/case/:id` | all users      | Returns all invoices related to case id. |
+| PUT    | `/invoices/:id/` | all users      | Edits the information of the given invoice to update paid status. |
+
 ## Data Model
 
 #### CASES
