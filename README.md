@@ -9,7 +9,15 @@ To get the server running locally:
 - Clone this repo.
 - `npm install` to install all required dependencies.
 - `npm start` to start the local server.
-- `npm test` to run the tests.
+- `npm start:dev` to start nodemon
+
+Other scrips: 
+
+- `npm test` to run tests created after last commit.
+- `npm test:all` to run all of the tests.
+- `npm reset` to reset the migrations and seeds locally
+- `npm reset:staging` to reset the migrations and seeds on the staging database
+- `npm reset:production` to reset the migrations and seeds on the production database
 
 ## Backend Framework
 
@@ -58,9 +66,9 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
 | Method | Endpoint | Access Control | Description |
 | ------ | -------- | -------------- | ----------- |
 | POST   | `/invoices/case/:id` | all users      | Creates a new invoice for the case related to the id passed in. |
-| GET    | `/invoices/case/:id` | all users      | Returns all invoices related to case id. |
-| PUT    | `/invoices/:id/` | all users      | Edits the information of the given invoice to update paid status. |
-| GET    | `/invoices/:id/session` | all users      | Gets session id to start stripe session. |
+| GET    | `/invoices/case/:id` | all users      | Returns all invoices for a case. |
+| PUT    | `/invoices/:id/` | all users      | Marks a invoice as paid. |
+| GET    | `/invoices/:id/session` | all users      | Returns a session id to start stripe session. |
 
 ## Data Model
 
@@ -137,7 +145,7 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
   updated_at: CURRENT_TIMESTAMP
 }
 ```
-#### Invoices
+#### INVOICES
 
 ```
 {
@@ -156,11 +164,10 @@ In order for the app to function correctly, the user must set up their own envir
 
 create a .env file that includes the following:
 
-    *  STAGING_DB - optional development db for using functionality not available in SQLite
     *  NODE_ENV - set to "development" until ready for "production"
-    *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
     *  SENDGRID_API_KEY - this is generated in your Sendgrid account
-    *  stripe_secret - this is generated in the Stripe dashboard
+    *  STRIPE_KEY - this is generated in the Stripe dashboard
+    *  REACT_APP_URL - the url you want to pass through for callbacks
 
 ## Contributing
 
