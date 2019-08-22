@@ -21,12 +21,12 @@ Other scripts:
 
 ## Backend Framework
 
-Databases:
+#### Databases:
 
 - [PostgresSQL](https://www.postgresql.org/): a free and open-source relational database management system used on our production and staging environments 
 - [SQLite3](https://www.npmjs.com/package/sqlite3): a free and open-source relational database management system used in our devlopment environment 
 
-Restful API dependencies:
+#### Restful API dependencies:
 
 - [Express](https://www.npmjs.com/package/express): Web framework for Node.js, Node lets you write JavaScript on both the front-end and back-end, which increases readability and reduced context-switching
 - [Knex](https://www.npmjs.com/package/knex): SQL query builder for JavaScript, used to structure sql queries to our databases
@@ -34,20 +34,20 @@ Restful API dependencies:
 - [CORS](https://www.npmjs.com/package/cors): Uses additional HTTP headers to tell a browser to let a web application running at one origin (domain) have permission to access selected resources from a server at a different origin
 - [dotenv](https://www.npmjs.com/package/dotenv): Loads environment variables from a .env file into process.env
 
-Third-party API dependencies
+#### Third-party API dependencies
 
 - [Firebase](https://www.npmjs.com/package/firebase): A helper to configure Firebase Authentication
 - [Sendgrid/mail](https://www.npmjs.com/package/@sendgrid/mail): A helper used to send emails with the Sendgrid platform 
 - [Stripe](https://www.npmjs.com/package/stripe): A helper to work with stripe and stripe-connect to create payment sessions
 
-Development dependencies:
+#### Development dependencies:
 
 - [Nodemon](https://www.npmjs.com/package/nodemon): Allows the server to be restarted automatically upon file changes
 - [Jest](https://www.npmjs.com/package/jest): Sets global state while testing 
 - [Supertest](https://www.npmjs.com/package/supertest): Provides a high-level abstraction for testing HTTP
 - [Cross-env](https://www.npmjs.com/package/cross-env): Sets the node enviornment to testing when running tests
 
-Miscellaneous dependencies:
+#### Miscellaneous dependencies:
 
 - [Axios](https://www.npmjs.com/package/axios): A promise based HTTP client used to send requests
 - [Faker](https://www.npmjs.com/package/faker): A node.js dependency used to make large amounts of seed data  
