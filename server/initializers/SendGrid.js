@@ -35,7 +35,7 @@ class SendGrid {
       text: "Email template failed",
       template_id:"d-43ed83001d0b44d695547e205f5e06b2",
       dynamic_template_data: {
-        amount: info.amount
+        amount: `$ ${info.amount}`
       }
     };
 
