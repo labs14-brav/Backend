@@ -9,11 +9,51 @@ To get the server running locally:
 - Clone this repo.
 - `npm install` to install all required dependencies.
 - `npm start` to start the local server.
-- `npm test` to run the tests.
+- `npm start:dev` to start nodemon
+
+Other scripts: 
+
+- `npm test` to run tests created after last commit.
+- `npm test:all` to run all of the tests.
+- `npm reset` to reset the migrations and seeds locally
+- `npm reset:staging` to reset the migrations and seeds on the staging database
+- `npm reset:production` to reset the migrations and seeds on the production database
 
 ## Backend Framework
 
-We are using a PostgresSQL database deployed on Heroku. To access the database we are implementing a RESTful API using NodeJS, Express, and knex. Node lets you write JavaScript on both the front-end and back-end, which increases readability and reduced context-switching.
+#### Databases
+
+- [PostgresSQL](https://www.postgresql.org/): Free and open-source relational database management system used on our production and staging environments 
+- [SQLite3](https://www.npmjs.com/package/sqlite3): Free and open-source relational database management system used in our devlopment environment 
+
+#### Restful API dependencies
+
+- [Express](https://www.npmjs.com/package/express): Web framework for Node.js, Node lets you write JavaScript on both the front-end and back-end, which increases readability and reduced context-switching
+- [Knex](https://www.npmjs.com/package/knex): SQL query builder for JavaScript, used to structure sql queries to our databases
+- [Helmet](https://www.npmjs.com/package/helmet): Secures our Express app by setting various HTTP headers
+- [CORS](https://www.npmjs.com/package/cors): Uses additional HTTP headers to tell a browser to let a web application running at one origin (domain) have permission to access selected resources from a server at a different origin
+- [dotenv](https://www.npmjs.com/package/dotenv): Loads environment variables from a .env file into process.env
+
+#### Third-party API dependencies
+
+- [Firebase](https://www.npmjs.com/package/firebase): A helper to configure Firebase Authentication
+- [Sendgrid/mail](https://www.npmjs.com/package/@sendgrid/mail): A helper used to send emails with the Sendgrid platform 
+- [Stripe](https://www.npmjs.com/package/stripe): A helper to work with stripe and stripe-connect to create payment sessions
+
+#### Development dependencies
+
+- [Nodemon](https://www.npmjs.com/package/nodemon): Allows the server to be restarted automatically upon file changes
+- [Jest](https://www.npmjs.com/package/jest): Sets global state while testing 
+- [Supertest](https://www.npmjs.com/package/supertest): Provides a high-level abstraction for testing HTTP
+- [Cross-env](https://www.npmjs.com/package/cross-env): Sets the node enviornment to testing when running tests
+
+#### Miscellaneous dependencies
+
+- [Axios](https://www.npmjs.com/package/axios): A promise based HTTP client used to send requests
+- [Faker](https://www.npmjs.com/package/faker): A node.js dependency used to make large amounts of seed data  
+- [Moment](https://www.npmjs.com/package/moment): Formats dates in JavaScript
+- [Jwt-decode](https://www.npmjs.com/package/jwt-decode): Decodes JSON web tokens so that the data can be used 
+
 
 ## Endpoints
 
@@ -52,6 +92,15 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
 | GET    | `/mediators` | all users      | Returns all mediators. |
 | GET    | `/mediators/pending` | all users      | Returns all requests to be a mediator. |
 | GET    | `/mediators/:id/cases` | all users      | Returns all cases for a mediator. |
+
+#### Invoice Routes
+
+| Method | Endpoint | Access Control | Description |
+| ------ | -------- | -------------- | ----------- |
+| POST   | `/invoices/case/:id` | all users      | Creates a new invoice for the case related to the id passed in. |
+| GET    | `/invoices/case/:id` | all users      | Returns all invoices for a case. |
+| PUT    | `/invoices/:id/` | all users      | Marks a invoice as paid. |
+| GET    | `/invoices/:id/session` | all users      | Returns a session id to start stripe session. |
 
 ## Data Model
 
@@ -128,6 +177,18 @@ We are using a PostgresSQL database deployed on Heroku. To access the database w
   updated_at: CURRENT_TIMESTAMP
 }
 ```
+#### INVOICES
+
+```
+{
+  mediator_id: INTEGER
+  case_id: INTEGER
+  amount: INTEGER
+  hours: INTEGER
+  paid_at: DATETIME
+  created_at: CURRENT_TIMESTAMP
+}
+```
 
 ## Environment Variables
 
@@ -135,11 +196,10 @@ In order for the app to function correctly, the user must set up their own envir
 
 create a .env file that includes the following:
 
-    *  STAGING_DB - optional development db for using functionality not available in SQLite
     *  NODE_ENV - set to "development" until ready for "production"
-    *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
     *  SENDGRID_API_KEY - this is generated in your Sendgrid account
-    *  stripe_secret - this is generated in the Stripe dashboard
+    *  STRIPE_KEY - this is generated in the Stripe dashboard
+    *  REACT_APP_URL - the url you want to pass through for callbacks
 
 ## Contributing
 
