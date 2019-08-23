@@ -6,6 +6,7 @@
 
 const express = require('express')
 const CasesController = require('../controllers/CasesController')
+const DocumentsController = require('../controllers/DocumentsController')
 const AddendumsController = require('../controllers/AddendumsController')
 const restricted = require('../middleware/restricted')
 const require_body = require('../middleware/require_body')
@@ -110,6 +111,19 @@ router.route("/:id/case-request-declined")
 router.route("/:id/case-request-completed")
   .all(restricted)
   .put(CasesController.completeCase)
+
+  /**
+ * Routes
+ *   GET  /cases/:id/documents
+ *   POST /cases/:id/documents
+ */
+
+  router.route("/:id/documents")
+  .all(restricted)
+  .get(DocumentsController.index)
+  .all(require_body(["file_name"]))
+  .post(DocumentsController.create)
+
 
 /**
  * Export router

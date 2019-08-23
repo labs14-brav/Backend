@@ -143,6 +143,13 @@ class Case {
   static async delete(id, email) {
     return await db("cases").where({ id: id, user_email: email }).del()
   }
+
+  static async addDocument(id, email) {
+    return await db("cases").where({ id: id, user_email: email })
+        .update
+  }
+
+
 }
 
 /**

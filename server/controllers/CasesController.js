@@ -205,6 +205,7 @@ class CasesController {
       return res.status(500).json({ error: { message: "Internal Server Error" } });
     }
   }
+
 }
 
 /**

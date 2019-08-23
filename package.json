@@ -8,7 +8,10 @@
     "start": "node server/app.js",
     "start:dev": "nodemon server/app.js",
     "test": "cross-env NODE_ENV=test jest --watch --verbose --runInBand",
-    "test:all": "cross-env NODE_ENV=test jest --watch --verbose --runInBand --all"
+    "test:all": "cross-env NODE_ENV=test jest --watch --verbose --runInBand --all",
+    "reset": "npx knex migrate:rollback && npx knex migrate:latest && npx knex seed:run",
+    "reset:staging": "npx heroku run knex migrate:rollback -a brav-staging && npx heroku run knex migrate:latest -a brav-staging && npx heroku run knex seed:run -a brav-staging",
+    "reset:production": "npx heroku run knex migrate:rollback -a bravproduction && npx heroku run knex migrate:latest -a bravproduction && npx heroku run knex seed:run -a bravproduction"
   },
   "repository": {
     "type": "git",
