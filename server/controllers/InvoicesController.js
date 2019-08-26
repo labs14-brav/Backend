@@ -43,7 +43,7 @@ class InvoicesController {
             transfer_data: {
               destination: mediator.stripe_user_id
             }
-          }, function(err, charge) {
+          }, async function(err, charge) {
             if (err) {
               console.error(err);
               res.status(error.code).json({ error: { message: error.message }});
