@@ -27,6 +27,11 @@ router.route("/:id")
   .get(InvoicesController.getById)
   .put(InvoicesController.payed)
 
+router.route("/:id/charge")
+  .all(restricted)
+  .all(require_body(["stripe_token"]))
+  .post(InvoicesController.charge)
+
 router.route("/case/:id")
   .all(restricted)
   .get(InvoicesController.getByCaseId)
