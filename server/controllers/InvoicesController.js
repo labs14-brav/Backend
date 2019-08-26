@@ -25,6 +25,45 @@ class InvoicesController {
     }
   }
 
+  static async charge(req, res) {
+    try {
+      const invoice = await Invoice.find(req.params.id)
+
+      if (invoice) {
+        const fetchCase = await Case.find(invoice.case_id)
+        const mediator = await User.getUserById(invoice.mediator_id)
+
+        if (fetchCase && mediator) {
+          stripe.charges.create({
+            amount: invoice.amount * 100,
+            currency: "usd",
+            source: req.body.stripeToken,
+            application_fee_amount: invoice.amount * 100 * 0.3,
+            description: "Mediation Services",
+            transfer_data: {
+              destination: mediator.stripe_user_id
+            }
+          }, function(err, charge) {
+            if (err) {
+              console.error(err);
+              res.status(error.code).json({ error: { message: error.message }});
+            } else {
+              await Invoice.payed(req.params.id);
+              res.status(200).json({ message: "Payment success" });
+            }
+          });
+        } else {
+          res.status(404).json({ message: "Mediator not found" });
+        }
+      } else {
+        res.status(404).json({ message: "Invoice not found" });
+      }
+    } catch(err) {
+      console.error(err);
+      res.status(500).json({ error: { message: "Internal Server Error" } });
+    }
+  }
+
   static async sessions(req, res) {
     try {
       const invoice = await Invoice.find(req.params.id)
