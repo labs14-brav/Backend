@@ -48,6 +48,7 @@ class InvoicesController {
               console.error(err);
               res.status(error.code).json({ error: { message: error.message }});
             } else {
+              await Invoice.payed(req.params.id);
               res.status(200).json({ message: "Payment success" });
             }
           });
