@@ -29,7 +29,7 @@ router.route("/:id")
 
 router.route("/:id/charge")
   .all(restricted)
-  .all(require_body(["stripe_token"]))
+  .all(require_body(["stripeToken"]))
   .post(InvoicesController.charge)
 
 router.route("/case/:id")
