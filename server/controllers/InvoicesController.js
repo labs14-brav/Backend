@@ -66,12 +66,11 @@ class InvoicesController {
 
   static async sessions(req, res) {
     try {
+      
       const invoice = await Invoice.find(req.params.id)
-
       if (invoice) {
         const fetchCase = await Case.find(invoice.case_id)
         const mediator = await User.getUserById(invoice.mediator_id)
-
         if (fetchCase && mediator) {
           const session = await stripe.checkout.sessions.create({
             line_items: [
@@ -154,15 +153,18 @@ class InvoicesController {
 
   static async getByCaseId(req, res) {
     try {
+      let mediator_data = null;
       const fetched_invoices = await Invoice.findByCaseId(req.params.id);
-      const mediator_data = await User.getUserById(fetched_invoices[0].mediator_id);
-      if (fetched_invoices && mediator_data) {
-        let result = {
-          mediator: mediator_data,
-          invoice: fetched_invoices
+      
+      if (fetched_invoices.length > 0) {
+        mediator_data = await User.getUserById(fetched_invoices[0].mediator_id);
         }
-        res.status(200).json(result);
+
+      let result = {
+        mediator: mediator_data,
+        invoice: fetched_invoices
       }
+      res.status(200).json(result);
     } catch (err) {
       console.error(err);
       return res
