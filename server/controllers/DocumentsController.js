@@ -28,7 +28,6 @@ class DocumentsController {
 
   static async create(req, res) {
     try {
-      console.log('inside create')
       const documents = await Document.create({
           case_id:req.params.id,
           file_name:req.body.file_name         
