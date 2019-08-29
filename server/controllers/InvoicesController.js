@@ -25,7 +25,7 @@ class InvoicesController {
     }
   }
 
-  static async sessions(req, res) {
+  static async charge(req, res) {
     try {
       const invoice = await Invoice.find(req.params.id)
 
@@ -33,6 +33,44 @@ class InvoicesController {
         const fetchCase = await Case.find(invoice.case_id)
         const mediator = await User.getUserById(invoice.mediator_id)
 
+        if (fetchCase && mediator) {
+          stripe.charges.create({
+            amount: invoice.amount * 100,
+            currency: "usd",
+            source: req.body.stripeToken,
+            application_fee_amount: invoice.amount * 100 * 0.3,
+            description: "Mediation Services",
+            transfer_data: {
+              destination: mediator.stripe_user_id
+            }
+          }, async function(err, charge) {
+            if (err) {
+              console.error(err);
+              res.status(error.code).json({ error: { message: error.message }});
+            } else {
+              await Invoice.payed(req.params.id);
+              res.status(200).json({ message: "Payment success" });
+            }
+          });
+        } else {
+          res.status(404).json({ message: "Mediator not found" });
+        }
+      } else {
+        res.status(404).json({ message: "Invoice not found" });
+      }
+    } catch(err) {
+      console.error(err);
+      res.status(500).json({ error: { message: "Internal Server Error" } });
+    }
+  }
+
+  static async sessions(req, res) {
+    try {
+      
+      const invoice = await Invoice.find(req.params.id)
+      if (invoice) {
+        const fetchCase = await Case.find(invoice.case_id)
+        const mediator = await User.getUserById(invoice.mediator_id)
         if (fetchCase && mediator) {
           const session = await stripe.checkout.sessions.create({
             line_items: [
@@ -115,15 +153,18 @@ class InvoicesController {
 
   static async getByCaseId(req, res) {
     try {
+      let mediator_data = null;
       const fetched_invoices = await Invoice.findByCaseId(req.params.id);
-      const mediator_data = await User.getUserById(fetched_invoices[0].mediator_id);
-      if (fetched_invoices && mediator_data) {
-        let result = {
-          mediator: mediator_data,
-          invoice: fetched_invoices
+      
+      if (fetched_invoices.length > 0) {
+        mediator_data = await User.getUserById(fetched_invoices[0].mediator_id);
         }
-        res.status(200).json(result);
+
+      let result = {
+        mediator: mediator_data,
+        invoice: fetched_invoices
       }
+      res.status(200).json(result);
     } catch (err) {
       console.error(err);
       return res

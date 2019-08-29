@@ -9,6 +9,7 @@ exports.up = function(knex) {
     table.text("description");
     table.text("dispute_category");
     table.text("dispute_amount");
+    table.text("case_initiator");
     table.text("parties_involved");
     table.text("parties_contact_info");
     table.boolean("court_case"); //this is the important check for whether or not a case is a court referral
