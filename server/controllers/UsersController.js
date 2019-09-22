@@ -16,9 +16,21 @@ class UsersController {
     try {
       const users = await User.all()
       res.status(200).json(users)
-    } catch(err) {
+    } catch (err) {
       console.error(err)
-      res.status(500).json({ error: { message: 'Internal Server Error' }})
+      res.status(500).json({ error: { message: 'Internal Server Error' } })
+    }
+
+  }
+  static async getUserById(req, res) {
+    const id = req.params.id
+    try {
+      const user = await User.getUserById(id)
+      console.log("user --->", user);
+      res.status(200).json(user)
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ error: { message: 'Internal Server Error' } })
     }
   }
 
@@ -26,7 +38,7 @@ class UsersController {
     try {
       const user = {
         email: req.body.email,
-        uid:req.body.uid,
+        uid: req.body.uid,
       }
       let foundUser = await User.getUserByEmail(user.email)
 
@@ -42,7 +54,7 @@ class UsersController {
       }
     } catch (err) {
       console.error(err)
-      res.status(500).json({ error: { message: 'Internal Server Error' }})
+      res.status(500).json({ error: { message: 'Internal Server Error' } })
     }
   }
 
@@ -50,9 +62,23 @@ class UsersController {
     try {
       await User.deactivate(req.body.email)
       res.status(200).json({ message: 'Successfully deactivated your account.' })
-    } catch(err) {
+    } catch (err) {
       console.error(err)
-      res.status(500).json({ error: { message: 'Internal Server Error' }})
+      res.status(500).json({ error: { message: 'Internal Server Error' } })
+    }
+  }
+
+  static async editUser(req, res) {
+    const id = req.params.id;
+    delete req.body.uid;
+    delete req.body.email;
+    const user = req.body
+    try {
+      const updatedUser = await User.editUser(id, user)
+      res.status(200).json({ message: 'Successfully updated your account.', updatedUser })
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({ error: { message: 'Internal Server Error' } })
     }
   }
 
@@ -63,11 +89,11 @@ class UsersController {
       if (pending) {
         res.status(200).json(pending);
       } else {
-        res.status(500).json({ error: { message: 'Internal Server Error' }})
+        res.status(500).json({ error: { message: 'Internal Server Error' } })
       }
-    } catch(err) {
+    } catch (err) {
       console.error(err);
-      res.status(500).json({ error: { message: 'Internal Server Error' }});
+      res.status(500).json({ error: { message: 'Internal Server Error' } });
     }
   }
 
@@ -84,11 +110,11 @@ class UsersController {
       if (approved) {
         res.status(200).json(approved);
       } else {
-        res.status(500).json({ error: { message: 'Internal Server Error' }})
+        res.status(500).json({ error: { message: 'Internal Server Error' } })
       }
-    } catch(err) {
+    } catch (err) {
       console.error(err);
-      res.status(500).json({ error: { message: 'Internal Server Error' }})
+      res.status(500).json({ error: { message: 'Internal Server Error' } })
     }
   }
 
@@ -105,11 +131,11 @@ class UsersController {
       if (declined) {
         res.status(200).json(declined);
       } else {
-        res.status(500).json({ error: { message: 'Internal Server Error' }})
+        res.status(500).json({ error: { message: 'Internal Server Error' } })
       }
-    } catch(err) {
+    } catch (err) {
       console.error(err);
-      res.status(500).json({ error: { message: 'Internal Server Error' }})
+      res.status(500).json({ error: { message: 'Internal Server Error' } })
     }
   }
 
@@ -126,7 +152,7 @@ class UsersController {
         'professional_bio': req.body.professional_bio,
         'name': req.body.name,
         'price': req.body.price,
-        'type' : 'pending_mediator'
+        'type': 'pending_mediator'
       });
 
       updateUser
@@ -134,7 +160,7 @@ class UsersController {
         : res.status(404).json({ message: "missing required fields" });
     } catch (err) {
       console.error(err)
-      res.status(500).json({ error: { message: 'Internal Server Error' }})
+      res.status(500).json({ error: { message: 'Internal Server Error' } })
     }
   }
 }

@@ -22,7 +22,12 @@ const router = express.Router()
  */
 
 router.route('/')
+  .all(restricted)
   .get(UsersController.index)
+
+router.route('/:id')
+  .all(restricted)
+  .get(UsersController.getUserById)
 
 /**
  * Routes
@@ -39,8 +44,8 @@ router.route('/auth')
  */
 
 router.route('/deactivate')
- .all(restricted)
- .put(UsersController.deactivate)
+  .all(restricted)
+  .put(UsersController.deactivate)
 
 /**
  * Routes
@@ -48,9 +53,13 @@ router.route('/deactivate')
  */
 
 router.route('/:id/mediator-upgrade')
-  .all(require_body(["experience","license","specialization","language","professional_bio","name","price"]))
+  .all(require_body(["experience", "license", "specialization", "language", "professional_bio", "name", "price"]))
   .put(UsersController.mediatorUpgrade)
-  
+
+router.route('/:id/update-user')
+  .all(restricted)
+  .put(UsersController.editUser)
+
 /**
  * Routes
  *   PUT /users/:id/mediator-request-accepted

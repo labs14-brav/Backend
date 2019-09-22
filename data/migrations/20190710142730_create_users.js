@@ -1,4 +1,4 @@
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema.createTable("users", users => {
     users.increments();
 
@@ -20,13 +20,15 @@ exports.up = function(knex) {
     users.text("name");
     users.datetime("deactivated_at");
     users.string("mediator_accepted_at");
-    users.string("mediator_declined_at");
-    users.string("stripe_user_id");
-    users.string("is_stripe_connected").defaultTo(false);
+    users.text("mediator_declined_at");
+    users.text("city");
+    users.text("state");
+    users.text("stripe_user_id");
+    users.text("is_stripe_connected").defaultTo(false);
     users.timestamps(true, true);
   });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema.dropTableIfExists("users");
 };
