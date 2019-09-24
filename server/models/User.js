@@ -28,7 +28,7 @@ class User {
       const [ids] = await db('users').insert({
         email: user.email,
         uid: user.uid,
-      },['id'])
+      }, ['id'])
       return ids.id
     } else {
       const [id] = await db('users').insert({
@@ -62,8 +62,9 @@ class User {
     return db('users').where('id', id).first()
   }
 
-  static editUser(id, update) {
-    return db('users').where('id', id).update(update)
+  static async editUser(id, update) {
+    await db('users').where('id', id).update(update);
+    return db('users').where('id', id).first();
   }
 
   /**
