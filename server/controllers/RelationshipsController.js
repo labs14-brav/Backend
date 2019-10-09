@@ -57,7 +57,7 @@ class RelationshipsController {
     try {
       const editedRelationship = await Case.update(id, req.body);
       if (editedRelationship) {
-        return res.status(200).json({ message: "Successfully deleted a case" });
+        return res.status(200).json(editedRelationship);
       } else {
         return res.status(404).json({
           message: "The relationship you tried to update does not exist."
