@@ -70,6 +70,25 @@ class RelationshipsController {
         .json({ error: { message: "Internal Server Error" } });
     }
   }
+
+  static async remove(req, res) {
+    const { id } = req.params;
+    try {
+      const deletedRelationship = await Case.remove(id);
+      if (deletedRelationship) {
+        return res.status(200).json(deletedRelationship);
+      } else {
+        return res.status(404).json({
+          message: "The relationship you tried to delete does not exist."
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: { message: "Internal Server Error" } });
+    }
+  }
 }
 
 /**
