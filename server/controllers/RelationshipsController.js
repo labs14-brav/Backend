@@ -51,6 +51,25 @@ class RelationshipsController {
       res.status(500).json({ error: { message: "Internal Server Error" } });
     }
   }
+
+  static async update(req, res) {
+    const { id } = req.params;
+    try {
+      const editedRelationship = await Case.update(id, req.body);
+      if (editedRelationship) {
+        return res.status(200).json({ message: "Successfully deleted a case" });
+      } else {
+        return res.status(404).json({
+          message: "The relationship you tried to update does not exist."
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: { message: "Internal Server Error" } });
+    }
+  }
 }
 
 /**
