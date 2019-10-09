@@ -55,7 +55,7 @@ class RelationshipsController {
   static async update(req, res) {
     const { id } = req.params;
     try {
-      const editedRelationship = await Case.update(id, req.body);
+      const editedRelationship = await Relationships.update(id, req.body);
       if (editedRelationship) {
         return res.status(200).json(editedRelationship);
       } else {
@@ -74,7 +74,7 @@ class RelationshipsController {
   static async remove(req, res) {
     const { id } = req.params;
     try {
-      const deletedRelationship = await Case.remove(id);
+      const deletedRelationship = await Relationships.remove(id);
       if (deletedRelationship) {
         return res.status(200).json(deletedRelationship);
       } else {
