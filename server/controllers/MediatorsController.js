@@ -8,6 +8,8 @@ const Mediator = require("../models/Mediator");
 const SendGrid = require("../initializers/SendGrid");
 const Case = require("../models/Case");
 const MediatorCase = require("../models/MediatorCase");
+const Relationships = require("../models/Relationships");
+
 const axios = require("axios");
 
 /**
@@ -36,6 +38,8 @@ class MediatorsController {
           mediator_id: mediator.id,
           case_id: fetchCase.id
         });
+        // Create a new relationship here using the client's and mediator's id.
+        await Relationships.create(fetchCase.user_uid, mediator.uid);
         await SendGrid.sendMediatorRequestEmail({
           mediator_email: mediator.email,
           user_email: req.body.email,
