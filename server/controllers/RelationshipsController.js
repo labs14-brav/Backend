@@ -39,6 +39,18 @@ class RelationshipsController {
         .json({ error: { message: "Internal Server Error" } });
     }
   }
+
+  static async create(req, res) {
+    const { user_id, mediator_id } = req.body;
+    try {
+      const newRelationship = await Relationships.create(user_id, mediator_id);
+
+      res.status(201).json(newRelationship);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: { message: "Internal Server Error" } });
+    }
+  }
 }
 
 /**
