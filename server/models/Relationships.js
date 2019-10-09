@@ -61,6 +61,29 @@ class Relationships {
       }
     }
   }
+
+  static async remove(id) {
+    if (
+      process.env.NODE_ENV === "production" ||
+      process.env.NODE_ENV === "staging"
+    ) {
+      const [relationship] = await db("relationships")
+        .where({ id })
+        .del()
+        .returning("*");
+      return relationship;
+    } else {
+      const relationship = await this.findById(id);
+      if (relationship) {
+        const removed = await db("relationships")
+          .where({ id })
+          .del();
+        if (removed) {
+          return relationship;
+        }
+      }
+    }
+  }
 }
 
 /**
