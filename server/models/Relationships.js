@@ -8,7 +8,17 @@ const db = require("../../data/dbConfig");
  * Define model
  */
 
-class Relationships {}
+class Relationships {
+  static find() {
+    return db("relationships");
+  }
+
+  static findById(id) {
+    return db("relationships")
+      .where({ id })
+      .first();
+  }
+}
 
 /**
  * Export model
