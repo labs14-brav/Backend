@@ -40,6 +40,27 @@ class Relationships {
       }
     }
   }
+
+  static async update(id, updates) {
+    if (
+      process.env.NODE_ENV === "production" ||
+      process.env.NODE_ENV === "staging"
+    ) {
+      const [relationship] = await db("relationships")
+        .where({ id })
+        .update(updates)
+        .returning("*");
+      return relationship;
+    } else {
+      const editedRelationship = await db("relationships")
+        .where({ id })
+        .update(updates);
+      if (editedRelationship) {
+        const relationship = await this.findById(id);
+        return relationship;
+      }
+    }
+  }
 }
 
 /**
