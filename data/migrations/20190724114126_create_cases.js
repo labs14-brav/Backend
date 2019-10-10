@@ -1,6 +1,6 @@
 "use strict";
 
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema.createTable("cases", table => {
     table.increments();
     table.text("case_completed_at");
@@ -12,7 +12,7 @@ exports.up = function(knex) {
     table.text("case_initiator");
     table.text("parties_involved");
     table.text("parties_contact_info");
-    table.boolean("court_case"); //this is the important check for whether or not a case is a court referral
+    table.boolean("court_case");
     table.text("court_jurisdiction");
     table.text("court_number");
     table.text("court_filing_date");
@@ -23,6 +23,6 @@ exports.up = function(knex) {
   });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema.dropTableIfExists("cases");
 };
