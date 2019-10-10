@@ -9,7 +9,7 @@ exports.up = function(knex) {
       .onUpdate("CASCADE");
     relationships
       .string("mediator_id", 128)
-      .references("users.id")
+      .references("users.uid")
       .notNullable()
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
