@@ -25,7 +25,7 @@ exports.up = function (knex) {
     users.text("state");
     users.text("stripe_user_id");
     users.text("is_stripe_connected").defaultTo(false);
-    users.text("is_onboarded").defaultTo(false);
+    users.boolean("is_onboarded").defaultTo(false);
     users.text("profile_image");
     users.timestamps(true, true);
   });
