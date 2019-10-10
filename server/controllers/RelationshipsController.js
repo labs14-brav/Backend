@@ -30,7 +30,9 @@ class RelationshipsController {
       if (relationship) {
         return res.status(200).json(relationship);
       } else {
-        //404
+        return res.status(404).json({
+          message: "The relationship with the specified ID does not exist."
+        });
       }
     } catch (error) {
       console.error(err);
