@@ -84,6 +84,14 @@ class Relationships {
       }
     }
   }
+
+  static findUserRelationships(id) {
+    return db("relationships").where({ user_id: id });
+  }
+
+  static findMedRelationships(id) {
+    return db("relationships").where({ mediator_id: id });
+  }
 }
 
 /**
