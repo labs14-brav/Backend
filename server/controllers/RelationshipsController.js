@@ -42,6 +42,24 @@ class RelationshipsController {
     }
   }
 
+  static async findList(req, res) {
+    const { id, type } = req.body;
+    try {
+      if (type === "mediator") {
+        const relationshipList = await Relationships.findMedRelationships(id);
+        return res.status(200).json(relationshipList);
+      } else {
+        const relationshipList = await Relationships.findUserRelationships(id);
+        return res.status(200).json(relationshipList);
+      }
+    } catch (error) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: { message: "Internal Server Error" } });
+    }
+  }
+
   static async create(req, res) {
     const { user_id, mediator_id } = req.body;
     try {
