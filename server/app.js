@@ -15,6 +15,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
+const restricted = require("./middleware/restricted");
 
 /**
  * Constants
@@ -51,6 +52,7 @@ app.use("/cases", require("./routes/cases_router"));
 app.use("/users", require("./routes/users_router"));
 app.use("/mediators", require("./routes/mediators_router"));
 app.use("/invoices", require("./routes/invoices_router"));
+app.use("/relationships", restricted, require("./routes/relationships_router"));
 
 /**
  * Error Handlers

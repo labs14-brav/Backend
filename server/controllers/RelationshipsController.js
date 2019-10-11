@@ -30,7 +30,27 @@ class RelationshipsController {
       if (relationship) {
         return res.status(200).json(relationship);
       } else {
-        //404
+        return res.status(404).json({
+          message: "The relationship with the specified ID does not exist."
+        });
+      }
+    } catch (error) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: { message: "Internal Server Error" } });
+    }
+  }
+
+  static async findList(req, res) {
+    const { id, type } = req.body;
+    try {
+      if (type === "mediator") {
+        const relationshipList = await Relationships.findMedRelationships(id);
+        return res.status(200).json(relationshipList);
+      } else {
+        const relationshipList = await Relationships.findUserRelationships(id);
+        return res.status(200).json(relationshipList);
       }
     } catch (error) {
       console.error(err);
