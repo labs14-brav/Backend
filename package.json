@@ -25,7 +25,7 @@
   "homepage": "https://github.com/labs14-brav/Backend#readme",
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
