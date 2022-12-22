@@ -33,7 +33,7 @@
     "firebase": "^6.3.1",
     "firebase-admin": "^8.2.0",
     "helmet": "^3.18.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^2.2.0",
     "knex": "^0.18.4",
     "moment": "^2.24.0",
